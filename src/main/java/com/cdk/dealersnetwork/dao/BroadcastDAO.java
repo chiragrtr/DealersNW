@@ -36,22 +36,31 @@ public class BroadcastDAO {
     public List<Broadcast> showMyBroadcasts(int dealerId) {
         List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId =:bdid", "bdid", dealerId);
         List<Broadcast> dtoBroadcastList = null;
-        if (domainBroadcastList != null && domainBroadcastList.size() != 0) {
+        return getBroadcastsList(domainBroadcastList);
+    }
+
+    public List<Broadcast> showOthersBroadcasts(int dealerId){
+        List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId !=:bdid", "bdid", dealerId);
+        List<Broadcast> dtoBroadcastList = null;
+        return getBroadcastsList(domainBroadcastList);
+    }
+
+    private List<Broadcast> getBroadcastsList(List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList) {
+        List<Broadcast> dtoBroadcastList = null;
+        if(domainBroadcastList != null && domainBroadcastList.size() !=0){
             dtoBroadcastList = new ArrayList<>();
-            for (com.cdk.dealersnetwork.domain.Broadcast e : domainBroadcastList) {
+            for(com.cdk.dealersnetwork.domain.Broadcast b: domainBroadcastList){
                 Broadcast broadcast = new Broadcast();
-                broadcast.setBroadcastId(e.getBroadcastId());
-                broadcast.setDealerId(e.getDealerId());
-                broadcast.setMake(e.getMake());
-                broadcast.setModel(e.getModel());
-                broadcast.setColor(e.getColor());
-                broadcast.setStatus(e.getStatus());
-                broadcast.setBroadcastDate(e.getBroadcastDate());
+                broadcast.setBroadcastId(b.getBroadcastId());
+                broadcast.setDealerId(b.getDealerId());
+                broadcast.setMake(b.getMake());
+                broadcast.setModel(b.getModel());
+                broadcast.setColor(b.getColor());
+                broadcast.setStatus(b.getStatus());
+                broadcast.setBroadcastDate(b.getBroadcastDate());
                 dtoBroadcastList.add(broadcast);
             }
-
         }
         return dtoBroadcastList;
-
     }
 }
