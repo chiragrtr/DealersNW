@@ -8,7 +8,7 @@ import java.util.Date;
  * Created by sharmach on 30/8/2016.
  */
 @Entity
-@Table(name = "")
+@Table(name = "dealers")
 public class Dealer {
     private int dealerId;
     private String name;
