@@ -37,6 +37,8 @@ public class Bid {
         this.notified = notified;
     }
 
+
+
     public Bid() {
     }
 
