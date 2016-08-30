@@ -1,7 +1,7 @@
 package com.cdk.dealersnetwork.dao;
 
 import com.cdk.dealersnetwork.dto.Dealer;
-import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 
 /**
  * Created by sharmach on 30/8/2016.
@@ -28,9 +28,8 @@ public class DealerDAO {
         return dealer;
     }
 
-    public Dealer deleteDealer(int dealerId){
+    public void deleteDealer(int dealerId){
         com.cdk.dealersnetwork.domain.Dealer dealer = hibernateTemplate.get(com.cdk.dealersnetwork.domain.Dealer.class,dealerId);
         hibernateTemplate.delete(dealer);
-
     }
 }
