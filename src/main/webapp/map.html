@@ -52,7 +52,7 @@
     app.controller('mapControl',function ($scope) {
 
         var mapOptions = {
-            zoom : 4,
+            zoom : 8,
             center: new google.maps.LatLng(40.0000, -98.0000),
             mapTypeId : google.maps.MapTypeId.ROADMAP
         }
@@ -66,12 +66,14 @@
         var createMarker = function (info){
 
             var marker = new google.maps.Marker({
+
                 map: $scope.map,
                 position: new google.maps.LatLng(info.lat, info.long),
-                title: info.city
+                title: info.city,
+                animation:google.maps.Animation.BOUNCE
+
             });
             marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
-
             google.maps.event.addListener(marker, 'click', function(){
                 infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content); //add content here..
                 infoWindow.open($scope.map, marker);
