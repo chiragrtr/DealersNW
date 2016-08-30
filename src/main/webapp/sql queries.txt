@@ -1,0 +1,15 @@
+create database dealers_network;
+
+use dealers_network;
+
+create table dealers(d_id int primary key auto_increment, name varchar(100), phone int, reg_date date);
+
+desc dealers;
+
+create table broadcasts(b_id int primary key auto_increment, d_id int references dealers, make varchar(100), model varchar(100), color varchar(100), broadcast_date date, status int);
+
+desc broadcasts;
+
+create table bids(bid_id int primary key auto_increment, b_id int references broadcasts, d_id int references dealers, bid_date date, price float(10,2), delivery_hours int, status int, seen int);
+
+desc bids;
