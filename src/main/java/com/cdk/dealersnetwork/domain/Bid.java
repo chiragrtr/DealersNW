@@ -10,17 +10,17 @@ import java.util.Date;
 @Table(name = "bid")
 public class Bid {
     @Id
-    @Column(name="bid_id")
+    @Column(name = "bid_id")
     @GeneratedValue
     private int bidId;
-    @Column(name="b_id")
+    @Column(name = "b_id")
     private int broadcastId;
-    @Column(name="d_id")
+    @Column(name = "d_id")
     private int dealerId;
-    @Column(name="bid_date")
+    @Column(name = "bid_date")
     private Date bidDate;
     private float price;
-    @Column(name="delivery_hours")
+    @Column(name = "delivery_hours")
     private int deliveryHours;
     @Column
     private int status;
@@ -35,6 +35,9 @@ public class Bid {
         this.deliveryHours = deliveryHours;
         this.status = status;
         this.notified = notified;
+    }
+
+    public Bid() {
     }
 
     public int getBidId() {

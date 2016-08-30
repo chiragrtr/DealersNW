@@ -26,6 +26,9 @@ public class Broadcast {
     @Column
     private int status;
 
+    public Broadcast() {
+    }
+
     public Broadcast(int dealerId, String make, String model, String color, Date broadcastDate, int status) {
         this.dealerId = dealerId;
         this.make = make;

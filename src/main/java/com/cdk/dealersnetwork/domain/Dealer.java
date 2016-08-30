@@ -20,6 +20,9 @@ public class Dealer {
     @Column(name = "reg_date")
     private Date regDate;
 
+    public Dealer() {
+    }
+
     public Dealer(String name, int phone, Date regDate) {
         this.name = name;
         this.phone = phone;
