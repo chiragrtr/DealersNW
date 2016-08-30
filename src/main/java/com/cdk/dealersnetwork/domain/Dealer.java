@@ -16,4 +16,5 @@ public class Dealer {
     private Date regDate;
 
 
+
 }

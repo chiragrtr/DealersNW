@@ -13,4 +13,73 @@ public class Broadcast {
     private String color;
     private Date broadcastDate;
     private int status;
+
+    public Broadcast() {
+    }
+
+    public Broadcast(int broadcastId, int dealerId, String make, String model, String color, Date broadcastDate, int status) {
+        this.broadcastId = broadcastId;
+        this.dealerId = dealerId;
+        this.make = make;
+        this.model = model;
+        this.color = color;
+        this.broadcastDate = broadcastDate;
+        this.status = status;
+    }
+
+    public int getBroadcastId() {
+        return broadcastId;
+    }
+
+    public void setBroadcastId(int broadcastId) {
+        this.broadcastId = broadcastId;
+    }
+
+    public int getDealerId() {
+        return dealerId;
+    }
+
+    public void setDealerId(int dealerId) {
+        this.dealerId = dealerId;
+    }
+
+    public String getMake() {
+        return make;
+    }
+
+    public void setMake(String make) {
+        this.make = make;
+    }
+
+    public String getModel() {
+        return model;
+    }
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public Date getBroadcastDate() {
+        return broadcastDate;
+    }
+
+    public void setBroadcastDate(Date broadcastDate) {
+        this.broadcastDate = broadcastDate;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
+    }
 }
