@@ -19,4 +19,42 @@ public class Dealer {
     private int phone;
     @Column(name = "reg_date")
     private Date regDate;
+
+    public Dealer(String name, int phone, Date regDate) {
+        this.name = name;
+        this.phone = phone;
+        this.regDate = regDate;
+    }
+
+    public int getDealerId() {
+        return dealerId;
+    }
+
+    public void setDealerId(int dealerId) {
+        this.dealerId = dealerId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    public Date getRegDate() {
+        return regDate;
+    }
+
+    public void setRegDate(Date regDate) {
+        this.regDate = regDate;
+    }
 }
