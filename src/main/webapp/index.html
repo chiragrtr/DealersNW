@@ -3,15 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <title>Log In</title>
-    <link type="text/css" rel="stylesheet" href="stylesheets/login.css" />
+    <link type="text/css" rel="stylesheet" href="login.css" />
 </head>
-<body>
-<form name="register" id="register">
-    Name<input type="text" name="name" required><br>
-    Contact Number<input type="number" name="phone" required><br>
-    Email ID<input type="email" name="email" required><br>
-    Password<input type="password" name="password" required><br>
-    <input type="submit" value="Register">
-</form>
+<body onload="document.getElementById('login').style.display='block'">
+
+
+<div id="login" class="modal">
+
+    <form class="modal-content animate">
+
+        <div class="container">
+            <label><b>Email ID</b></label>
+            <input type="text" placeholder="Enter Email ID" name="email" required>
+
+            <label><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required>
+
+            <button type="submit" >Login</button>
+            <button type="submit">Register</button>
+        </div>
+
+    </form>
+</div>
+
 </body>
 </html>
