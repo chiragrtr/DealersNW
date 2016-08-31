@@ -5,6 +5,7 @@ import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 /**
  * Created by sharmach on 30/8/2016.
@@ -32,6 +33,14 @@ public class DealerDAO {
         System.out.println("hrer3");
 
         return dealer;
+    }
+
+    public boolean isAuthorized(String email, String password){
+        List<com.cdk.dealersnetwork.domain.Dealer> dealerList = (List<com.cdk.dealersnetwork.domain.Dealer>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Dealer d where d.email=: email and d.password=: password",new String[]{"email","password"}, new Object[]{email,password});
+        if(dealerList.size() != 0){
+            return true;
+        }
+        return false;
     }
 
     public void deleteDealer(int dealerId){
