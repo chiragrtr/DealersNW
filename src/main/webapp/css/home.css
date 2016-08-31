@@ -1,5 +1,4 @@
-<style>
-    /* Remove the navbar's default margin-bottom and rounded borders */
+/* Remove the navbar's default margin-bottom and rounded borders */
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
@@ -22,7 +21,6 @@ footer {
     padding: 15px;
     bottom: 0%;
 }
-
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
     .sidenav {
@@ -31,4 +29,3 @@ footer {
     }
     .row.content {height:auto;}
 }
-</style>
