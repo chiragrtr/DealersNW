@@ -13,25 +13,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/home.css">
-        /* Remove the navbar's default margin-bottom and rounded borders */
 
-
-<<<<<<< Updated upstream
-        function createBroadcast() {
-            var htmlText="";
-            htmlText = "<form action='createBroadcast.do' method='post'>" +
-                    "<div class='form-group'>Select Make:</label>"+
-                    "<select class='form-control' id='make'>"+
-                    "<option>Mercedez</option> <option>BMW</option> <option>Tesla</option></select>"+
-                    "<div class='form-group'>Select Model:</label>";
-        }
-
-        function myBroadcasts() {
-
-        }
-    </script>
-=======
->>>>>>> Stashed changes
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -56,13 +38,8 @@
     <div class="row content">
         <div class="col-sm-2 sidenav">
             <button class="well">Edit Profile</button><br>
-<<<<<<< Updated upstream
-            <button class="well" onclick="createBroadcast()">New Broadcast</button><br>
-            <button class="well" onclick="myBroadcasts()">My Broadcasts</button>
-=======
             <button class="well"><a href="#createNewBroadcast">New BroadCast</a></button><br>
             <button class="well">My Broadcasts</button>
->>>>>>> Stashed changes
         </div>
         <div class="col-sm-6 text-left" id="display">
             <div id="createNewBroadcast">
@@ -104,7 +81,11 @@
         var value = $(this).val();
         alert(value);
         if(value == "BMW"){
-
+            options="<option>Select Your Model</option>"
+                    +"<option value='BMW1'>BMW 1</option>"
+                    +"<option value='BMW2'>BMW 2</option>" +
+                    "<option value='BMW3'>BMW 3</option>";
+            $("#name").html(options);
         }
     });
     function createBroadcast() {
