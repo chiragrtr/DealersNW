@@ -25,6 +25,10 @@
                     "<option>Mercedez</option> <option>BMW</option> <option>Tesla</option></select>"+
                     "<div class='form-group'>Select Model:</label>";
         }
+
+        function myBroadcasts() {
+
+        }
     </script>
 </head>
 <body>
@@ -51,7 +55,7 @@
         <div class="col-sm-2 sidenav">
             <button class="well">Edit Profile</button><br>
             <button class="well" onclick="createBroadcast()">New Broadcast</button><br>
-            <button class="well">My Broadcasts</button>
+            <button class="well" onclick="myBroadcasts()">My Broadcasts</button>
         </div>
         <div class="col-sm-6 text-left" id="display">
 
