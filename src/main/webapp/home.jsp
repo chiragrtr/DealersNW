@@ -12,7 +12,52 @@
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/home.css">
+    <style>
+        /* Remove the navbar's default margin-bottom and rounded borders */
+        .navbar {
+            margin-bottom: 0;
+            border-radius: 0;
+        }
+
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {height: 100%}
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            padding-top: 20px;
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* Set black background color, white text and some padding */
+        footer {
+            background-color: #555;
+            color: white;
+            padding: 15px;
+            bottom: 0%;
+        }
+
+        /* On small screens, set height to 'auto' for sidenav and grid */
+        @media screen and (max-width: 767px) {
+            .sidenav {
+                height: auto;
+                padding: 15px;
+            }
+            .row.content {height:auto;}
+        }
+    </style>
+
+    <script type="text/javascript">
+
+        function createBroadcast() {
+            var htmlText="";
+            htmlText = "<form action='createBroadcast.do' method='post'>" +
+                    "<div class='form-group'>Select Make:</label>"+
+                    "<select class='form-control' id='make'>"+
+                    "<option>Mercedez</option> <option>BMW</option> <option>Tesla</option></select>"+
+                    "<div class='form-group'>Select Model:</label>";
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -36,16 +81,12 @@
 <div class="container-fluid text-center">
     <div class="row content">
         <div class="col-sm-2 sidenav">
-            <button class="well"><a href="#">Edit Profile</a></button><br>
-            <button class="well"><a href="#">New Broadcast</a></button><br>
-            <button class="well"><a href="#">My Broadcasts</a></button>
+            <button class="well">Edit Profile</button><br>
+            <button class="well" onclick="createBroadcast()">New Broadcast</button><br>
+            <button class="well">My Broadcasts</button>
         </div>
-        <div class="col-sm-6 text-left">
-            <h1>Welcome</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <hr>
-            <h3>Test</h3>
-            <p>Lorem ipsum...</p>
+        <div class="col-sm-6 text-left" id="display">
+
         </div>
         <div class="col-sm-4 sidenav">
             <div>
