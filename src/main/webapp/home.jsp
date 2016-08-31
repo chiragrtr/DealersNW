@@ -15,21 +15,7 @@
     <link rel="stylesheet" href="css/home.css">
         /* Remove the navbar's default margin-bottom and rounded borders */
 
-    <script type="text/javascript">
 
-        function createBroadcast() {
-            var htmlText="";
-            htmlText = "<form action='createBroadcast.do' method='post'>" +
-                    "<div class='form-group'>Select Make:</label>"+
-                    "<select class='form-control' id='make'>"+
-                    "<option>Mercedez</option> <option>BMW</option> <option>Tesla</option></select>"+
-                    "<div class='form-group'>Select Model:</label>";
-        }
-
-        function myBroadcasts() {
-
-        }
-    </script>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -54,11 +40,25 @@
     <div class="row content">
         <div class="col-sm-2 sidenav">
             <button class="well">Edit Profile</button><br>
-            <button class="well" onclick="createBroadcast()">New Broadcast</button><br>
-            <button class="well" onclick="myBroadcasts()">My Broadcasts</button>
+            <button class="well"><a href="#createNewBroadcast">New BroadCast</a></button><br>
+            <button class="well">My Broadcasts</button>
         </div>
         <div class="col-sm-6 text-left" id="display">
+            <div id="createNewBroadcast">
+                <form action='createBroadcast.do' method='post'>
+                    <div class='form-group'>Select Make:</label>
+                        <select class='form-control' id='make'>
+                            <option>Mercedez</option> <option>BMW</option> <option>Tesla</option>
+                        </select>
+                        <select class='form-control' id='model'>
 
+                        </select>
+                    </div>
+                </form>
+            </div>
+
+
+        <!-- div to add new functionality-->
         </div>
         <div class="col-sm-4 sidenav">
             <div>
@@ -75,4 +75,27 @@
 </div>
 
 </body>
+<script type="text/javascript">
+
+
+    var option = "";
+    $("#make").on('change',function () {
+        var value = $(this).val();
+        alert(value);
+        if(value == "BMW"){
+            
+        }
+    });
+    function createBroadcast() {
+        var htmlText="";
+        htmlText = "<form action='createBroadcast.do' method='post'>" +
+                "<div class='form-group'>Select Make:</label>"+
+                "<select class='form-control' id='make'>"+
+                "<option>Mercedez</option> <option>BMW</option> <option>Tesla</option>"+
+                "</select>"+
+                "<div class='form-group'>Select Model:</label>";
+        document.getElementById("display").innerHTML = htmlText;
+    }
+
+</script>
 </html>
