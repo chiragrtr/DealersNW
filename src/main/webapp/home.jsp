@@ -46,6 +46,18 @@
             .row.content {height:auto;}
         }
     </style>
+
+    <script type="text/javascript">
+
+        function createBroadcast() {
+            var htmlText="";
+            htmlText = "<form action='createBroadcast.do' method='post'>" +
+                    "<div class='form-group'>Select Make:</label>"+
+                    "<select class='form-control' id='make'>"+
+                    "<option>Mercedez</option> <option>BMW</option> <option>Tesla</option></select>"+
+                    "<div class='form-group'>Select Model:</label>";
+        }
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -69,16 +81,12 @@
 <div class="container-fluid text-center">
     <div class="row content">
         <div class="col-sm-2 sidenav">
-            <button class="well"><a href="#">Edit Profile</a></button><br>
-            <button class="well"><a href="#">New Broadcast</a></button><br>
-            <button class="well"><a href="#">My Broadcasts</a></button>
+            <button class="well">Edit Profile</button><br>
+            <button class="well" onclick="createBroadcast()">New Broadcast</button><br>
+            <button class="well">My Broadcasts</button>
         </div>
-        <div class="col-sm-6 text-left">
-            <h1>Welcome</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <hr>
-            <h3>Test</h3>
-            <p>Lorem ipsum...</p>
+        <div class="col-sm-6 text-left" id="display">
+
         </div>
         <div class="col-sm-4 sidenav">
             <div>
