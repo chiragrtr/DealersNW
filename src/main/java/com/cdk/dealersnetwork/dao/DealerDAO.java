@@ -36,7 +36,7 @@ public class DealerDAO {
     }
 
     public boolean isAuthorized(String email, String password){
-        List<com.cdk.dealersnetwork.domain.Dealer> dealerList = (List<com.cdk.dealersnetwork.domain.Dealer>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Dealer d where d.email=: email and d.password=: password",new String[]{"email","password"}, new Object[]{email,password});
+        List<com.cdk.dealersnetwork.domain.Dealer> dealerList = (List<com.cdk.dealersnetwork.domain.Dealer>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Dealer d where d.email=:email and d.password=:password",new String[]{"email","password"}, new Object[]{email,password});
         if(dealerList.size() != 0){
             return true;
         }

@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 /**
  * Created by sharmach on 31/8/2016.
@@ -24,7 +25,6 @@ public class LoginController {
     public void setDealerDAO(DealerDAO dealerDAO) {
         this.dealerDAO = dealerDAO;
     }
-
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
         String email = request.getParameter("email");
@@ -34,4 +34,5 @@ public class LoginController {
         }
         return new ModelAndView("index");
     }
+
 }
