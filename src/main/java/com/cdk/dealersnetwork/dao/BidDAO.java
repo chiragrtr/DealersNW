@@ -29,18 +29,10 @@ public class BidDAO {
     }
 
     public List<Bid> showBids(int dealerId, int broadcastId) {
-        List<com.cdk.dealersnetwork.domain.Bid> domainBidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.b_id=:broadcastId and b.d_id=:dealerId", new String[]{"broadcastId", "dealerId"}, new Object[]{broadcastId, dealerId});
+        List<com.cdk.dealersnetwork.domain.Bid> domainBidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId and b.dealerId=:dealerId", new String[]{"broadcastId", "dealerId"}, new Object[]{broadcastId, dealerId});
         List<Bid> bidList = new ArrayList<>();
         for (com.cdk.dealersnetwork.domain.Bid domainBid : domainBidList) {
-            Bid bid = new Bid();
-            bid.setBidId(domainBid.getBidId());
-            bid.setDealerId(domainBid.getDealerId());
-            bid.setBidDate(domainBid.getBidDate());
-            bid.setBroadcastId(domainBid.getBroadcastId());
-            bid.setStatus(domainBid.getStatus());
-            bid.setNotified(domainBid.getNotified());
-            bid.setDeliveryHours(domainBid.getDeliveryHours());
-            bid.setPrice(domainBid.getPrice());
+            Bid bid = new Bid(domainBid.getBidId(),domainBid.getBroadcastId(),domainBid.getDealerId(),domainBid.getBidDate(),domainBid.getPrice(),domainBid.getDeliveryHours(),domainBid.getStatus(),domainBid.getNotified());
             bidList.add(bid);
         }
         return bidList;
@@ -51,6 +43,10 @@ public class BidDAO {
     }
 
     public void rejectDeals(int broadcastId){
-        List<com.cdk.dealersnetwork.domain.Bid> domainBidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.b_id=:broadcastId","broadcastId",broadcastId);
+        List<com.cdk.dealersnetwork.domain.Bid> domainBidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId","broadcastId",broadcastId);
+        for(com.cdk.dealersnetwork.domain.Bid domainBid : domainBidList){
+            domainBid.setStatus(2);
+            hibernateTemplate.update(domainBid);
+        }
     }
 }

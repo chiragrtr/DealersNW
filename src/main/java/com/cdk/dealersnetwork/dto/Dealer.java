@@ -10,15 +10,26 @@ public class Dealer {
     private String name;
     private int phone;
     private Date regDate;
-
+    private String email;
+    private String password;
     public Dealer() {
     }
 
-    public Dealer(int dealerId, String name, int phone, Date regDate) {
+    public Dealer(int dealerId, String name, int phone, Date regDate, String email, String password) {
         this.dealerId = dealerId;
         this.name = name;
         this.phone = phone;
         this.regDate = regDate;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Dealer(String name, int phone, Date regDate, String email, String password) {
+        this.name = name;
+        this.phone = phone;
+        this.regDate = regDate;
+        this.email = email;
+        this.password = password;
     }
 
     public int getDealerId() {
@@ -51,5 +62,21 @@ public class Dealer {
 
     public void setRegDate(Date regDate) {
         this.regDate = regDate;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

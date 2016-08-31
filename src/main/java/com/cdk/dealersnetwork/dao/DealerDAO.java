@@ -19,10 +19,7 @@ public class DealerDAO {
     }
 
     public Dealer createDealer(Dealer dealer){
-        com.cdk.dealersnetwork.domain.Dealer domainDealer = new com.cdk.dealersnetwork.domain.Dealer();
-        domainDealer.setName(dealer.getName());
-        domainDealer.setPhone(dealer.getPhone());
-        domainDealer.setRegDate(dealer.getRegDate());
+        com.cdk.dealersnetwork.domain.Dealer domainDealer = new com.cdk.dealersnetwork.domain.Dealer(dealer.getName(),dealer.getPhone(),dealer.getRegDate(),dealer.getEmail(),dealer.getPassword());
         hibernateTemplate.save(domainDealer);
         dealer.setDealerId(domainDealer.getDealerId());
         return dealer;

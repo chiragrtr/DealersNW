@@ -13,3 +13,9 @@ desc broadcast;
 create table bid(bid_id int primary key auto_increment, b_id int references broadcasts, d_id int references dealers, bid_date date, price float(10,2), delivery_hours int, status int, notified int);
 
 desc bid;
+
+alter table dealer add column email varchar(100);
+
+alter table dealer add column password varchar(100);
+
+desc dealer;

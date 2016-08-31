@@ -21,6 +21,8 @@
         <property name="annotatedClasses">
             <list>
                 <value>com.cdk.dealersnetwork.domain.Dealer</value>
+                <value>com.cdk.dealersnetwork.domain.Broadcast</value>
+                <value>com.cdk.dealersnetwork.domain.Bid</value>
             </list>
         </property>
         <property name="hibernateProperties">
@@ -34,7 +36,7 @@
     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
-    <bean id="employeeDAO" class="com.cdk.dealersnetwork.dao.DealerDAO">
+    <bean id="dealerDAO" class="com.cdk.dealersnetwork.dao.DealerDAO">
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
     <mvc:annotation-driven />
