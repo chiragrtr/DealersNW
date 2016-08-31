@@ -1,7 +1,7 @@
 package com.cdk.dealersnetwork.domain;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  * Created by sharmach on 30/8/2016.
