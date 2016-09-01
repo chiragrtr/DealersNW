@@ -38,9 +38,18 @@ public class BroadcastController {
     @RequestMapping(value = "/showMyOpenBroadcasts", method = RequestMethod.POST)
     public
     @ResponseBody
-    List<Broadcast> showMyOpenBroadcasts(HttpServletRequest request, HttpServletResponse response) {
+    String showMyOpenBroadcasts(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        return broadcastDAO.showMyOpenBroadcasts(id);
+        String json = "";
+        List<Broadcast> broadcastList = broadcastDAO.showMyOpenBroadcasts(id);
+        if(broadcastList.size() != 0) {
+            json += "[";
+            for (Broadcast broadcast : broadcastDAO.showMyOpenBroadcasts(id)) {
+                json +="";
+            }
+            json += "]";
+        }
+        return json;
     }
 
     @RequestMapping(value = "/showOthersOpenBroadcasts", method = RequestMethod.POST)
