@@ -70,7 +70,7 @@ public class BroadcastController {
     @ResponseBody
     String createBroadcast(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("h");
-        int dealerId = 0;//Integer.parseInt(request.getParameter("id"));
+        int dealerId = Integer.parseInt(request.getSession().getAttribute("dealerId").toString());
         String make = request.getParameter("make");
         String model = request.getParameter("model");
         String color = request.getParameter("color");
