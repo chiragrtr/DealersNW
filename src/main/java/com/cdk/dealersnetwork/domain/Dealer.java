@@ -16,7 +16,7 @@ public class Dealer {
     @Column
     private String name;
     @Column
-    private int phone;
+    private long phone;
     @Column(name = "reg_date")
     private Date regDate;
     @Column
@@ -27,7 +27,7 @@ public class Dealer {
     public Dealer() {
     }
 
-    public Dealer(String name, int phone, Date regDate, String email, String password) {
+    public Dealer(String name, long phone, Date regDate, String email, String password) {
         this.name = name;
         this.phone = phone;
         this.regDate = regDate;
@@ -51,11 +51,11 @@ public class Dealer {
         this.name = name;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 
