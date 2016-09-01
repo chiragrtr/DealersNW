@@ -9,10 +9,9 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--%>
     <script src="js/jquery-3.1.0.min.js"></script>
-
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/home.css">
 
@@ -83,6 +82,7 @@
 
 </body>
 <script type="text/javascript">
+
     function createBroadcast(){
         var data = {
             "make" : $("#make").val(),
@@ -90,25 +90,23 @@
             "color" : $("#color").val()
         };
         $.ajax({
-            url:"createBroadcast.do",
+            url:"/createBroadcast.do",
             data : data,
-            dataType: "json",
-            type : "post",
+            dataType: "text",
+            type : "POST",
+
             success: function (result) {
-                console.log(result);
-                alert("success");
+
             },
+
             error: function (result) {
                 alert("error");
                 console.log(result);
-
             }
-
         });
         alert($("#make").val());
         alert($("#model").val());
         alert($("#color").val());
-
     }
     var option = "";
     $("#make").on('change',function () {
