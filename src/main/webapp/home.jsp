@@ -85,19 +85,10 @@
                     +"<option value='BMW1'>BMW 1</option>"
                     +"<option value='BMW2'>BMW 2</option>" +
                     "<option value='BMW3'>BMW 3</option>";
-            $("#name").html(options);
+            $("#model").html(options);
         }
     });
-    function createBroadcast() {
-        var htmlText="";
-        htmlText = "<form action='createBroadcast.do' method='post'>" +
-                "<div class='form-group'>Select Make:</label>"+
-                "<select class='form-control' id='make'>"+
-                "<option>Mercedez</option> <option>BMW</option> <option>Tesla</option>"+
-                "</select>"+
-                "<div class='form-group'>Select Model:</label>";
-        document.getElementById("display").innerHTML = htmlText;
-    }
+
 
 </script>
 </html>
