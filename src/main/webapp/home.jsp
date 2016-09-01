@@ -10,7 +10,9 @@
 <head>
     <title>Title</title>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--%>
+    <script src="js/jquery-3.1.0.min.js"></script>
+
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/home.css">
 
@@ -43,7 +45,7 @@
         </div>
         <div class="col-sm-6 text-left" id="display">
             <div id="createNewBroadcast">
-                <form action='createBroadcast.do' method='post'>
+                <form>
                     <div class='form-group'><label>Select Make</label>
                         <select class='form-control' id='make' name='make'>
                             <option><label>Select Your Make</label></option>
@@ -56,9 +58,9 @@
                             <option>Red</option>
                             <option>Black</option>
                             <option>White</option>
-                            <option>SIlver</option>
+                            <option>Silver</option>
                         </select>
-                        <input type="button" name="newBroadcast_Btn" value="newBroadcast_Btn" onclick="createBroadcast()">
+                        <button type="button" name="newBroadcast_Btn" onclick="createBroadcast()">Create Broadcast</button>
                     </div>
                 </form>
             </div>
@@ -93,10 +95,13 @@
             dataType: "json",
             type : "post",
             success: function (result) {
+                console.log(result);
                 alert("success");
             },
             error: function (result) {
                 alert("error");
+                console.log(result);
+
             }
 
         });
