@@ -52,11 +52,14 @@ public class BroadcastController {
     public
     @ResponseBody
     String showMyOpenBroadcasts(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("here0");
         int id = Integer.parseInt(request.getParameter("id"));
         String json = "";
         List<Broadcast> broadcastList = broadcastDAO.showMyOpenBroadcasts(id);
+        System.out.println("here1");
         if(broadcastList.size() != 0) {
             json += "[";
+            System.out.println("here2");
             for (Broadcast broadcast : broadcastDAO.showMyOpenBroadcasts(id)) {
                 json += "{";
                 json += "\"make\":\"" + broadcast.getMake() + "\",";
@@ -65,12 +68,16 @@ public class BroadcastController {
                 json += "\"broadcastDate\":\"" + broadcast.getBroadcastDate() + "\",";
                 json += "\"broadcastId\":\"" + broadcast.getBroadcastId() + "\",";
                 json += "\"totalBids\":\"" + bidDAO.getNumOfBids(broadcast.getBroadcastId()) + "\",";
+                System.out.println("herehere");
                 json += "\"latestBid\":\"" + bidDAO.getLatestResponse(broadcast.getBroadcastId())+ "\"";
+                System.out.println("herethere");
                 json += "},";
             }
+            System.out.println("here3");
             json.substring(0,json.length()-1);
             json += "]";
         }
+        System.out.println("here4");
         return json;
     }
 
