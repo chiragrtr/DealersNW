@@ -13,7 +13,7 @@
     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--%>
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/home.css">
+
 
 </head>
 <body>
@@ -34,10 +34,10 @@
         </div>
     </div>
 </nav>
-<div class="container-fluid text-center navbar-default">
-    <div class="row content">
-       <div class="row">
-        <div class="col-sm-12 sidenav ">
+
+<div class = "container-fluid">
+    <div class="row">
+        <div class="col-lg-7">
             <div id="createNewBroadcast" >
                 <form class="form-inline">
                     <div class='form-group'><label>Select Make</label>
@@ -57,38 +57,36 @@
                         <button type="button" name="newBroadcast_Btn" onclick="createBroadcast()">Create Broadcast</button>
                     </div>
                 </form>
+                <%-- <button class="well">Edit Profile</button><br>
+                <button class="well" onclick="showBroadcastForm()">New BroadCast</button><br>
+                &lt;%&ndash;$('#myLink').click(function(){ MyFunction(); return false; });-- to call function on href onclick()&ndash;%&gt;
+                <button class="well" onclick="showMyBroadcastDiv()">My Broadcasts</button>--%>
             </div>
-
-            <%-- <button class="well">Edit Profile</button><br>
-            <button class="well" onclick="showBroadcastForm()">New BroadCast</button><br>
-            &lt;%&ndash;$('#myLink').click(function(){ MyFunction(); return false; });-- to call function on href onclick()&ndash;%&gt;
-            <button class="well" onclick="showMyBroadcastDiv()">My Broadcasts</button>--%>
         </div>
-       </div>
-        <div class="col-sm-7 text-left" id="display">
+        <div class="col-lg-5">
+            <div>
+                <p class="well">Show Broadcasts</p>
+                <select>
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                    <option value="all">All</option>
+                </select>
 
-            <div id="myBroadcast" hidden>
-                <table id = 'myBroadcastTable' border = "1px solid black" class="table table-bordered table-hover">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-7">
+            <div id="myBroadcast">
+                <table id = 'myBroadcastTable' border = "1px solid black">
                     <tr>
-                        <thead>Make</thead>
-                        <thead>Model</thead>
-                        <thead>Color</thead>
-                        <thead>Date</thead>
-                        <thead>Status</thead>
+                        <th>Make</th>
+                        <th>Model</th>
+                        <th>Color</th>
+                        <th>Date</th>
+                        <th>Status</th>
                     </tr>
                 </table>
-            </div>
-        <!-- div to add new functionality-->
-        </div>
-        <div class="col-sm-5 sidenav">
-            <div>
-                <p class="well">Show
-                    <select>
-                        <option value="open">Open</option>
-                        <option value="closed">Closed</option>
-                        <option value="all">All</option>
-                    </select>
-                    Broadcasts</p>
             </div>
         </div>
     </div>
