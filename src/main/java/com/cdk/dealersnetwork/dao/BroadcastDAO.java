@@ -33,7 +33,7 @@ public class BroadcastDAO {
         return broadcast;
     }
 
-    public List<Broadcast> showMyAllBroadcasts(int dealerId) {
+    public List<Broadcast> showMyBroadcasts(int dealerId) {
         List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId =:dealerId", "dealerId", dealerId);
         List<Broadcast> dtoBroadcastList = null;
         return getBroadcastsList(domainBroadcastList);
@@ -53,7 +53,7 @@ public class BroadcastDAO {
         return getBroadcastsList(domainBroadcastList);
     }
 
-    public List<Broadcast> showOthersAllBroadcasts(int dealerId){
+    public List<Broadcast> showOthersBroadcasts(int dealerId){
         List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId !=:dealerId", "dealerId", dealerId);
         List<Broadcast> dtoBroadcastList = null;
         return getBroadcastsList(domainBroadcastList);
