@@ -4,12 +4,15 @@ import com.cdk.dealersnetwork.dao.BroadcastDAO;
 import com.cdk.dealersnetwork.dto.Broadcast;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -58,5 +61,27 @@ public class BroadcastController {
     List<Broadcast> showOthersBroadcasts(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         return broadcastDAO.showOthersBroadcasts(id);
+    }
+
+    @RequestMapping(value = "/createBroadcast", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String createBroadcast(HttpServletRequest request, HttpServletResponse response) {
+        int dealerId = Integer.parseInt(request.getParameter("id"));
+        String make = request.getParameter("make");
+        String model = request.getParameter("model");
+        String color = request.getParameter("color");
+        Date broadcastDate = new Date();
+        System.out.println(broadcastDate);
+        System.out.println(new java.sql.Date(broadcastDate.getTime()).toString());
+        System.out.println("here1");
+        Broadcast broadcast = new Broadcast(dealerId,make,model,color,broadcastDate,0);
+        System.out.println("here2");
+        broadcast = broadcastDAO.createBroadcast(broadcast);
+        System.out.println("here3");
+        ModelMap modelMap = new ModelMap();
+        modelMap.addAttribute("broadcastId",broadcast.getBroadcastId());
+        System.out.println("BROADCAST CREATED");
+        return "success";
     }
 }

@@ -17,6 +17,15 @@ public class Broadcast {
     public Broadcast() {
     }
 
+    public Broadcast(int dealerId, String make, String model, String color, Date broadcastDate, int status) {
+        this.dealerId = dealerId;
+        this.make = make;
+        this.model = model;
+        this.color = color;
+        this.broadcastDate = broadcastDate;
+        this.status = status;
+    }
+
     public Broadcast(int broadcastId, int dealerId, String make, String model, String color, Date broadcastDate, int status) {
         this.broadcastId = broadcastId;
         this.dealerId = dealerId;
