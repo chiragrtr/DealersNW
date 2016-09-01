@@ -47,7 +47,6 @@ public class LoginController {
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("dealerId",dealer.getDealerId());
         request.getSession().setAttribute("dealerId","" + dealer.getDealerId());
-        //System.out.println(request.getSession().getAttribute("dealerId"));
         return new ModelAndView("home",modelMap);
     }
 

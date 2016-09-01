@@ -47,6 +47,7 @@ public class RegisterController {
         }
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("dealerId",dealer.getDealerId());
+        request.getSession().setAttribute("dealerId","" + dealer.getDealerId());
         return new ModelAndView("home",modelMap);
     }
 
