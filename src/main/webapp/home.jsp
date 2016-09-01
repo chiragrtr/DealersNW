@@ -39,11 +39,12 @@
     <div class="row content">
         <div class="col-sm-2 sidenav ">
             <button class="well">Edit Profile</button><br>
-            <button class="well"><a href="#createNewBroadcast">New BroadCast</a></button><br>
-            <button class="well">My Broadcasts</button>
+            <button class="well" onclick="showBroadcastForm()">New BroadCast</button><br>
+            <%--$('#myLink').click(function(){ MyFunction(); return false; });-- to call function on href onclick()--%>
+            <button class="well" onclick="showMyBroadcastDiv()">My Broadcasts</button>
         </div>
         <div class="col-sm-6 text-left" id="display">
-            <div id="createNewBroadcast">
+            <div id="createNewBroadcast" hidden>
                 <form>
                     <div class='form-group'><label>Select Make</label>
                         <select class='form-control' id='make' name='make'>
@@ -63,7 +64,17 @@
                     </div>
                 </form>
             </div>
-
+            <div id="myBroadcast" hidden>
+                <table id = 'myBroadcastTable' border = "1px solid black" class="table table-bordered table-hover">
+                    <tr>
+                        <thead>Make</thead>
+                        <thead>Model</thead>
+                        <thead>Color</thead>
+                        <thead>Date</thead>
+                        <thead>Status</thead>
+                    </tr>
+                </table>
+            </div>
         <!-- div to add new functionality-->
         </div>
         <div class="col-sm-4 sidenav">
@@ -82,7 +93,15 @@
 
 </body>
 <script type="text/javascript">
+    function showBroadcastForm() {
+        $("#myBroadcast").hide();
+        $("#createNewBroadcast").show();
+    }
+    function showMyBroadcastDiv(){
+        $("#createNewBroadcast").hide();
+        $("#myBroadcast").show();
 
+    }
     function createBroadcast(){
         var data = {
             "make" : $("#make").val(),
@@ -102,7 +121,8 @@
             error: function (result) {
                 alert("error");
                 console.log(result);
-            }
+            },
+
         });
         alert($("#make").val());
         alert($("#model").val());
@@ -131,7 +151,6 @@
             $("#model").html(options);
         }
     });
-
 
 </script>
 </html>
