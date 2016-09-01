@@ -46,15 +46,15 @@
                 <form action='createBroadcast.do' method='post'>
                     <div class='form-group'>Select Make:</label>
                         <select class='form-control' id='make'>
-                            <option>Mercedez</option> <option>BMW</option> <option>Tesla</option>
+                            <option><label>Select Your Make</label></option>
+                            <option>Mercedez</option>
+                            <option>BMW</option>
+                            <option>Tesla</option>
                         </select>
-                        <select class='form-control' id='model'>
-
-                        </select>
+                        <select class='form-control' id='model'> <label>Select Model</label></select>
                     </div>
                 </form>
             </div>
-
 
         <!-- div to add new functionality-->
         </div>
@@ -79,16 +79,30 @@
     var option = "";
     $("#make").on('change',function () {
         var value = $(this).val();
-        alert(value);
         if(value == "BMW"){
             options="<option>Select Your Model</option>"
                     +"<option value='BMW1'>BMW 1</option>"
                     +"<option value='BMW2'>BMW 2</option>" +
                     "<option value='BMW3'>BMW 3</option>";
             $("#model").html(options);
+        }else if(value=="Mercedez")
+        {
+            options='<option>Select Your Model</option>'
+                    +'<option value="Mercedez 1">Mercedez 1</option>'
+                    +'<option value="Mercedez 2">Mercedez 2</option>';
+            $("#model").html(options);
+        }else if(value=="Tesla")
+        {
+            options='<option>Select Your Model</option>'
+                    +'<option value="Tesla1">Tesla 1</option>'
+                    +'<option value="Tesla2">Tesla 2</option>';
+            $("#model").html(options);
         }
-    });
 
+        else
+            $("#model").find('option').remove()
+
+    });
 
 </script>
 </html>
