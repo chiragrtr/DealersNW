@@ -66,7 +66,7 @@ public class BroadcastController {
     @RequestMapping(value = "/createBroadcast", method = RequestMethod.POST)
     public
     @ResponseBody
-    String createBroadcast(HttpServletRequest request, HttpServletResponse response) {
+    int createBroadcast(HttpServletRequest request, HttpServletResponse response) {
         int dealerId = Integer.parseInt(request.getParameter("id"));
         String make = request.getParameter("make");
         String model = request.getParameter("model");
@@ -79,9 +79,10 @@ public class BroadcastController {
         System.out.println("here2");
         broadcast = broadcastDAO.createBroadcast(broadcast);
         System.out.println("here3");
-        ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("broadcastId",broadcast.getBroadcastId());
+        //ModelMap modelMap = new ModelMap();
+        //modelMap.addAttribute("broadcastId",broadcast.getBroadcastId());
+        int broadcastId = broadcast.getBroadcastId();
         System.out.println("BROADCAST CREATED");
-        return "success";
+        return broadcastId;
     }
 }
