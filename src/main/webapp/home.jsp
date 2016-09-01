@@ -16,7 +16,7 @@
 
 </head>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -34,9 +34,9 @@
     </div>
 </nav>
 
-<div class="container-fluid text-center">
+<div class="container-fluid text-center navbar-default">
     <div class="row content">
-        <div class="col-sm-2 sidenav">
+        <div class="col-sm-2 sidenav ">
             <button class="well">Edit Profile</button><br>
             <button class="well"><a href="#createNewBroadcast">New BroadCast</a></button><br>
             <button class="well">My Broadcasts</button>
@@ -44,14 +44,21 @@
         <div class="col-sm-6 text-left" id="display">
             <div id="createNewBroadcast">
                 <form action='createBroadcast.do' method='post'>
-                    <div class='form-group'>Select Make:</label>
-                        <select class='form-control' id='make'>
+                    <div class='form-group'><label>Select Make</label>
+                        <select class='form-control' id='make' name='make'>
                             <option><label>Select Your Make</label></option>
                             <option>Mercedez</option>
                             <option>BMW</option>
                             <option>Tesla</option>
                         </select>
-                        <select class='form-control' id='model'> <label>Select Model</label></select>
+                        <label>Select Model</label><br><select class='form-control' id='model' name = 'model'> </select>
+                        <label>Select Color</label><br><select class='form-control' id = 'color' name='color'>
+                            <option>Red</option>
+                            <option>Black</option>
+                            <option>White</option>
+                            <option>SIlver</option>
+                        </select>
+                        <input type="button" name="newBroadcast_Btn" value="newBroadcast_Btn" onclick="createBroadcast()">
                     </div>
                 </form>
             </div>
@@ -74,8 +81,30 @@
 
 </body>
 <script type="text/javascript">
+    function createBroadcast(){
+        var data = {
+            "make" : $("#make").val(),
+            "model" :$("#model").val(),
+            "color" : $("#color").val()
+        };
+        $.ajax({
+            url:"createBroadcast.do",
+            data : data,
+            dataType: "json",
+            type : "post",
+            success: function (result) {
+                alert("success");
+            },
+            error: function (result) {
+                alert("error");
+            }
 
+        });
+        alert($("#make").val());
+        alert($("#model").val());
+        alert($("#color").val());
 
+    }
     var option = "";
     $("#make").on('change',function () {
         var value = $(this).val();
