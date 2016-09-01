@@ -19,3 +19,7 @@ alter table dealer add column email varchar(100);
 alter table dealer add column password varchar(100);
 
 desc dealer;
+
+alter table dealer modify phone bigint;
+
+desc dealer;

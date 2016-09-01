@@ -24,23 +24,32 @@ public class DealerDAO {
     }
 
     public Dealer createDealer(Dealer dealer){
-        System.out.println("here");
         com.cdk.dealersnetwork.domain.Dealer domainDealer = new com.cdk.dealersnetwork.domain.Dealer(dealer.getName(),dealer.getPhone(),new Date(dealer.getRegDate().getTime()),dealer.getEmail(),dealer.getPassword());
-        System.out.println("hrer1");
+        if(hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Dealer d where d.email=:email","email",dealer.getEmail()).size()>0){
+            dealer.setDealerId(0);
+            System.out.println("Already exists");
+            return dealer;
+        }
         hibernateTemplate.save(domainDealer);
-        System.out.println("hrer2");
+        System.out.println("Added dealer to database");
         dealer.setDealerId(domainDealer.getDealerId());
-        System.out.println("hrer3");
 
         return dealer;
     }
 
-    public boolean isAuthorized(String email, String password){
+    public Dealer login(String email, String password){
         List<com.cdk.dealersnetwork.domain.Dealer> dealerList = (List<com.cdk.dealersnetwork.domain.Dealer>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Dealer d where d.email=:email and d.password=:password",new String[]{"email","password"}, new Object[]{email,password});
+        Dealer dealer = null;
         if(dealerList.size() != 0){
-            return true;
+            com.cdk.dealersnetwork.domain.Dealer domainDealer = dealerList.get(0);
+            dealer = new Dealer(domainDealer.getDealerId(),domainDealer.getName(),domainDealer.getPhone(),domainDealer.getRegDate(),domainDealer.getEmail(),domainDealer.getPassword());
+            System.out.println("dealer found with given email id n password");
+            return dealer;
         }
-        return false;
+        System.out.println("invalid credentials");
+        dealer = new Dealer();
+        dealer.setDealerId(0);
+        return dealer;
     }
 
     public void deleteDealer(int dealerId){
