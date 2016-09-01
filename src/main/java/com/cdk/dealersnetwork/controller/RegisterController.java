@@ -34,7 +34,7 @@ public class RegisterController {
     @RequestMapping(value="/register", method = RequestMethod.POST)
     public ModelAndView register(HttpServletRequest request, HttpServletResponse response){
         String name = request.getParameter("name");
-        int phone = Integer.parseInt(request.getParameter("phone"));
+        long phone = Long.parseLong(request.getParameter("phone"));
         Date regDate = new Date();
         System.out.println(regDate);
         System.out.println(new java.sql.Date(regDate.getTime()).toString());

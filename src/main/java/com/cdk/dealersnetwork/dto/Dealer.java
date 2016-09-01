@@ -8,14 +8,14 @@ import java.util.Date;
 public class Dealer {
     private int dealerId;
     private String name;
-    private int phone;
+    private long phone;
     private Date regDate;
     private String email;
     private String password;
     public Dealer() {
     }
 
-    public Dealer(int dealerId, String name, int phone, Date regDate, String email, String password) {
+    public Dealer(int dealerId, String name, long phone, Date regDate, String email, String password) {
         this.dealerId = dealerId;
         this.name = name;
         this.phone = phone;
@@ -24,7 +24,7 @@ public class Dealer {
         this.password = password;
     }
 
-    public Dealer(String name, int phone, Date regDate, String email, String password) {
+    public Dealer(String name, long phone, Date regDate, String email, String password) {
         this.name = name;
         this.phone = phone;
         this.regDate = regDate;
@@ -48,11 +48,11 @@ public class Dealer {
         this.name = name;
     }
 
-    public int getPhone() {
+    public long getPhone() {
         return phone;
     }
 
-    public void setPhone(int phone) {
+    public void setPhone(long phone) {
         this.phone = phone;
     }
 

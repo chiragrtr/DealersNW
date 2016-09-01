@@ -37,12 +37,19 @@ public class DealerDAO {
         return dealer;
     }
 
-    public boolean isAuthorized(String email, String password){
+    public Dealer login(String email, String password){
         List<com.cdk.dealersnetwork.domain.Dealer> dealerList = (List<com.cdk.dealersnetwork.domain.Dealer>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Dealer d where d.email=:email and d.password=:password",new String[]{"email","password"}, new Object[]{email,password});
+        Dealer dealer = null;
         if(dealerList.size() != 0){
-            return true;
+            com.cdk.dealersnetwork.domain.Dealer domainDealer = dealerList.get(0);
+            dealer = new Dealer(domainDealer.getDealerId(),domainDealer.getName(),domainDealer.getPhone(),domainDealer.getRegDate(),domainDealer.getEmail(),domainDealer.getPassword());
+            System.out.println("dealer found with given email id n password");
+            return dealer;
         }
-        return false;
+        System.out.println("invalid credentials");
+        dealer = new Dealer();
+        dealer.setDealerId(0);
+        return dealer;
     }
 
     public void deleteDealer(int dealerId){
