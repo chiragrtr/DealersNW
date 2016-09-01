@@ -34,18 +34,12 @@
         </div>
     </div>
 </nav>
-
 <div class="container-fluid text-center navbar-default">
     <div class="row content">
-        <div class="col-sm-2 sidenav ">
-            <button class="well">Edit Profile</button><br>
-            <button class="well" onclick="showBroadcastForm()">New BroadCast</button><br>
-            <%--$('#myLink').click(function(){ MyFunction(); return false; });-- to call function on href onclick()--%>
-            <button class="well" onclick="showMyBroadcastDiv()">My Broadcasts</button>
-        </div>
-        <div class="col-sm-6 text-left" id="display">
-            <div id="createNewBroadcast" hidden>
-                <form>
+       <div class="row">
+        <div class="col-sm-12 sidenav ">
+            <div id="createNewBroadcast" >
+                <form class="form-inline">
                     <div class='form-group'><label>Select Make</label>
                         <select class='form-control' id='make' name='make'>
                             <option><label>Select Your Make</label></option>
@@ -53,8 +47,8 @@
                             <option>BMW</option>
                             <option>Tesla</option>
                         </select>
-                        <label>Select Model</label><br><select class='form-control' id='model' name = 'model'> </select>
-                        <label>Select Color</label><br><select class='form-control' id = 'color' name='color'>
+                        <label>Select Model</label><select class='form-control' id='model' name = 'model'> </select>
+                        <label>Select Color</label><select class='form-control' id = 'color' name='color'>
                             <option>Red</option>
                             <option>Black</option>
                             <option>White</option>
@@ -64,6 +58,15 @@
                     </div>
                 </form>
             </div>
+
+            <%-- <button class="well">Edit Profile</button><br>
+            <button class="well" onclick="showBroadcastForm()">New BroadCast</button><br>
+            &lt;%&ndash;$('#myLink').click(function(){ MyFunction(); return false; });-- to call function on href onclick()&ndash;%&gt;
+            <button class="well" onclick="showMyBroadcastDiv()">My Broadcasts</button>--%>
+        </div>
+       </div>
+        <div class="col-sm-7 text-left" id="display">
+
             <div id="myBroadcast" hidden>
                 <table id = 'myBroadcastTable' border = "1px solid black" class="table table-bordered table-hover">
                     <tr>
@@ -77,7 +80,7 @@
             </div>
         <!-- div to add new functionality-->
         </div>
-        <div class="col-sm-4 sidenav">
+        <div class="col-sm-5 sidenav">
             <div>
                 <p class="well">Show
                     <select>
@@ -90,8 +93,8 @@
         </div>
     </div>
 </div>
-
 </body>
+
 <script type="text/javascript">
     function showBroadcastForm() {
         $("#myBroadcast").hide();
@@ -115,7 +118,7 @@
             type : "POST",
 
             success: function (result) {
-                alert("Broadcast added");
+
             },
 
             error: function (result) {
@@ -124,10 +127,8 @@
             },
 
         });
-        //alert($("#make").val());
-        //alert($("#model").val());
-        //alert($("#color").val());
     }
+
     var option = "";
     $("#make").on('change',function () {
         var value = $(this).val();
