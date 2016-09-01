@@ -16,7 +16,7 @@ function showMyOpenBroadcasts() {
             }
             htmlText += "</table></div>";
             //$("#myBroadcasts").html(htmlText);
-            document.getElementById("display").innerHTML = htmlText;
+            document.getElementById("myBroadcast").innerHTML = htmlText;
         }
     };
     xmlHttp.open("post", "showMyOpenBroadcasts.do", true);
@@ -41,7 +41,7 @@ function showMyBroadcastsJquery() {
 
             });
             htmlText += "</table>";
-            $("#display").html(htmlText);
+            $("#myBroadcast").html(htmlText);
         }
     });
 }

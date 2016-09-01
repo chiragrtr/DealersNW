@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--%>
     <script src="js/jquery-3.1.0.min.js"></script>
+    <script src="js/myBroadcasts.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
@@ -77,8 +78,11 @@
     </div>
     <div class="row">
         <div class="col-lg-7">
+            <p id="myPara" style="visibility: hidden"><%=session.getAttribute("dealerId")%></p>
+            <button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>
+            <br><br>
             <div id="myBroadcast">
-                <table id = 'myBroadcastTable' border = "1px solid black">
+                <%--<table id = 'myBroadcastTable' border = "1px solid black">
                     <tr>
                         <th>Make</th>
                         <th>Model</th>
@@ -86,7 +90,7 @@
                         <th>Date</th>
                         <th>Status</th>
                     </tr>
-                </table>
+                </table>--%>
             </div>
         </div>
     </div>
@@ -116,7 +120,7 @@
             type : "POST",
 
             success: function (result) {
-
+                alert("Broadcast added with id = " + result);
             },
 
             error: function (result) {
