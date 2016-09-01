@@ -85,7 +85,7 @@
                     +"<option value='BMW1'>BMW 1</option>"
                     +"<option value='BMW2'>BMW 2</option>" +
                     "<option value='BMW3'>BMW 3</option>";
-            $("#model").html(options);
+            $("#model").html(options);]
         }
     });
 
