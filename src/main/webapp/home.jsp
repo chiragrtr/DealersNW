@@ -43,7 +43,7 @@
         </div>
         <div class="col-sm-6 text-left" id="display">
             <div id="createNewBroadcast">
-                <form action='createBroadcast.do' method='post'>
+                <form name="createBroadcast">
                     <div class='form-group'><label>Select Make</label>
                         <select class='form-control' id='make' name='make'>
                             <option><label>Select Your Make</label></option>
@@ -58,7 +58,7 @@
                             <option>White</option>
                             <option>SIlver</option>
                         </select>
-                        <input type="button" name="newBroadcast_Btn" value="newBroadcast_Btn" onclick="createBroadcast()">
+                        <input type="button" name="newBroadcast_Btn" value="newBroadcast_Btn" onclick="createBroadcast2()">
                     </div>
                 </form>
             </div>
@@ -103,6 +103,30 @@
         alert($("#make").val());
         alert($("#model").val());
         alert($("#color").val());
+
+    }
+
+    function createBroadcast2() {
+        var make=document.createBroadcast.make.value;
+        var model = document.createBroadcast.model.value;
+        var color=document.createBroadcast.color.value;
+        alert(make + model + color);
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                //if(xmlHttp.responseText.localeCompare("success")){
+                console.log(xmlHttp.responseText);
+                alert("success");
+
+            } else {
+                console.log(xmlHttp.responseText);
+                alert("failure");
+            }
+        }
+
+        xmlHttp.open("post", "createBroadcast.do", true);
+        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlHttp.send("make="+make+"&model="+model+"&color="+color);
 
     }
     var option = "";

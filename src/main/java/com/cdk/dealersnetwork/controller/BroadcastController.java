@@ -23,11 +23,13 @@ public class BroadcastController {
     @Autowired
     BroadcastDAO broadcastDAO = null;
 
-    public BroadcastDAO getBroadcastDAO() {
+    public BroadcastDAO getBroadcastDAO(
+    ) {
         return broadcastDAO;
     }
 
     public void setBroadcastDAO(BroadcastDAO broadcastDAO) {
+        System.out.println("in controller");
         this.broadcastDAO = broadcastDAO;
     }
 
@@ -66,11 +68,13 @@ public class BroadcastController {
     @RequestMapping(value = "/createBroadcast", method = RequestMethod.POST)
     public
     @ResponseBody
-    int createBroadcast(HttpServletRequest request, HttpServletResponse response) {
-        int dealerId = Integer.parseInt(request.getParameter("id"));
+    String createBroadcast(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("h");
+        int dealerId = 0;//Integer.parseInt(request.getParameter("id"));
         String make = request.getParameter("make");
         String model = request.getParameter("model");
         String color = request.getParameter("color");
+        System.out.println(make + " " + color + " " + model);
         Date broadcastDate = new Date();
         System.out.println(broadcastDate);
         System.out.println(new java.sql.Date(broadcastDate.getTime()).toString());
@@ -82,7 +86,8 @@ public class BroadcastController {
         //ModelMap modelMap = new ModelMap();
         //modelMap.addAttribute("broadcastId",broadcast.getBroadcastId());
         int broadcastId = broadcast.getBroadcastId();
+        System.out.println(broadcastId);
         System.out.println("BROADCAST CREATED");
-        return broadcastId;
+        return "" + broadcastId;
     }
 }
