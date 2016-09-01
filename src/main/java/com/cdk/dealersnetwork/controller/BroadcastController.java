@@ -74,7 +74,7 @@ public class BroadcastController {
                 json += "},";
             }
             System.out.println("here3");
-            json.substring(0,json.length()-1);
+            json = json.substring(0,json.length()-1);
             json += "]";
         }
         System.out.println("here4");
