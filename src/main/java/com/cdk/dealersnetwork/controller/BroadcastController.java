@@ -1,5 +1,6 @@
 package com.cdk.dealersnetwork.controller;
 
+import com.cdk.dealersnetwork.dao.BidDAO;
 import com.cdk.dealersnetwork.dao.BroadcastDAO;
 import com.cdk.dealersnetwork.dto.Broadcast;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,18 @@ import java.util.List;
 public class BroadcastController {
     @Autowired
     BroadcastDAO broadcastDAO = null;
+
+    @Autowired
+    BidDAO bidDAO = null;
+
+    public BidDAO getBidDAO() {
+        return bidDAO;
+    }
+
+    public void setBidDAO(BidDAO bidDAO) {
+        this.bidDAO = bidDAO;
+    }
+
     public BroadcastDAO getBroadcastDAO(
     ) {
         return broadcastDAO;
@@ -38,9 +51,34 @@ public class BroadcastController {
     @RequestMapping(value = "/showMyOpenBroadcasts", method = RequestMethod.POST)
     public
     @ResponseBody
-    List<Broadcast> showMyOpenBroadcasts(HttpServletRequest request, HttpServletResponse response) {
+    String showMyOpenBroadcasts(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("here0");
         int id = Integer.parseInt(request.getParameter("id"));
-        return broadcastDAO.showMyOpenBroadcasts(id);
+        String json = "";
+        List<Broadcast> broadcastList = broadcastDAO.showMyOpenBroadcasts(id);
+        System.out.println("here1");
+        if(broadcastList.size() != 0) {
+            json += "[";
+            System.out.println("here2");
+            for (Broadcast broadcast : broadcastDAO.showMyOpenBroadcasts(id)) {
+                json += "{";
+                json += "\"make\":\"" + broadcast.getMake() + "\",";
+                json += "\"model\":\"" + broadcast.getModel() + "\",";
+                json += "\"color\":\"" + broadcast.getColor() + "\",";
+                json += "\"broadcastDate\":\"" + broadcast.getBroadcastDate() + "\",";
+                json += "\"broadcastId\":\"" + broadcast.getBroadcastId() + "\",";
+                json += "\"totalBids\":\"" + bidDAO.getNumOfBids(broadcast.getBroadcastId()) + "\",";
+                System.out.println("herehere");
+                json += "\"latestBid\":\"" + bidDAO.getLatestResponse(broadcast.getBroadcastId())+ "\"";
+                System.out.println("herethere");
+                json += "},";
+            }
+            System.out.println("here3");
+            json.substring(0,json.length()-1);
+            json += "]";
+        }
+        System.out.println("here4");
+        return json;
     }
 
     @RequestMapping(value = "/showOthersOpenBroadcasts", method = RequestMethod.POST)

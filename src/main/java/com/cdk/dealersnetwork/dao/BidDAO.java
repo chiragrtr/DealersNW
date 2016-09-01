@@ -18,6 +18,7 @@ public class BidDAO {
     }
 
     public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
+        hibernateTemplate.setCheckWriteOperations(false);
         this.hibernateTemplate = hibernateTemplate;
     }
 
@@ -48,5 +49,28 @@ public class BidDAO {
             domainBid.setStatus(2);
             hibernateTemplate.update(domainBid);
         }
+    }
+
+    public String getLatestResponse(int broadcastId) {
+        String response = "";
+        System.out.println("at1");
+        List<com.cdk.dealersnetwork.domain.Bid> bidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId","broadcastId",broadcastId);
+        System.out.println("at2");
+        if(bidList.size() == 0){
+            System.out.println("at3");
+            return "NO BIDS";
+        }
+        System.out.println("at4");
+        com.cdk.dealersnetwork.domain.Bid bid = bidList.get(bidList.size()-1);
+        response += "Dealer " + bid.getDealerId() + " has bid " + bid.getPrice() + "$ and can deliver in " + bid.getDeliveryHours() + "hours";
+        return response;
+    }
+
+    public String getNumOfBids(int broadcastId) {
+        String numOfBids = "";
+        List<com.cdk.dealersnetwork.domain.Bid> bidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId","broadcastId",broadcastId);
+        numOfBids += bidList.size();
+        System.out.println("size is " + numOfBids);
+        return numOfBids;
     }
 }
