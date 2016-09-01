@@ -1,9 +1,11 @@
 package com.cdk.dealersnetwork.controller;
 
 import com.cdk.dealersnetwork.dao.DealerDAO;
+import com.cdk.dealersnetwork.dto.Dealer;
 import com.sun.javafx.sg.prism.NGShape;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -31,10 +33,15 @@ public class LoginController {
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        if(dealerDAO.isAuthorized(email,password)){
-            return new ModelAndView("home");
+        Dealer dealer = dealerDAO.login(email,password);
+        if(dealer.getDealerId() == 0 ){
+            System.out.println("login failed");
+            return new ModelAndView("index");
         }
-        return new ModelAndView("index");
+        System.out.println("login successful");
+        ModelMap modelMap = new ModelMap();
+        modelMap.addAttribute("dealerId",dealer.getDealerId());
+        return new ModelAndView("home",modelMap);
     }
 
 }
