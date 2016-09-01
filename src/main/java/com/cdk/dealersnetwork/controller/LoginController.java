@@ -3,6 +3,7 @@ package com.cdk.dealersnetwork.controller;
 import com.cdk.dealersnetwork.dao.DealerDAO;
 import com.sun.javafx.sg.prism.NGShape;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,6 +15,7 @@ import java.io.IOException;
 /**
  * Created by sharmach on 31/8/2016.
  */
+@Controller
 public class LoginController {
     @Autowired
     private DealerDAO dealerDAO = null;

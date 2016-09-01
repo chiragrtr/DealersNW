@@ -24,13 +24,15 @@ public class DealerDAO {
     }
 
     public Dealer createDealer(Dealer dealer){
-        System.out.println("here");
         com.cdk.dealersnetwork.domain.Dealer domainDealer = new com.cdk.dealersnetwork.domain.Dealer(dealer.getName(),dealer.getPhone(),new Date(dealer.getRegDate().getTime()),dealer.getEmail(),dealer.getPassword());
-        System.out.println("hrer1");
+        if(hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Dealer d where d.email=:email","email",dealer.getEmail()).size()>0){
+            dealer.setDealerId(0);
+            System.out.println("Already exists");
+            return dealer;
+        }
         hibernateTemplate.save(domainDealer);
-        System.out.println("hrer2");
+        System.out.println("Added dealer to database");
         dealer.setDealerId(domainDealer.getDealerId());
-        System.out.println("hrer3");
 
         return dealer;
     }
