@@ -35,20 +35,18 @@ public class RegisterController {
     public ModelAndView register(HttpServletRequest request, HttpServletResponse response){
         String name = request.getParameter("name");
         int phone = Integer.parseInt(request.getParameter("phone"));
-        System.out.println("here");
         Date regDate = new Date();
         System.out.println(regDate);
         System.out.println(new java.sql.Date(regDate.getTime()).toString());
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        System.out.println("here1");
         Dealer dealer = new Dealer(name,phone,regDate,email,password);
-        System.out.println("here2");
         dealer = dealerDAO.createDealer(dealer);
-        System.out.println("here3");
+        if(dealer.getDealerId() == 0){
+            return new ModelAndView("index");
+        }
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("dealerId",dealer.getDealerId());
-        System.out.println("DEALER ADDED");
         return new ModelAndView("home",modelMap);
     }
 
