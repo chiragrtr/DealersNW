@@ -39,6 +39,9 @@
     <bean id="dealerDAO" class="com.cdk.dealersnetwork.dao.DealerDAO">
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
+    <bean id="broadcastDAO" class="com.cdk.dealersnetwork.dao.BroadcastDAO">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
     <mvc:annotation-driven />
     <context:component-scan base-package="com.cdk.dealersnetwork.controller">
     </context:component-scan>
