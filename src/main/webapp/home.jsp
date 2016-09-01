@@ -98,11 +98,8 @@
                     +'<option value="Tesla2">Tesla 2</option>';
             $("#model").html(options);
         }
-
-        else
-            $("#model").find('option').remove()
-
     });
+
 
 </script>
 </html>
