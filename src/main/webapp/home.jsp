@@ -115,7 +115,7 @@
             type : "POST",
 
             success: function (result) {
-
+                alert("Broadcast added");
             },
 
             error: function (result) {
@@ -124,9 +124,9 @@
             },
 
         });
-        alert($("#make").val());
-        alert($("#model").val());
-        alert($("#color").val());
+        //alert($("#make").val());
+        //alert($("#model").val());
+        //alert($("#color").val());
     }
     var option = "";
     $("#make").on('change',function () {
