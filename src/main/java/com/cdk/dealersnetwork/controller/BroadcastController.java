@@ -3,11 +3,14 @@ package com.cdk.dealersnetwork.controller;
 import com.cdk.dealersnetwork.dao.BroadcastDAO;
 import com.cdk.dealersnetwork.dto.Broadcast;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,7 +25,6 @@ import java.util.List;
 public class BroadcastController {
     @Autowired
     BroadcastDAO broadcastDAO = null;
-
     public BroadcastDAO getBroadcastDAO(
     ) {
         return broadcastDAO;
@@ -70,7 +72,9 @@ public class BroadcastController {
     @ResponseBody
     String createBroadcast(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("h");
-        int dealerId = Integer.parseInt(request.getSession().getAttribute("dealerId").toString());
+        System.out.println("here " + request.getSession().getAttributeNames().nextElement());
+        System.out.println("hi " + (String)(request.getSession().getAttribute("dealerId")));
+        int dealerId = Integer.parseInt((String)(request.getSession().getAttribute("dealerId")));
         String make = request.getParameter("make");
         String model = request.getParameter("model");
         String color = request.getParameter("color");

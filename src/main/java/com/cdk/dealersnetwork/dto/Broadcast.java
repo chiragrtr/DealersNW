@@ -1,10 +1,14 @@
 package com.cdk.dealersnetwork.dto;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
 /**
  * Created by sharmach on 30/8/2016.
  */
+
 public class Broadcast {
     private int broadcastId;
     private int dealerId;
