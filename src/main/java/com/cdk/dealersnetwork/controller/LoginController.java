@@ -4,10 +4,13 @@ import com.cdk.dealersnetwork.dao.DealerDAO;
 import com.cdk.dealersnetwork.dto.Dealer;
 import com.sun.javafx.sg.prism.NGShape;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
+import org.springframework.context.annotation.ScopedProxyMode;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +32,8 @@ public class LoginController {
     public void setDealerDAO(DealerDAO dealerDAO) {
         this.dealerDAO = dealerDAO;
     }
+
+
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
         String email = request.getParameter("email");
@@ -41,7 +46,8 @@ public class LoginController {
         System.out.println("login successful");
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("dealerId",dealer.getDealerId());
-        request.getSession().setAttribute("dealerId",dealer.getDealerId());
+        request.getSession().setAttribute("dealerId","" + dealer.getDealerId());
+        //System.out.println(request.getSession().getAttribute("dealerId"));
         return new ModelAndView("home",modelMap);
     }
 
