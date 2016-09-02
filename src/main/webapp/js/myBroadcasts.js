@@ -1,7 +1,26 @@
 /**
  * Created by malir on 9/1/2016.
  */
-
+function createBroadcastList(records){
+    var htmlText = "<div class='col-xs-7 col-sm-7 sidebar-offcanvas' id='sidebar' role='navigation'   style='float:left'>" +
+        "<div class='well sidebar-nav'>" +
+        "<ul class='nav'>";
+    for (i = 0; i < records.length; ++i) {
+        var totalBids = records[i].totalBids;
+        htmlText += "<p>" + records[i].make + " " + records[i].model + " " + records[i].color + " " + records[i].broadcastDate + " " + totalBids + "";
+        if(totalBids > 0) {
+            htmlText += "<ul>";
+            for (j = 0; j < totalBids; j++) {
+                i++;
+                htmlText += "<li>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate;
+            }
+            htmlText += "</ul>";
+        }
+        htmlText += "</p>";
+    }
+    htmlText+="</ul></div></div>";
+    return htmlText;
+}
 
 function showMyOpenBroadcasts() {
     var xmlHttp = new XMLHttpRequest();
@@ -9,30 +28,19 @@ function showMyOpenBroadcasts() {
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             var records = eval(xmlHttp.responseText);
-            var htmlText = "";
-
-            for (i = 0; i < records.length; ++i) {
-                var totalBids = records[i].totalBids;
-                htmlText += "<p>" + records[i].make + " " + records[i].model + " " + records[i].color + " " + records[i].broadcastDate + " " + totalBids + "";
-                if(totalBids > 0) {
-                    htmlText += "<ul>";
-                    for (j = 0; j < totalBids; j++) {
-                        i++;
-                        htmlText += "<li>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate;
-                    }
-                    htmlText += "</ul>";
-                }
-                htmlText += "</p>";
-            }
+            var htmlText = createBroadcastList(records);
             document.getElementById("myBroadcast").innerHTML = htmlText;
         }
     };
     xmlHttp.open("post", "showMyOpenBroadcasts.do", true);
     xmlHttp.setRequestHeader("Content-type","application/x-www-form-urlencoded");
     xmlHttp.send("id=" + dealerId);
-
-
 }
+
+
+
+
+
 
 /*function showMyBroadcastsJquery() {
     var data = {"id" : $("#myPara").html()};

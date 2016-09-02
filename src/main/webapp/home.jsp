@@ -14,6 +14,7 @@
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/myBroadcasts.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/normalize.css">
 
 
 </head>
@@ -41,15 +42,15 @@
         <div class="col-lg-7">
             <div id="createNewBroadcast" >
                 <form class="form-inline">
-                    <div class='form-group'><label>Select Make</label>
+                    <div class='form-group'>Select Make
                         <select class='form-control' id='make' name='make'>
                             <option><label>Select Your Make</label></option>
                             <option>Mercedez</option>
                             <option>BMW</option>
                             <option>Tesla</option>
                         </select>
-                        <label>Select Model</label><select class='form-control' id='model' name = 'model'> </select>
-                        <label>Select Color</label><select class='form-control' id = 'color' name='color'>
+                        Select Model<select class='form-control' id='model' name = 'model'><option>Select Your Model</option> </select>
+                        Select Color<select class='form-control' id = 'color' name='color'>
                             <option>Red</option>
                             <option>Black</option>
                             <option>White</option>
@@ -82,15 +83,7 @@
             <button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>
             <br><br>
             <div id="myBroadcast">
-                <%--<table id = 'myBroadcastTable' border = "1px solid black">
-                    <tr>
-                        <th>Make</th>
-                        <th>Model</th>
-                        <th>Color</th>
-                        <th>Date</th>
-                        <th>Status</th>
-                    </tr>
-                </table>--%>
+
             </div>
         </div>
     </div>
