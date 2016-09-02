@@ -70,13 +70,13 @@
             <div>
                 <p class="well">Show Broadcasts</p>
                 <select onchange="showOthersBroadcasts(this.value)">
-                    <option value="open" selected >Open</option>
+                    <option value="open" selected>Open</option>
                     <option value="closed">Closed</option>
+                    <%--<option value="all">All</option>--%>
                 </select>
-            </div>
-            <div id="othersBroadcast">
 
             </div>
+            <div id="othersBroadcasts"></div>
         </div>
     </div>
     <div class="row">
@@ -92,11 +92,11 @@
 </div>
 </body>
 
-<script type="text/javascript">
-    function showBroadcastForm() {
-        $("#myBroadcast").hide();
-        $("#createNewBroadcast").show();
-    }
+    <script type="text/javascript">
+            function showBroadcastForm() {
+                $("#myBroadcast").hide();
+                $("#createNewBroadcast").show();
+            }
     function showMyBroadcastDiv(){
         $("#createNewBroadcast").hide();
         $("#myBroadcast").show();
