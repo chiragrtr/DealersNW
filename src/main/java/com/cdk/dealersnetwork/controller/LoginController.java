@@ -47,7 +47,13 @@ public class LoginController {
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("dealerId",dealer.getDealerId());
         request.getSession().setAttribute("dealerId","" + dealer.getDealerId());
+        request.getSession().setAttribute("dealerName","" + dealer.getName());
         return new ModelAndView("home",modelMap);
     }
 
+    @RequestMapping(value="/logout", method = RequestMethod.GET)
+    public ModelAndView logout(HttpServletRequest request, HttpServletResponse response){
+        request.getSession().invalidate();
+        return new ModelAndView("index");
+    }
 }
