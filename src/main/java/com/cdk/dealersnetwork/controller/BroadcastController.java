@@ -166,4 +166,12 @@ public class BroadcastController {
         System.out.println("BROADCAST CREATED");
         return "" + broadcastId;
     }
+
+    @RequestMapping(value = "/showOthersClosedBroadcasts", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    List<Broadcast> showOthersClosedBroadcasts(HttpServletRequest request, HttpServletResponse response) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        return broadcastDAO.showOthersClosedBroadcasts(id);
+    }
 }

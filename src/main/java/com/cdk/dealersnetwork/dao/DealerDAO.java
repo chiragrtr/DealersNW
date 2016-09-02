@@ -1,7 +1,8 @@
 package com.cdk.dealersnetwork.dao;
 
 import com.cdk.dealersnetwork.dto.Dealer;
-import org.springframework.orm.hibernate4.HibernateTemplate;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Component;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Created by sharmach on 30/8/2016.
  */
+@Component
 public class DealerDAO {
 
     private HibernateTemplate hibernateTemplate;

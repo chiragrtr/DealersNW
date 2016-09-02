@@ -35,6 +35,7 @@ function showOthersBroadcasts(value) {
      //var value = $(this).val();*/
 
     var dealerId = document.getElementById("myPara").innerHTML;
+    alert(dealerId);
     if (value == "open") {
 
         var xmlHttp = new XMLHttpRequest();
@@ -59,6 +60,9 @@ function showOthersBroadcasts(value) {
 
         xmlHttp.open("post", "showOthersOpenBroadcasts.do", true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        /*headers : {
+            'Content-Type' :'application/json'
+        },*/
         xmlHttp.send("id=" + dealerId);
 
     } else if (value == "closed") {
