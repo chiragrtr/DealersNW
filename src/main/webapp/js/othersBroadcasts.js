@@ -2,12 +2,15 @@
  * Created by malir on 9/1/2016.
  */
 
-function placeThisBid() {
+function placeThisBid(formNum) {
     alert("hi");
-    /*var price=document.placeBid.price.value;
-     var days = document.placeBid.days.value;
-     var hours=document.placeBid.hours.value;
-     var broadcastId = document.getElementById("broadcastId").innerHTML;
+    var price = document.getElementById("price"+formNum).value;
+    //var price=document.formNum.price.value;
+    alert(price);
+     var days = document.getElementById("days"+formNum).value;
+     var hours=document.getElementById("hours"+formNum).value;
+     var broadcastId = document.getElementById("broadcastId"+formNum).innerHTML;
+    alert(broadcastId);
 
      var deliveryHours = parseInt(days) * 24 + parseInt(hours);
      alert(broadcastId + price + deliveryHours);
@@ -21,9 +24,9 @@ function placeThisBid() {
      }
      };
 
-     xmlHttp.open("post", "placeBid.do", true);
+     xmlHttp.open("post", "setBid.do", true);
      xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-     xmlHttp.send("broadcastId="+broadcastId+"&price="+price+"&deliveryHours="+deliveryHours);*/
+     xmlHttp.send("broadcastId="+broadcastId+"&price="+price+"&deliveryHours="+deliveryHours);
 }
 function showOthersBroadcasts(value) {
     /*console.log(1);
@@ -37,16 +40,18 @@ function showOthersBroadcasts(value) {
         var xmlHttp = new XMLHttpRequest();
 
         xmlHttp.onreadystatechange = function () {
+            var f = 0;
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                 var records = eval(xmlHttp.responseText);
                 var htmlText = "";
                 for (i = 0; i < records.length; ++i) {
+
                     htmlText += "<p>";
                     htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate;
-                    htmlText += "<form name='placeBid'><p id='broadcastId' style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
-                        "<input type='number' name='price' placeholder='price'><input type='number' name='days' placeholder='days'>" +
-                        "<input type='number' name='hours' placeholder='hours'><button type='button' onclick='placeThisBid()'>Place Bid</button> " +
-                        "</form></p>";
+                    htmlText += "<form name='myForm"+(++f)+"'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
+                        "<input type='number' id =price" + f + " name='price' placeholder='price'><input type='number' id =days" + f + " name='days' placeholder='days'>" +
+                        "<input type='number' id =hours" + f + " name='hours' placeholder='hours'></form><button type='button' onclick=placeThisBid("+f+")>Place Bid</button> " +
+                        "</p>";
                 }
                 document.getElementById("othersBroadcasts").innerHTML = htmlText;
             }
