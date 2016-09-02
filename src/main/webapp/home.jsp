@@ -20,6 +20,11 @@
 
 </head>
 <body onload="showOthersBroadcasts('open')">
+<%
+    if(session.getAttribute("dealerId") == null){
+        response.sendRedirect("index.html");
+    }
+%>
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -28,11 +33,11 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Dealer Name</a>
+            <a class="navbar-brand" href="#">Welcome <%=session.getAttribute("dealerName")%></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+                <li><a href="logout.do"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
             </ul>
         </div>
     </div>
