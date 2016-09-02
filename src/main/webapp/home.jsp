@@ -13,12 +13,13 @@
     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--%>
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/myBroadcasts.js"></script>
+    <script src="js/othersBroadcasts.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="css/normalize.css">
 
 
 </head>
-<body>
+<body onload="showOthersBroadcasts('open')">
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -68,13 +69,14 @@
         <div class="col-lg-5">
             <div>
                 <p class="well">Show Broadcasts</p>
-                <select>
-                    <option value="open">Open</option>
+                <select onchange="showOthersBroadcasts(this.value)">
+                    <option value="open" selected>Open</option>
                     <option value="closed">Closed</option>
-                    <option value="all">All</option>
+                    <%--<option value="all">All</option>--%>
                 </select>
 
             </div>
+            <div id="othersBroadcasts"></div>
         </div>
     </div>
     <div class="row">
@@ -90,11 +92,11 @@
 </div>
 </body>
 
-<script type="text/javascript">
-    function showBroadcastForm() {
-        $("#myBroadcast").hide();
-        $("#createNewBroadcast").show();
-    }
+    <script type="text/javascript">
+            function showBroadcastForm() {
+                $("#myBroadcast").hide();
+                $("#createNewBroadcast").show();
+            }
     function showMyBroadcastDiv(){
         $("#createNewBroadcast").hide();
         $("#myBroadcast").show();
