@@ -29,6 +29,16 @@ public class Bid {
         this.notified = notified;
     }
 
+    public Bid(int broadcastId, int dealerId, Date bidDate, float price, int deliveryHours, int status, int notified) {
+        this.broadcastId = broadcastId;
+        this.dealerId = dealerId;
+        this.bidDate = bidDate;
+        this.price = price;
+        this.deliveryHours = deliveryHours;
+        this.status = status;
+        this.notified = notified;
+    }
+
     public int getBidId() {
         return bidId;
     }

@@ -40,8 +40,11 @@ public class BidDAO {
         return bidList;
     }
 
-    public void setBid(int dealerId, int broadcastId, float price, int deliveryHours, Date bidDate) {
-        hibernateTemplate.save(new com.cdk.dealersnetwork.domain.Bid(broadcastId, dealerId, bidDate, price, deliveryHours, 0, 0));
+    public Bid setBid(int dealerId, int broadcastId, float price, int deliveryHours, Date bidDate) {
+        com.cdk.dealersnetwork.domain.Bid domainBid = new com.cdk.dealersnetwork.domain.Bid(broadcastId, dealerId, bidDate, price, deliveryHours, 0, 0);
+        hibernateTemplate.save(domainBid);
+        Bid bid = new Bid(domainBid.getBidId(), domainBid.getBroadcastId(), domainBid.getDealerId(), domainBid.getBidDate(), domainBid.getPrice(), domainBid.getDeliveryHours(), domainBid.getStatus(), domainBid.getNotified());
+        return bid;
     }
 
     public void rejectDeals(int broadcastId){
