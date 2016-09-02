@@ -4,8 +4,8 @@
 function createBroadcastList(records){
     var htmlText ="";
     for (i = 0; i < records.length; ++i) {
-        htmlText += htmlText = "<div class='col-xs-12 col-sm-12 sidebar-offcanvas' id='sidebar' role='navigation'   style='float:left'>" +
-            "<div class='well sidebar-nav'>" +
+        htmlText += htmlText = "<div class='col-xs-12 col-sm-12 sidebar-offcanvas' role='navigation'   style='float:left'>" +
+            "<div class='panel-group'><div class ='panel panel-default'>" +
             "<ul>";
         var totalBids = records[i].totalBids;
         htmlText += "<p>" + records[i].make + " " + records[i].model + " " + records[i].color + " " + records[i].broadcastDate + " " + totalBids + "";
@@ -13,12 +13,12 @@ function createBroadcastList(records){
             htmlText += "<ul class='nav'>";
             for (j = 0; j < totalBids; j++) {
                 i++;
-                htmlText += "<li class='nav'>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate;
+                htmlText += "<div class='panel-body'><li>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate+"</li></div>";
             }
             htmlText += "</ul>";
         }
         htmlText += "</p>";
-        htmlText+="</ul></div></div>";
+        htmlText+="</ul></div></div></div>";
     }
 
     return htmlText;
