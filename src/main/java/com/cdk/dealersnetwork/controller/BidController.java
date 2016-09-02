@@ -29,10 +29,10 @@ public class BidController {
         this.bidDAO = bidDAO;
     }
 
-    @RequestMapping(value = "/placeBid", method = RequestMethod.POST)
+    @RequestMapping(value = "/setBid", method = RequestMethod.POST)
     public
     @ResponseBody
-    String placeBid(HttpServletRequest request, HttpServletResponse response) {
+    String setBid(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("here " + request.getSession().getAttributeNames().nextElement());
         System.out.println("hi " + (String)(request.getSession().getAttribute("dealerId")));
         int dealerId = Integer.parseInt((String)(request.getSession().getAttribute("dealerId")));
