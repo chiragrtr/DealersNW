@@ -50,7 +50,7 @@ function showOthersBroadcasts(value) {
                     htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate;
                     htmlText += "<form name='myForm"+(++f)+"'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
                         "<input type='number' id =price" + f + " name='price' placeholder='price'><input type='number' id =days" + f + " name='days' placeholder='days'>" +
-                        "<input type='number' id =hours" + f + " name='hours' placeholder='hours'></form><button type='button' onclick=placeThisBid("+f+")>Place Bid</button> " +
+                        "<input type='number' id =hours" + f + " name='hours' placeholder='hours'><button type='button' onclick=placeThisBid("+f+")>Place Bid</button></form> " +
                         "</p>";
                 }
                 document.getElementById("othersBroadcasts").innerHTML = htmlText;

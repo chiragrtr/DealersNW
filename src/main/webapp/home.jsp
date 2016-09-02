@@ -36,7 +36,7 @@
             <a class="navbar-brand" href="#">Welcome <%=session.getAttribute("dealerName")%></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="navbar-nav navbar-right">
                 <li><a href="logout.do"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
             </ul>
         </div>
@@ -45,7 +45,7 @@
 
 <div class = "container-fluid">
     <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-6">
             <div id="createNewBroadcast" >
                 <form class="form-inline">
                     <div class='form-group'>Select Make
@@ -71,7 +71,7 @@
                 <button class="well" onclick="showMyBroadcastDiv()">My Broadcasts</button>--%>
             </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-6">
             <div>
                 <p class="well">Show Broadcasts</p>
                 <select onchange="showOthersBroadcasts(this.value)">
@@ -85,7 +85,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-6">
             <p id="myPara" style="visibility: hidden"><%=session.getAttribute("dealerId")%></p>
             <button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>
             <br><br>
