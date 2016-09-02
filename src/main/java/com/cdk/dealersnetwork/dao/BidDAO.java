@@ -1,6 +1,7 @@
 package com.cdk.dealersnetwork.dao;
 
 import com.cdk.dealersnetwork.dto.Bid;
+import com.google.gson.Gson;
 import org.springframework.orm.hibernate4.HibernateTemplate;
 
 import java.util.ArrayList;
@@ -72,5 +73,17 @@ public class BidDAO {
         numOfBids += bidList.size();
         System.out.println("size is " + numOfBids);
         return numOfBids;
+    }
+
+    public String getAllBids(int broadcastId) {
+        List<com.cdk.dealersnetwork.domain.Bid> domainBidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId","broadcastId",broadcastId);
+        String bids = "";
+        for(com.cdk.dealersnetwork.domain.Bid domainBid : domainBidList){
+            String json = new Gson().toJson(domainBid);
+            bids += json + ",";
+        }
+        bids = bids.substring(0,bids.length()-1);
+        System.out.println("bids are " + bids);
+        return bids;
     }
 }
