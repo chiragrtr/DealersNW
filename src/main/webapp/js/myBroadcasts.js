@@ -9,13 +9,21 @@ function showMyOpenBroadcasts() {
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             var records = eval(xmlHttp.responseText);
-            var htmlText = "<div class='form'><table border='1' id='table'><tr><th>Make</th><th>Model</th><th>Color</th><th>Broadcast Date</th><th>Bids</th><th>Latest Bids</th></tr>";
+            var htmlText = "";
 
             for (i = 0; i < records.length; ++i) {
-                htmlText += "<tr><td>" + records[i].make + "</td><td>" + records[i].model + "</td><td>" + records[i].color + "</td><td>" + records[i].broadcastDate + "</td><td>" + records[i].totalBids + "</td><td>" + records[i].latestBid + "</td></tr>"
+                var totalBids = records[i].totalBids;
+                htmlText += "<p>" + records[i].make + " " + records[i].model + " " + records[i].color + " " + records[i].broadcastDate + " " + totalBids + "";
+                if(totalBids > 0) {
+                    htmlText += "<ul>";
+                    for (j = 0; j < totalBids; j++) {
+                        i++;
+                        htmlText += "<li>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate;
+                    }
+                    htmlText += "</ul>";
+                }
+                htmlText += "</p>";
             }
-            htmlText += "</table></div>";
-            //$("#myBroadcasts").html(htmlText);
             document.getElementById("myBroadcast").innerHTML = htmlText;
         }
     };
@@ -26,7 +34,7 @@ function showMyOpenBroadcasts() {
 
 }
 
-function showMyBroadcastsJquery() {
+/*function showMyBroadcastsJquery() {
     var data = {"id" : $("#myPara").html()};
     console.log(data);
     $.ajax({
@@ -44,6 +52,6 @@ function showMyBroadcastsJquery() {
             $("#myBroadcast").html(htmlText);
         }
     });
-}
+}*/
     
 
