@@ -4,7 +4,7 @@
 
 function placeThisBid() {
     alert("hi");
-    var price=document.placeBid.price.value;
+    /*var price=document.placeBid.price.value;
      var days = document.placeBid.days.value;
      var hours=document.placeBid.hours.value;
      var broadcastId = document.getElementById("broadcastId").innerHTML;
@@ -23,34 +23,32 @@ function placeThisBid() {
 
      xmlHttp.open("post", "placeBid.do", true);
      xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-     xmlHttp.send("broadcastId="+broadcastId+"&price="+price+"&deliveryHours="+deliveryHours);
+     xmlHttp.send("broadcastId="+broadcastId+"&price="+price+"&deliveryHours="+deliveryHours);*/
 }
 function showOthersBroadcasts(value) {
-    console.log(1);
-    //$("#choice").on('change',function () {
-    alert("changed");
-    //var value = $(this).val();
+    /*console.log(1);
+     //$("#choice").on('change',function () {
+     alert("changed");
+     //var value = $(this).val();*/
 
     var dealerId = document.getElementById("myPara").innerHTML;
-    if (value == "Open") {
+    if (value == "open") {
 
         var xmlHttp = new XMLHttpRequest();
 
         xmlHttp.onreadystatechange = function () {
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                 var records = eval(xmlHttp.responseText);
-                var htmlText = "<table border='1' id='table'><tr><th>Make</th><th>Model</th><th>Color</th>" +
-                 "<th>Broadcast Date</th><th>Price</th><th colspan='2'>Delivery Duration</th><th>Place Bid</th> </tr>";
+                var htmlText = "";
                 for (i = 0; i < records.length; ++i) {
-                    htmlText += "<tr><td>" + records[i].make + "</td><td>" + records[i].model + "</td>" +
-                     "<td>" + records[i].color + "</td><td>" + records[i].broadcastDate + "</td>" +
-                     "<form name='placeBid'><p id='broadcastId' style='visibility:hidden'>"+ records[i].broadcastId+"</p>" +
-                     "<td><input type='number' name='price' placeholder='price'></td><td><input type='number' name='days' placeholder='days'></td>" +
-                     "<td><input type='number' name='hours' placeholder='hours'></td><td><button type='button' onclick='placeThisBid()'>Place Bid</button> " +
-                     "</td></form> </tr>";
+                    htmlText += "<p>";
+                    htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate;
+                    htmlText += "<form name='placeBid'><p id='broadcastId' style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
+                        "<input type='number' name='price' placeholder='price'><input type='number' name='days' placeholder='days'>" +
+                        "<input type='number' name='hours' placeholder='hours'><button type='button' onclick='placeThisBid()'>Place Bid</button> " +
+                        "</form></p>";
                 }
-                htmlText += "</table>";
-                 document.getElementById("othersBroadcast").innerHTML = htmlText;
+                document.getElementById("othersBroadcasts").innerHTML = htmlText;
             }
         };
 
@@ -58,31 +56,24 @@ function showOthersBroadcasts(value) {
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlHttp.send("id=" + dealerId);
 
-    } else if (value == "All") {
-       /* var htmlText = "<table border='1' id='table'><tr><th>Make</th><th>Model</th><th>Color</th>" +
-            "<th>Broadcast Date</th><th>Status</th></tr>";*/
-       console.log(dealerId);
+    } else if (value == "closed") {
+        console.log(dealerId);
         var xmlHttp = new XMLHttpRequest();
         xmlHttp.onreadystatechange = function () {
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                 console.log(xmlHttp.responseText);
                 console.log(2);
                 var records = eval(xmlHttp.responseText);
-                var htmlText = "<table border='1' id='table'><tr><th>Make</th><th>Model</th><th>Color</th>" +
-                 "<th>Broadcast Date</th><th>Status</th></tr>";
+                var htmlText = "";
                 for (i = 0; i < records.length; ++i) {
-                    htmlText += "<tr><td>" + records[i].make + "</td><td>" + records[i].model + "</td><td>" + records[i].color + "</td><td>" + records[i].broadcastDate + "</td><td>" + records[i].status + "</td></tr>"
+                    htmlText += "<p>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
                 }
-                htmlText += "</table>";
-                document.getElementById("othersBroadcast").innerHTML = htmlText;
+                document.getElementById("othersBroadcasts").innerHTML = htmlText;
             }
         };
         xmlHttp.open("post", "showOthersBroadcasts.do", true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlHttp.send("id=" + dealerId);
-
     }
-    //});
-
 }
 
