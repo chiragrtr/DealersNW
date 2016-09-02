@@ -1,6 +1,21 @@
 /**
  * Created by malir on 9/1/2016.
  */
+
+function selectBid(bidId) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            var records = xmlHttp.responseText;
+            alert(records);
+        }
+    };
+    xmlHttp.open("post", "selectDeal.do", true);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send("bidId=" + bidId);
+}
+
+
 function createBroadcastList(records){
     var htmlText ="";
     for (i = 0; i < records.length; ++i) {
@@ -13,7 +28,7 @@ function createBroadcastList(records){
             htmlText += "<ul class='nav'>";
             for (j = 0; j < totalBids; j++) {
                 i++;
-                htmlText += "<div class='panel-body'><li>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate+"</li></div>";
+                htmlText += "<div class='panel-body'><li>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate+ "<button onclick = selectBid(" + records[i].bidId + ")>Select this bid</button>" + "</li></div>";
             }
             htmlText += "</ul>";
         }

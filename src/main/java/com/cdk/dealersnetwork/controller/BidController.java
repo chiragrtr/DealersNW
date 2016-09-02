@@ -1,9 +1,11 @@
 package com.cdk.dealersnetwork.controller;
 
 import com.cdk.dealersnetwork.dao.BidDAO;
+import com.cdk.dealersnetwork.dao.BroadcastDAO;
 import com.cdk.dealersnetwork.dto.Bid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,10 +18,22 @@ import java.util.Date;
  * Created by malir on 9/2/2016.
  */
 @Controller
+@Transactional
 public class BidController {
 
     @Autowired
     BidDAO bidDAO = null;
+
+    @Autowired
+    BroadcastDAO broadcastDAO = null;
+
+    public BroadcastDAO getBroadcastDAO() {
+        return broadcastDAO;
+    }
+
+    public void setBroadcastDAO(BroadcastDAO broadcastDAO) {
+        this.broadcastDAO = broadcastDAO;
+    }
 
     public BidDAO getBidDAO() {
         return bidDAO;
@@ -54,5 +68,17 @@ public class BidController {
         System.out.println(bidId);
         System.out.println("BID PLACED");
         return "" + bidId;
+    }
+
+    @RequestMapping(value = "/selectDeal", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String selectDeal(HttpServletRequest request, HttpServletResponse response){
+        int bidId = Integer.parseInt(request.getParameter("bidId"));
+        bidDAO.selectDeal(bidId);
+        int broadcastId = bidDAO.getBroadcastId(bidId);
+        broadcastDAO.closeBroadcast(broadcastId);
+        bidDAO.rejectDeals(broadcastId,bidId);
+        return "Bid selected";
     }
 }
