@@ -15,7 +15,7 @@
     <script src="js/myBroadcasts.js"></script>
     <script src="js/othersBroadcasts.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/normalize.css">
+
 
 
 </head>
