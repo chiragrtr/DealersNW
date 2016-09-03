@@ -2,7 +2,7 @@
  * Created by malir on 9/1/2016.
  */
 
-function selectBid(bidId) {
+function selectBidAjax(bidId) {
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
@@ -13,6 +13,11 @@ function selectBid(bidId) {
     xmlHttp.open("post", "selectDeal.do", true);
     xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlHttp.send("bidId=" + bidId);
+}
+
+function selectBid(bidId){
+    selectBidAjax(bidId);
+    setTimeout(showMyOpenBroadcasts,1000);
 }
 
 
