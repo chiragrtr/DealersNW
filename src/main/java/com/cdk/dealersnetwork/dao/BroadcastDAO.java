@@ -131,4 +131,8 @@ public class BroadcastDAO {
         return dtoBroadcastList;
     }
 
+    public Broadcast getBroadcast(int broadcastId) {
+        com.cdk.dealersnetwork.domain.Broadcast domainBroadcast = hibernateTemplate.get(com.cdk.dealersnetwork.domain.Broadcast.class, broadcastId);
+        return new Broadcast(broadcastId,domainBroadcast.getDealerId(),domainBroadcast.getMake(),domainBroadcast.getModel(),domainBroadcast.getColor(),domainBroadcast.getBroadcastDate(),domainBroadcast.getStatus());
+    }
 }

@@ -2,6 +2,30 @@
  * Created by malir on 9/1/2016.
  */
 
+function showMyBids(dealerId){
+
+    console.log(dealerId);
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            console.log(xmlHttp.responseText);
+            var htmlText = "";
+            if (xmlHttp.responseText != "") {
+                var records = eval(xmlHttp.responseText);
+                console.log(records);
+                for (i = 0; i <records.length; i++) {
+                    htmlText += "<p>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
+                    i++;
+                    htmlText += "YOUR BID:<BR>" + "<p>" + "Price: " + records[i].price + " Deliver Hours: " + records[i].deliveryHours + " Bid Date: " + records[i].bidDate + " Status: " + records[i].status + "</p>";
+                }
+            }
+            document.getElementById("othersBroadcasts").innerHTML = htmlText;
+        }
+    };
+    xmlHttp.open("post", "showMyBids.do", true);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send("dealerId=" + dealerId);
+}
 function placeThisBid(formNum) {
     //alert("hi");
     var price = document.getElementById("price" + formNum).value;
