@@ -3,24 +3,24 @@
  */
 
 function placeThisBid(formNum) {
-    alert("hi");
+    //alert("hi");
     var price = document.getElementById("price" + formNum).value;
     //var price=document.formNum.price.value;
-    alert(price);
+    //alert(price);
     var days = document.getElementById("days" + formNum).value;
     var hours = document.getElementById("hours" + formNum).value;
     var broadcastId = document.getElementById("broadcastId" + formNum).innerHTML;
-    alert(broadcastId);
+    //alert(broadcastId);
 
     var deliveryHours = parseInt(days) * 24 + parseInt(hours);
-    alert(broadcastId + price + deliveryHours);
+    //alert(broadcastId + price + deliveryHours);
 
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             alert("success");
         } else {
-            alert("Failure");
+            //alert("Failure");
         }
     };
 
@@ -35,7 +35,7 @@ function showOthersBroadcasts(value) {
      //var value = $(this).val();*/
 
     var dealerId = document.getElementById("myPara").innerHTML;
-    alert(dealerId);
+    //alert(dealerId);
     if (value == "open") {
 
         var xmlHttp = new XMLHttpRequest();
