@@ -68,7 +68,7 @@
                             <option>White</option>
                             <option>Silver</option>
                         </select>
-                        <button type="button" name="newBroadcast_Btn" onclick="createBroadcast()">Create Broadcast</button>
+                        <button type="button" name="newBroadcast_Btn" onclick="createBroadcast()">Broadcast</button>
                     </div>
                 </form>
                 <%-- <button class="well">Edit Profile</button><br>
@@ -81,7 +81,7 @@
         <div id="showBroadcastDiv">
         <div class="col-lg-6">
             <div>
-                <p class="myPanel"><span style="float: left"><input type="radio" name="chiragRadio" id="r1" value="broadcasts" onclick=showOthersBroadcasts("open") checked>Show Broadcasts</span> <span style="float: right;"><input type="radio" name="chiragRadio" id="r2" value="bids" onclick=showMyBids(document.getElementById("myPara").innerHTML)>My bids</span> </p>
+                <p class="myPanel"><span style="float: left"><input type="radio" name="chiragRadio" id="r1" value="broadcasts" onclick=myFun() checked>Show Broadcasts</span> <span style="float: right;"><input type="radio" name="chiragRadio" id="r2" value="bids" onclick=showMyBids(document.getElementById("myPara").innerHTML)>My bids</span> </p>
                 <%--<p class="myPanel">Show Broadcasts</p>--%>
                 <select id="openOrClosed" onchange="showOthersBroadcasts(this.value)">
                     <option value="open" selected>Open</option>
