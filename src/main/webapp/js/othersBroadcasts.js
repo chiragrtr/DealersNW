@@ -4,29 +4,29 @@
 
 function placeThisBid(formNum) {
     alert("hi");
-    var price = document.getElementById("price"+formNum).value;
+    var price = document.getElementById("price" + formNum).value;
     //var price=document.formNum.price.value;
     alert(price);
-     var days = document.getElementById("days"+formNum).value;
-     var hours=document.getElementById("hours"+formNum).value;
-     var broadcastId = document.getElementById("broadcastId"+formNum).innerHTML;
+    var days = document.getElementById("days" + formNum).value;
+    var hours = document.getElementById("hours" + formNum).value;
+    var broadcastId = document.getElementById("broadcastId" + formNum).innerHTML;
     alert(broadcastId);
 
-     var deliveryHours = parseInt(days) * 24 + parseInt(hours);
-     alert(broadcastId + price + deliveryHours);
+    var deliveryHours = parseInt(days) * 24 + parseInt(hours);
+    alert(broadcastId + price + deliveryHours);
 
-     var xmlHttp = new XMLHttpRequest();
-     xmlHttp.onreadystatechange = function () {
-     if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-     alert("success");
-     } else {
-     alert("Failure");
-     }
-     };
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            alert("success");
+        } else {
+            alert("Failure");
+        }
+    };
 
-     xmlHttp.open("post", "setBid.do", true);
-     xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-     xmlHttp.send("broadcastId="+broadcastId+"&price="+price+"&deliveryHours="+deliveryHours);
+    xmlHttp.open("post", "setBid.do", true);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send("broadcastId=" + broadcastId + "&price=" + price + "&deliveryHours=" + deliveryHours);
 }
 function showOthersBroadcasts(value) {
     /*console.log(1);
@@ -43,16 +43,18 @@ function showOthersBroadcasts(value) {
         xmlHttp.onreadystatechange = function () {
             var f = 0;
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-                var records = eval(xmlHttp.responseText);
                 var htmlText = "";
-                for (i = 0; i < records.length; ++i) {
+                if (xmlHttp.responseText != "") {
+                    var records = eval(xmlHttp.responseText);
+                    for (i = 0; i < records.length; ++i) {
 
-                    htmlText += "<p>";
-                    htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate;
-                    htmlText += "<form name='myForm"+(++f)+"'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
-                        "<input type='number' id =price" + f + " name='price' placeholder='price'><input type='number' id =days" + f + " name='days' placeholder='days'>" +
-                        "<input type='number' id =hours" + f + " name='hours' placeholder='hours'><button type='button' onclick=placeThisBid("+f+")>Place Bid</button></form> " +
-                        "</p>";
+                        htmlText += "<p>";
+                        htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate;
+                        htmlText += "<form name='myForm" + (++f) + "'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
+                            "<input type='number' id =price" + f + " name='price' placeholder='price'><input type='number' id =days" + f + " name='days' placeholder='days'>" +
+                            "<input type='number' id =hours" + f + " name='hours' placeholder='hours'><button type='button' onclick=placeThisBid(" + f + ")>Place Bid</button></form> " +
+                            "</p>";
+                    }
                 }
                 document.getElementById("othersBroadcasts").innerHTML = htmlText;
             }
@@ -61,8 +63,8 @@ function showOthersBroadcasts(value) {
         xmlHttp.open("post", "showOthersOpenBroadcasts.do", true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         /*headers : {
-            'Content-Type' :'application/json'
-        },*/
+         'Content-Type' :'application/json'
+         },*/
         xmlHttp.send("id=" + dealerId);
 
     } else if (value == "closed") {
@@ -72,15 +74,17 @@ function showOthersBroadcasts(value) {
             if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
                 console.log(xmlHttp.responseText);
                 console.log(2);
-                var records = eval(xmlHttp.responseText);
                 var htmlText = "";
-                for (i = 0; i < records.length; ++i) {
-                    htmlText += "<p>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
+                if (xmlHttp.responseText != "") {
+                    var records = eval(xmlHttp.responseText);
+                    for (i = 0; i < records.length; ++i) {
+                        htmlText += "<p>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
+                    }
                 }
                 document.getElementById("othersBroadcasts").innerHTML = htmlText;
             }
         };
-        xmlHttp.open("post", "showOthersBroadcasts.do", true);
+        xmlHttp.open("post", "showOthersClosedBroadcasts.do", true);
         xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xmlHttp.send("id=" + dealerId);
     }

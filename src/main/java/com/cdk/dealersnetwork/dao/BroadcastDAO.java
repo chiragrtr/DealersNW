@@ -30,7 +30,7 @@ public class BroadcastDAO {
         domainBroadcast.setModel(broadcast.getModel());
         domainBroadcast.setColor(broadcast.getColor());
         domainBroadcast.setStatus(broadcast.getStatus());
-        hibernateTemplate.update(domainBroadcast);
+        hibernateTemplate.save(domainBroadcast);
         broadcast.setBroadcastId(domainBroadcast.getBroadcastId());
         return broadcast;
     }
@@ -102,13 +102,13 @@ public class BroadcastDAO {
 
     public List<Broadcast> showOthersOpenBroadcasts(int dealerId){
         int status = 0;
-        List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId !=:dealerId and b.status=tatus",new String[]{"dealerId","status"}, new Object[]{dealerId,status});
+        List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId !=:dealerId and b.status=:status",new String[]{"dealerId","status"}, new Object[]{dealerId,status});
         return getBroadcastsList(domainBroadcastList);
     }
 
     public List<Broadcast> showOthersClosedBroadcasts(int dealerId){
         int status = 1;
-        List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId !=:dealerId and b.status =tatus", new String[]{"dealerId","status"}, new Object[]{dealerId,status});
+        List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId !=:dealerId and b.status=:status", new String[]{"dealerId","status"}, new Object[]{dealerId,status});
         return getBroadcastsList(domainBroadcastList);
 
     }

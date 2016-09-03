@@ -118,10 +118,64 @@ public class BroadcastController {
     @RequestMapping(value = "/showOthersOpenBroadcasts", method = RequestMethod.POST)
     public
     @ResponseBody
+    String showOthersOpenBroadcasts(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("here0");
+        int id = Integer.parseInt(request.getParameter("id"));
+        System.out.println(id);
+        System.out.println("here");
+        String json = "";
+        List<Broadcast> broadcastList = broadcastDAO.showOthersOpenBroadcasts(id);
+        System.out.println("here1");
+        if(broadcastList.size() != 0) {
+            json += "[";
+            System.out.println("here2");
+            for (Broadcast broadcast : broadcastDAO.showOthersOpenBroadcasts(id)) {
+                json += new Gson().toJson(broadcast)+",";
+                System.out.println("herehere");
+            }
+            System.out.println("here3");
+            json = json.substring(0,json.length()-1);
+            json += "]";
+            System.out.println("json object is " + json);
+        }
+        System.out.println("here4");
+        return json;
+    }
+
+    @RequestMapping(value = "/showOthersClosedBroadcasts", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String showOthersClosedBroadcasts(HttpServletRequest request, HttpServletResponse response) {
+
+        int id = Integer.parseInt(request.getParameter("id"));
+        System.out.println(id);
+
+        String json = "";
+        List<Broadcast> broadcastList = broadcastDAO.showOthersClosedBroadcasts(id);
+
+        if(broadcastList.size() != 0) {
+            json += "[";
+            System.out.println("here2");
+            for (Broadcast broadcast : broadcastDAO.showOthersClosedBroadcasts(id)) {
+                json += new Gson().toJson(broadcast)+",";
+                System.out.println("herehere");
+            }
+            System.out.println("here3");
+            json = json.substring(0,json.length()-1);
+            json += "]";
+            System.out.println("json object is " + json);
+        }
+        System.out.println("here4");
+        return json;
+    }
+
+    /*@RequestMapping(value = "/showOthersOpenBroadcasts", method = RequestMethod.POST)
+    public
+    @ResponseBody
     List<Broadcast> showOthersOpenBroadcasts(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         return broadcastDAO.showOthersOpenBroadcasts(id);
-    }
+    }*/
 
     @RequestMapping(value = "/showMyBroadcasts", method = RequestMethod.POST)
     public
@@ -167,11 +221,11 @@ public class BroadcastController {
         return "" + broadcastId;
     }
 
-    @RequestMapping(value = "/showOthersClosedBroadcasts", method = RequestMethod.POST)
+    /*@RequestMapping(value = "/showOthersClosedBroadcasts", method = RequestMethod.POST)
     public
     @ResponseBody
     List<Broadcast> showOthersClosedBroadcasts(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
         return broadcastDAO.showOthersClosedBroadcasts(id);
-    }
+    }*/
 }
