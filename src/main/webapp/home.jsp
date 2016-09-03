@@ -77,7 +77,7 @@
                 &lt;%&ndash;$('#myLink').click(function(){ MyFunction(); return false; });-- to call function on href onclick()&ndash;%&gt;
                 <button class="well" onclick="showMyBroadcastDiv()">My Broadcasts</button>--%>
             </div>
-        </div
+        </div>
         </div>
         <div id="showBroadcastDiv">
         <div class="col-lg-6">
@@ -97,7 +97,7 @@
     <div class="row">
         <div class="col-lg-6">
             <p id="myPara" style="visibility: hidden"><%=session.getAttribute("dealerId")%></p>
-            <button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>
+            <%--<button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>--%>
             <br><br>
             <div id="myBroadcast">
 
@@ -118,6 +118,11 @@
 
     }
     function createBroadcast(){
+        createBroadcastAjax();
+        setTimeout(showMyOpenBroadcasts,500);
+    }
+
+    function createBroadcastAjax(){
         var data = {
             "make" : $("#make").val(),
             "model" :$("#model").val(),
@@ -134,11 +139,11 @@
             type : "POST",
 
             success: function (result) {
-                alert("Broadcast added with id = " + result);
+                console.log("Broadcast added with id = " + result);
             },
 
             error: function (result) {
-                alert("error");
+                console.log("error");
                 console.log(result);
             },
 

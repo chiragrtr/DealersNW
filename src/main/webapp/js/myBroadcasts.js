@@ -17,7 +17,7 @@ function selectBidAjax(bidId) {
 
 function selectBid(bidId){
     selectBidAjax(bidId);
-    setTimeout(showMyOpenBroadcasts,1000);
+    setTimeout(showMyOpenBroadcasts,500);
 }
 
 
