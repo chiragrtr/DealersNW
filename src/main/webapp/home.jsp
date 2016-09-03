@@ -26,7 +26,7 @@
         response.sendRedirect("index.html");
     }
 %>
-<div id = "headerDiv">
+
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -44,8 +44,6 @@
         </div>
     </div>
 </nav>
-</div>
-
 
 <div class = "container-fluid">
 
@@ -83,7 +81,7 @@
         <div class="col-lg-6">
             <div>
                 <p class="well">Show Broadcasts</p>
-                <select onchange="showOthersBroadcasts(this.value)">
+                <select id="openOrClosed" onchange="showOthersBroadcasts(this.value)">
                     <option value="open" selected>Open</option>
                     <option value="closed">Closed</option>
                     <%--<option value="all">All</option>--%>
@@ -105,6 +103,7 @@
         </div>
     </div>
 </div>
+
 </body>
 
     <script type="text/javascript">
