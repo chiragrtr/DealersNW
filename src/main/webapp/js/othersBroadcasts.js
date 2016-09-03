@@ -46,8 +46,7 @@ function showOthersBroadcasts(value) {
                 var htmlText = "";
                 if (xmlHttp.responseText != "") {
                     var records = eval(xmlHttp.responseText);
-                    for (i = 0; i < records.length; ++i) {
-
+                    for (i = records.length-1; i >= 0; i--) {
                         htmlText += "<p>";
                         htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate;
                         htmlText += "<form name='myForm" + (++f) + "'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
@@ -77,7 +76,7 @@ function showOthersBroadcasts(value) {
                 var htmlText = "";
                 if (xmlHttp.responseText != "") {
                     var records = eval(xmlHttp.responseText);
-                    for (i = 0; i < records.length; ++i) {
+                    for (i = records.length-1; i >= 0; i--) {
                         htmlText += "<p>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
                     }
                 }

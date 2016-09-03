@@ -23,7 +23,7 @@ function selectBid(bidId){
 
 function createBroadcastList(records) {
     var htmlText = "";
-    for (i = 0; i < records.length; ++i) {
+    for (i = records.length-1; i >= 0; i--) {
         htmlText += htmlText = "<div class='col-xs-12 col-sm-12 sidebar-offcanvas' role='navigation'   style='float:left'>" +
             "<div class='panel-group'><div class ='panel panel-default'>" +
             "<ul>";
