@@ -9,7 +9,7 @@
 
 function repeatedCalls(){
     setTimeout(repeatedCalls,30000);
-    showOthersBroadcasts('open');
+    showOthersBroadcasts(document.getElementById("openOrClosed").value);
 }
 
 /*$(function () {
