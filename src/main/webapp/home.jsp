@@ -54,6 +54,7 @@
             <div id="createNewBroadcast" >
                 <form class="form-inline">
                     <div class='form-group'><%--Select Make--%>
+                        <b>Your requirement:</b>
                         <select class='form-control' id='make' name='make'>
                             <option><label>Select Your Make</label></option>
                             <option>Mercedez</option>
@@ -81,7 +82,7 @@
         <div id="showBroadcastDiv">
         <div class="col-lg-6">
             <div>
-                <p class="myPanel"><span style="float: left"><input type="radio" name="chiragRadio" id="r1" value="broadcasts" onclick=myFun() checked>Show Broadcasts</span> <span style="float: right;"><input type="radio" name="chiragRadio" id="r2" value="bids" onclick=showMyBids(document.getElementById("myPara").innerHTML)>My bids</span> </p>
+                <p class="myPanel">OTHERS' BROADCASTS<span style="float: left"><input type="radio" name="chiragRadio" id="r1" value="broadcasts" onclick=myFun() checked>All</span> <span style="float: right;"><input type="radio" name="chiragRadio" id="r2" value="bids" onclick=showMyBids(document.getElementById("myPara").innerHTML)>Your Bids</span> </p>
                 <%--<p class="myPanel">Show Broadcasts</p>--%>
                 <select id="openOrClosed" onchange="showOthersBroadcasts(this.value)">
                     <option value="open" selected>Open</option>
@@ -100,7 +101,7 @@
             <%--<button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>--%>
             <%--<br><br>--%>
             <div>
-                <p class="well">My Broadcasts</p>
+                <p class="well"><b>Your Broadcasts</b></p>
                 <select id="myOpenOrClosed" onchange="showMyBroadcasts()">
                     <option value="open" selected>Open</option>
                     <option value="closed">Closed</option>
