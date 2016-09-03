@@ -20,6 +20,23 @@ function selectBid(bidId){
     setTimeout(showMyBroadcasts,500);
 }
 
+function cancelBroadcast(broadcastId) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.onreadystatechange = function () {
+        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+            var htmlText = "";
+            if (xmlHttp.responseText != "") {
+                var records = eval(xmlHttp.responseText);
+                htmlText = createOpenBroadcastList(records);
+            }
+            document.getElementById("myBroadcast").innerHTML = htmlText;
+        }
+    };
+    xmlHttp.open("post", "cancelBroadcast.do", true);
+    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlHttp.send("broadcastId=" + broadcastId + "&id=" + document.getElementById("myPara").innerHTML);
+}
+
 
 function createOpenBroadcastList(records) {
     var htmlText = "<div class='col-xs-12 col-sm-12' style='float:left'><div class='panel-group'>";
@@ -29,7 +46,7 @@ function createOpenBroadcastList(records) {
             "<ul class='myUl'>";
 
         var totalBids = records[i].totalBids;
-        htmlText += "<p>" + records[i].make + " " + records[i].model + " " + records[i].color + " " + records[i].broadcastDate + " " + totalBids + "";
+        htmlText += "<p>" + records[i].make + " " + records[i].model + " " + records[i].color + " " + records[i].broadcastDate + " " + totalBids + " " + "<button type='button' onclick=cancelBroadcast(" + records[i].broadcastId + ")>Cancel</button> ";
         if (totalBids > 0) {
             htmlText += "<div id='myUlDiv'><ul class='nav'>";
             for (j = 0; j < totalBids; j++) {

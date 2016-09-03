@@ -257,4 +257,17 @@ public class BroadcastController {
         int id = Integer.parseInt(request.getParameter("id"));
         return broadcastDAO.showOthersClosedBroadcasts(id);
     }*/
+
+
+
+
+    @RequestMapping(value = "/cancelBroadcast", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String cancelBroadcast(HttpServletRequest request, HttpServletResponse response) {
+        int broadcastId = Integer.parseInt(request.getParameter("broadcastId"));
+        bidDAO.rejectDeals(broadcastId,0);
+        broadcastDAO.closeBroadcast(broadcastId);
+        return showMyOpenBroadcasts(request,response);
+    }
 }
