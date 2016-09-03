@@ -67,6 +67,7 @@ a {
 }
 a:hover {
     color: #179b77;
+    text-decoration: none;
 }
 
 .form {
@@ -1288,13 +1289,13 @@ textarea {
     line-height: inherit;
 }
 a {
-    color: #337ab7;
+    color: #f9fbfd;
     text-decoration: none;
 }
 a:hover,
 a:focus {
     color: #23527c;
-    text-decoration: underline;
+    text-decoration: none;
 }
 a:focus {
     outline: 5px auto -webkit-focus-ring-color;
@@ -4171,14 +4172,23 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
-    max-height:50%;
-
+    max-height:75%;
+    background-color: whitesmoke;
     overflow-y:auto;
 }
 .nav > li {
     position: relative;
     display: block;
+    height: 70%;
+}
 
+.myUl{
+    padding-right: 10px;
+}
+.nav > ul{
+    padding-right: 20px;
+    padding-bottom: 5px;
+    border-top-width: 5px
 }
 .nav > li > a {
     position: relative;
@@ -4215,6 +4225,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a > img {
     max-width: none;
 }
+
 .nav-tabs {
     border-bottom: 1px solid #ddd;
 }
@@ -4791,7 +4802,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
     color: #ccc;
 }
 .navbar-inverse {
-    background-color: #9dfb2f;
+    background-color: #82C600;
     border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
@@ -5656,6 +5667,7 @@ button.list-group-item-danger.active:focus {
     border-radius: 4px;
     -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+    text-transform: capitalize;
 }
 .panel-body {
     padding: 15px;
@@ -6971,12 +6983,12 @@ button.close {
     border: solid;
     border-style: initial;
     width: 100px;
-    background: rgba(19, 35, 47, 0.9);
+    /*background: #f8faf9;*/
     padding: 40px;
     max-width: 100px;
     margin: 40px auto;
     border-radius: 4px;
-    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    /*box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);*/
     width: 100px;
     padding-top: 10px;
     margin-top: -5px;
@@ -6985,6 +6997,7 @@ button.close {
     padding-bottom: 10px;
     border-right-width: 10px;
     margin-right: 5px;
+    text-decoration: none;
 
 
     padding-top: 10px;
@@ -6994,6 +7007,21 @@ button.close {
     padding-bottom: 10px;
     border-right-width: 10px;
     margin-right: 5px;
+
+}
+
+#myUlDiv{
+    background-color: #080808;
+
+}
+
+.myPanel{
+    height: 40%;
+    font-weight: 900;
+    text-transform: capitalize;
+    text-align: -webkit-center;
+    padding-top: 1.5%;
+    background-color: #f3f3f3;
 
 }
 /*---------------------------------------------------------------------------*/

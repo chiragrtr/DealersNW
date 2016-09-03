@@ -81,7 +81,7 @@
         <div id="showBroadcastDiv">
         <div class="col-lg-6">
             <div>
-                <p class="well">Show Broadcasts</p>
+                <p class="myPanel">Show Broadcasts</p>
                 <select id="openOrClosed" onchange="showOthersBroadcasts(this.value)">
                     <option value="open" selected>Open</option>
                     <option value="closed">Closed</option>
