@@ -15,7 +15,7 @@ function repeatedCalls(){
 /*$(function () {
      autoCalls();*/
     function autoCalls() {
-        showMyOpenBroadcasts();
+        showMyBroadcasts(document.getElementById("myOpenOrClosed").value);
         repeatedCalls();
     }
 /*
