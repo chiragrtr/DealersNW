@@ -97,7 +97,16 @@
         <div class="col-lg-6">
             <p id="myPara" style="visibility: hidden"><%=session.getAttribute("dealerId")%></p>
             <%--<button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>--%>
-            <br><br>
+            <%--<br><br>--%>
+            <div>
+                <p class="well">My Broadcasts</p>
+                <select id="myOpenOrClosed" onchange="showMyBroadcasts(this.value)">
+                    <option value="open" selected>Open</option>
+                    <option value="closed">Closed</option>
+                    <%--<option value="all">All</option>--%>
+                </select>
+
+            </div>
             <div id="myBroadcast">
 
             </div>
@@ -119,7 +128,8 @@
     }
     function createBroadcast(){
         createBroadcastAjax();
-        setTimeout(showMyOpenBroadcasts,500);
+        //setTimeout(showMyOpenBroadcasts,500);
+        setTimeout(showMyBroadcasts(document.getElementById("myOpenOrClosed").value),500);
     }
 
     function createBroadcastAjax(){

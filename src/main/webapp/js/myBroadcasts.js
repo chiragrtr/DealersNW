@@ -22,38 +22,39 @@ function selectBid(bidId){
 
 
 function createOpenBroadcastList(records) {
-    var htmlText = "";
+    var htmlText = "<div class='col-xs-12 col-sm-12' style='float:left'><div class='panel-group'>";
+
     for (i = 0; i < records.length; i++) {
-        htmlText += htmlText = "<div class='col-xs-12 col-sm-12 sidebar-offcanvas' role='navigation'   style='float:left'>" +
-            "<div class='panel-group'><div class ='panel panel-default'>" +
-            "<ul>";
+        htmlText +="<div class ='panel panel-default'>" +
+            "<ul class='myUl'>";
+
         var totalBids = records[i].totalBids;
         htmlText += "<p>" + records[i].make + " " + records[i].model + " " + records[i].color + " " + records[i].broadcastDate + " " + totalBids + "";
         if (totalBids > 0) {
-            htmlText += "<ul class='nav'>";
+            htmlText += "<div id='myUlDiv'><ul class='nav'>";
             for (j = 0; j < totalBids; j++) {
                 i++;
                 htmlText += "<div class='panel-body'><li>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate + "<button onclick = selectBid(" + records[i].bidId + ")>Select this bid</button>" + "</li></div>";
             }
-            htmlText += "</ul>";
+            htmlText += "</ul></div>";
         }
         htmlText += "</p>";
-        htmlText += "</ul></div></div></div>";
+        htmlText += "</ul></div>";
     }
-
+    htmlText += "</div></div>";
     return htmlText;
 }
 
 function createClosedBroadcastList(records) {
-    var htmlText = "";
+    var htmlText = "<div class='col-xs-12 col-sm-12' style='float:left'><div class='panel-group'>";
     for (i = 0; i < records.length; i++) {
-        htmlText += htmlText = "<div class='col-xs-12 col-sm-12 sidebar-offcanvas' role='navigation'   style='float:left'>" +
-            "<div class='panel-group'><div class ='panel panel-default'>" +
-            "<ul>";
+        htmlText +="<div class ='panel panel-default'>" +
+            "<ul class='myUl'>";
+
         var totalBids = records[i].totalBids;
         htmlText += "<p>" + records[i].make + " " + records[i].model + " " + records[i].color + " " + records[i].broadcastDate + " " + totalBids + "";
         if (totalBids > 0) {
-            htmlText += "<ul class='nav'>";
+            htmlText += "<div id='myUlDiv'><ul class='nav'>";
             for (j = 0; j < totalBids; j++) {
                 i++;
                 var status = records[i].status;
@@ -63,12 +64,12 @@ function createClosedBroadcastList(records) {
                     htmlText += "<div class='panel-body'><li>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate + "</li></div>";
                 }
             }
-            htmlText += "</ul>";
+            htmlText += "</ul></div>";
         }
         htmlText += "</p>";
-        htmlText += "</ul></div></div></div>";
+        htmlText +=  "</ul></div>";
     }
-
+    htmlText += "</div></div>";
     return htmlText;
 }
 
