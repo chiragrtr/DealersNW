@@ -1,0 +1,9 @@
+1)
+
+The others' broadcasts div gets refreshed every 30 seconds so when entering bid price, days or hours,
+ our inputted data is lost due to refresh.
+
+2)
+
+After we create a broadcast, the form doesn't revert to its default state, i.e. doesn't show "Select your make",
+"select your model" and "select color", rather it shows the data selected during creation of broadcast.
