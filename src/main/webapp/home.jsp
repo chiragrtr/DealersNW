@@ -25,6 +25,7 @@
         response.sendRedirect("index.html");
     }
 %>
+<div id = "headerDiv">
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -42,9 +43,13 @@
         </div>
     </div>
 </nav>
+</div>
+
 
 <div class = "container-fluid">
+
     <div class="row">
+        <div id="newBroadcastDiv">
         <div class="col-lg-6">
             <div id="createNewBroadcast" >
                 <form class="form-inline">
@@ -70,7 +75,9 @@
                 &lt;%&ndash;$('#myLink').click(function(){ MyFunction(); return false; });-- to call function on href onclick()&ndash;%&gt;
                 <button class="well" onclick="showMyBroadcastDiv()">My Broadcasts</button>--%>
             </div>
+        </div
         </div>
+        <div id="showBroadcastDiv">
         <div class="col-lg-6">
             <div>
                 <p class="well">Show Broadcasts</p>
@@ -82,6 +89,7 @@
 
             </div>
             <div id="othersBroadcasts"></div>
+        </div>
         </div>
     </div>
     <div class="row">
