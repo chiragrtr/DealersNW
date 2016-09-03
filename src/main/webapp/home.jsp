@@ -14,12 +14,13 @@
     <script src="js/jquery-3.1.0.min.js"></script>
     <script src="js/myBroadcasts.js"></script>
     <script src="js/othersBroadcasts.js"></script>
+    <script src="js/autoLoad.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
 
 </head>
-<body onload="showOthersBroadcasts('open')">
+<body onload="autoCalls()">
 <%
     if(session.getAttribute("dealerId") == null){
         response.sendRedirect("index.html");
@@ -53,15 +54,16 @@
         <div class="col-lg-6">
             <div id="createNewBroadcast" >
                 <form class="form-inline">
-                    <div class='form-group'>Select Make
+                    <div class='form-group'><%--Select Make--%>
                         <select class='form-control' id='make' name='make'>
                             <option><label>Select Your Make</label></option>
                             <option>Mercedez</option>
                             <option>BMW</option>
                             <option>Tesla</option>
                         </select>
-                        Select Model<select class='form-control' id='model' name = 'model'><option>Select Your Model</option> </select>
-                        Select Color<select class='form-control' id = 'color' name='color'>
+                        <%--Select Model--%><select class='form-control' id='model' name = 'model'><option>Select Your Model</option> </select>
+                        <%--Select Color--%><select class='form-control' id = 'color' name='color'>
+                            <option>Select color</option>
                             <option>Red</option>
                             <option>Black</option>
                             <option>White</option>
@@ -121,6 +123,10 @@
             "model" :$("#model").val(),
             "color" : $("#color").val()
         };
+        if(data.make == "Select Your Make" || data.model == "Select Your Model" || data.color == "Select color"){
+            alert("Please select options");
+            return;
+        }
         $.ajax({
             url:"/createBroadcast.do",
             data : data,
