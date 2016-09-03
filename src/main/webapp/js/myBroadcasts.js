@@ -7,7 +7,7 @@ function selectBidAjax(bidId) {
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             var records = xmlHttp.responseText;
-            alert(records);
+            console.log(records);
         }
     };
     xmlHttp.open("post", "selectDeal.do", true);
@@ -17,7 +17,7 @@ function selectBidAjax(bidId) {
 
 function selectBid(bidId){
     selectBidAjax(bidId);
-    setTimeout(showMyBroadcasts(document.getElementById("myOpenOrClosed").value),500);
+    setTimeout(showMyBroadcasts,500);
 }
 
 
@@ -73,7 +73,8 @@ function createClosedBroadcastList(records) {
     return htmlText;
 }
 
-function showMyBroadcasts(value) {
+function showMyBroadcasts() {
+    var value = document.getElementById("myOpenOrClosed").value;
     var dealerId = document.getElementById("myPara").innerHTML;
     if(value=="open") {
         var xmlHttp = new XMLHttpRequest();

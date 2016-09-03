@@ -3,7 +3,7 @@
  */
 
 function showMyBids(dealerId){
-
+    document.getElementById("openOrClosed").style.visibility = "hidden";
     console.log(dealerId);
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.onreadystatechange = function () {
@@ -14,9 +14,9 @@ function showMyBids(dealerId){
                 var records = eval(xmlHttp.responseText);
                 console.log(records);
                 for (i = 0; i <records.length; i++) {
-                    htmlText += "<p>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
+                    htmlText += "<div class='col-xs-12 col-sm-12' style='float:left'><div class ='panel panel-default'><ul class='myUl'>" + "<p>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
                     i++;
-                    htmlText += "YOUR BID:<BR>" + "<p>" + "Price: " + records[i].price + " Deliver Hours: " + records[i].deliveryHours + " Bid Date: " + records[i].bidDate + " Status: " + records[i].status + "</p>";
+                    htmlText += "YOUR BID:<BR>" + "<p>" + "Price: " + records[i].price + " Deliver Hours: " + records[i].deliveryHours + " Bid Date: " + records[i].bidDate + " Status: " + records[i].status + "</p>" + "</ul></div></div>";
                 }
             }
             document.getElementById("othersBroadcasts").innerHTML = htmlText;
@@ -53,6 +53,7 @@ function placeThisBid(formNum) {
     xmlHttp.send("broadcastId=" + broadcastId + "&price=" + price + "&deliveryHours=" + deliveryHours);
 }
 function showOthersBroadcasts(value) {
+    document.getElementById("openOrClosed").style.visibility="visible";
     /*console.log(1);
      //$("#choice").on('change',function () {
      alert("changed");
@@ -71,12 +72,12 @@ function showOthersBroadcasts(value) {
                 if (xmlHttp.responseText != "") {
                     var records = eval(xmlHttp.responseText);
                     for (i = records.length-1; i >= 0; i--) {
-                        htmlText += "<p>";
+                        htmlText += "<p><div class ='panel panel-default'><ul class='myUl'>";
                         htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate;
                         htmlText += "<form name='myForm" + (++f) + "'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
                             "<input type='number' id =price" + f + " name='price' placeholder='price'><input type='number' id =days" + f + " name='days' placeholder='days'>" +
                             "<input type='number' id =hours" + f + " name='hours' placeholder='hours'><button type='button' onclick=placeThisBid(" + f + ")>Place Bid</button></form> " +
-                            "</p>";
+                            "</ul></div></p>";
                     }
                 }
                 document.getElementById("othersBroadcasts").innerHTML = htmlText;
@@ -101,7 +102,7 @@ function showOthersBroadcasts(value) {
                 if (xmlHttp.responseText != "") {
                     var records = eval(xmlHttp.responseText);
                     for (i = records.length-1; i >= 0; i--) {
-                        htmlText += "<p>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
+                        htmlText += "<p><div class ='panel panel-default'><ul class='myUl'>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate + "</ul></div></p>";
                     }
                 }
                 document.getElementById("othersBroadcasts").innerHTML = htmlText;

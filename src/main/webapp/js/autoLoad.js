@@ -8,14 +8,17 @@
 });*/
 
 function repeatedCalls(){
-    setTimeout(repeatedCalls,30000);
+    if(document.getElementById("r2").checked){
+        return;
+    }
+    setTimeout(repeatedCalls,60000);
     showOthersBroadcasts(document.getElementById("openOrClosed").value);
 }
 
 /*$(function () {
      autoCalls();*/
     function autoCalls() {
-        showMyBroadcasts(document.getElementById("myOpenOrClosed").value);
+        showMyBroadcasts();
         repeatedCalls();
     }
 /*

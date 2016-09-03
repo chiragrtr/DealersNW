@@ -81,7 +81,8 @@
         <div id="showBroadcastDiv">
         <div class="col-lg-6">
             <div>
-                <p class="myPanel">Show Broadcasts</p>
+                <p class="myPanel"><span style="float: left"><input type="radio" name="chiragRadio" id="r1" value="broadcasts" onclick=showOthersBroadcasts("open") checked>Show Broadcasts</span> <span style="float: right;"><input type="radio" name="chiragRadio" id="r2" value="bids" onclick=showMyBids(document.getElementById("myPara").innerHTML)>My bids</span> </p>
+                <%--<p class="myPanel">Show Broadcasts</p>--%>
                 <select id="openOrClosed" onchange="showOthersBroadcasts(this.value)">
                     <option value="open" selected>Open</option>
                     <option value="closed">Closed</option>
@@ -100,7 +101,7 @@
             <%--<br><br>--%>
             <div>
                 <p class="well">My Broadcasts</p>
-                <select id="myOpenOrClosed" onchange="showMyBroadcasts(this.value)">
+                <select id="myOpenOrClosed" onchange="showMyBroadcasts()">
                     <option value="open" selected>Open</option>
                     <option value="closed">Closed</option>
                     <%--<option value="all">All</option>--%>
@@ -129,7 +130,7 @@
     function createBroadcast(){
         createBroadcastAjax();
         //setTimeout(showMyOpenBroadcasts,500);
-        setTimeout(showMyBroadcasts(document.getElementById("myOpenOrClosed").value),500);
+        setTimeout(showMyBroadcasts,500);
     }
 
     function createBroadcastAjax(){
