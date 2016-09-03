@@ -7,3 +7,7 @@ The others' broadcasts div gets refreshed every 30 seconds so when entering bid 
 
 After we create a broadcast, the form doesn't revert to its default state, i.e. doesn't show "Select your make",
 "select your model" and "select color", rather it shows the data selected during creation of broadcast.
+
+3)
+
+Can't view my broadcasts when there are bids if we show them in "latest first" form. So reverted back to oldest first for the time being.
