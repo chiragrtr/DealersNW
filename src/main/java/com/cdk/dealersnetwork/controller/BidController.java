@@ -3,6 +3,8 @@ package com.cdk.dealersnetwork.controller;
 import com.cdk.dealersnetwork.dao.BidDAO;
 import com.cdk.dealersnetwork.dao.BroadcastDAO;
 import com.cdk.dealersnetwork.dto.Bid;
+import com.cdk.dealersnetwork.dto.Broadcast;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by malir on 9/2/2016.
@@ -48,8 +51,8 @@ public class BidController {
     @ResponseBody
     String setBid(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("here " + request.getSession().getAttributeNames().nextElement());
-        System.out.println("hi " + (String)(request.getSession().getAttribute("dealerId")));
-        int dealerId = Integer.parseInt((String)(request.getSession().getAttribute("dealerId")));
+        System.out.println("hi " + (String) (request.getSession().getAttribute("dealerId")));
+        int dealerId = Integer.parseInt((String) (request.getSession().getAttribute("dealerId")));
         int broadcastId = Integer.parseInt(request.getParameter("broadcastId"));
         float price = Float.parseFloat(request.getParameter("price"));
         int deliveryHours = Integer.parseInt(request.getParameter("deliveryHours"));
@@ -60,7 +63,7 @@ public class BidController {
         Bid bid = new Bid();
 
         System.out.println("here2");
-        bid = bidDAO.setBid(dealerId,broadcastId,price,deliveryHours,bidDate);
+        bid = bidDAO.setBid(dealerId, broadcastId, price, deliveryHours, bidDate);
         System.out.println("here3");
         //ModelMap modelMap = new ModelMap();
         //modelMap.addAttribute("broadcastId",broadcast.getBroadcastId());
@@ -73,12 +76,34 @@ public class BidController {
     @RequestMapping(value = "/selectDeal", method = RequestMethod.POST)
     public
     @ResponseBody
-    String selectDeal(HttpServletRequest request, HttpServletResponse response){
+    String selectDeal(HttpServletRequest request, HttpServletResponse response) {
         int bidId = Integer.parseInt(request.getParameter("bidId"));
         bidDAO.selectDeal(bidId);
         int broadcastId = bidDAO.getBroadcastId(bidId);
         broadcastDAO.closeBroadcast(broadcastId);
-        bidDAO.rejectDeals(broadcastId,bidId);
+        bidDAO.rejectDeals(broadcastId, bidId);
         return "Bid selected";
+    }
+
+    @RequestMapping(value = "/showMyBids", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String showMyBids(HttpServletRequest request, HttpServletResponse response) {
+        int dealerId = Integer.parseInt(request.getParameter("dealerId"));
+        String json = "";
+        List<Bid> bidList = bidDAO.showMyBids(dealerId);
+        if (bidList.size() != 0) {
+            json = "[";
+            for (Bid bid : bidList) {
+                Broadcast broadcast = broadcastDAO.getBroadcast(bid.getBroadcastId());
+                json += new Gson().toJson(broadcast);
+                json += ",";
+                json += new Gson().toJson(bid);
+                json += ",";
+            }
+            json = json.substring(0, json.length() - 1);
+            json += "]";
+        }
+        return json;
     }
 }

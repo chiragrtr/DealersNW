@@ -17,11 +17,11 @@ function selectBidAjax(bidId) {
 
 function selectBid(bidId){
     selectBidAjax(bidId);
-    setTimeout(showMyOpenBroadcasts,500);
+    setTimeout(showMyBroadcasts(document.getElementById("myOpenOrClosed").value),500);
 }
 
 
-function createBroadcastList(records) {
+function createOpenBroadcastList(records) {
     var htmlText = "";
     for (i = 0; i < records.length; i++) {
         htmlText += htmlText = "<div class='col-xs-12 col-sm-12 sidebar-offcanvas' role='navigation'   style='float:left'>" +
@@ -44,22 +44,69 @@ function createBroadcastList(records) {
     return htmlText;
 }
 
-function showMyOpenBroadcasts() {
-    var xmlHttp = new XMLHttpRequest();
-    var dealerId = document.getElementById("myPara").innerHTML;
-    xmlHttp.onreadystatechange = function () {
-        if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-            var htmlText = "";
-            if (xmlHttp.responseText != "") {
-                var records = eval(xmlHttp.responseText);
-                htmlText = createBroadcastList(records);
+function createClosedBroadcastList(records) {
+    var htmlText = "";
+    for (i = 0; i < records.length; i++) {
+        htmlText += htmlText = "<div class='col-xs-12 col-sm-12 sidebar-offcanvas' role='navigation'   style='float:left'>" +
+            "<div class='panel-group'><div class ='panel panel-default'>" +
+            "<ul>";
+        var totalBids = records[i].totalBids;
+        htmlText += "<p>" + records[i].make + " " + records[i].model + " " + records[i].color + " " + records[i].broadcastDate + " " + totalBids + "";
+        if (totalBids > 0) {
+            htmlText += "<ul class='nav'>";
+            for (j = 0; j < totalBids; j++) {
+                i++;
+                var status = records[i].status;
+                if(status == 1){
+                    htmlText += "<div class='panel-body'><font color='green'> <li>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate + "</li></font></div>";
+                } else {
+                    htmlText += "<div class='panel-body'><li>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate + "</li></div>";
+                }
             }
-            document.getElementById("myBroadcast").innerHTML = htmlText;
+            htmlText += "</ul>";
         }
-    };
-    xmlHttp.open("post", "showMyOpenBroadcasts.do", true);
-    xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xmlHttp.send("id=" + dealerId);
+        htmlText += "</p>";
+        htmlText += "</ul></div></div></div>";
+    }
+
+    return htmlText;
+}
+
+function showMyBroadcasts(value) {
+    var dealerId = document.getElementById("myPara").innerHTML;
+    if(value=="open") {
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                var htmlText = "";
+                if (xmlHttp.responseText != "") {
+                    var records = eval(xmlHttp.responseText);
+                    htmlText = createOpenBroadcastList(records);
+                }
+                document.getElementById("myBroadcast").innerHTML = htmlText;
+            }
+        };
+        xmlHttp.open("post", "showMyOpenBroadcasts.do", true);
+        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlHttp.send("id=" + dealerId);
+    } else if (value == "closed"){
+
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function () {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+                var htmlText = "";
+                if (xmlHttp.responseText != "") {
+                    var records = eval(xmlHttp.responseText);
+                    htmlText = createClosedBroadcastList(records);
+                }
+                document.getElementById("myBroadcast").innerHTML = htmlText;
+            }
+        };
+        xmlHttp.open("post", "showMyClosedBroadcasts.do", true);
+        xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xmlHttp.send("id=" + dealerId);
+
+    }
 }
 
 
