@@ -1607,6 +1607,7 @@ ul,
 ol {
     margin-top: 0;
     margin-bottom: 10px;
+    list-style: none;
 }
 ul ul,
 ol ul,
@@ -4687,6 +4688,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     .navbar-right {
         float: right !important;
         margin-right: -15px;
+        margin-top: 10px;
     }
     .navbar-right ~ .navbar-right {
         margin-right: 0;
@@ -4789,7 +4791,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
     color: #ccc;
 }
 .navbar-inverse {
-    background-color: #222;
+    background-color: #9dfb2f;
     border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
@@ -6956,4 +6958,43 @@ button.close {
         display: none !important;
     }
 }
+/*--------------------------------------------------------------------------*/
+#myNavbarDiv{
+    background-color: #4cae4c;
+}
+
+#myLogoutDiv{
+    font-size: larger;
+    font-stretch: extra-expanded;
+    font-weight: 900;
+    text-align: -webkit-center;
+    border: solid;
+    border-style: initial;
+    width: 100px;
+    background: rgba(19, 35, 47, 0.9);
+    padding: 40px;
+    max-width: 100px;
+    margin: 40px auto;
+    border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.3);
+    width: 100px;
+    padding-top: 10px;
+    margin-top: -5px;
+    padding-left: 10px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    border-right-width: 10px;
+    margin-right: 5px;
+
+
+    padding-top: 10px;
+    margin-top: -5px;
+    padding-left: 10px;
+    padding-right: 15px;
+    padding-bottom: 10px;
+    border-right-width: 10px;
+    margin-right: 5px;
+
+}
+/*---------------------------------------------------------------------------*/
 /*# sourceMappingURL=bootstrap.css.map */

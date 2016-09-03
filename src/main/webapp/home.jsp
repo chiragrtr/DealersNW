@@ -26,7 +26,7 @@
         response.sendRedirect("index.html");
     }
 %>
-
+<div id="myNavbarDiv">
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -38,12 +38,13 @@
             <a class="navbar-brand" href="#">Welcome <%=session.getAttribute("dealerName")%></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
-            <ul class="navbar-nav navbar-right">
-                <li><a href="logout.do"><span class="glyphicon glyphicon-log-in"></span> Log out</a></li>
+            <ul class=" navbar-right">
+                <li><div id="myLogoutDiv"><a href="logout.do">Log out</a></div></li>
             </ul>
         </div>
     </div>
 </nav>
+</div>
 
 <div class = "container-fluid">
 
