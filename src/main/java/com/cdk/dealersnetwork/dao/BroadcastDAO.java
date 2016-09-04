@@ -1,6 +1,7 @@
 package com.cdk.dealersnetwork.dao;
 
 import com.cdk.dealersnetwork.dto.Broadcast;
+import com.cdk.dealersnetwork.dto.Dealer;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
@@ -134,5 +135,10 @@ public class BroadcastDAO {
     public Broadcast getBroadcast(int broadcastId) {
         com.cdk.dealersnetwork.domain.Broadcast domainBroadcast = hibernateTemplate.get(com.cdk.dealersnetwork.domain.Broadcast.class, broadcastId);
         return new Broadcast(broadcastId,domainBroadcast.getDealerId(),domainBroadcast.getMake(),domainBroadcast.getModel(),domainBroadcast.getColor(),domainBroadcast.getBroadcastDate(),domainBroadcast.getStatus());
+    }
+
+    public Dealer getDealer(int dealerId){
+        com.cdk.dealersnetwork.domain.Dealer dealer = hibernateTemplate.get(com.cdk.dealersnetwork.domain.Dealer.class,dealerId);
+        return new Dealer(dealerId,dealer.getName(),dealer.getPhone(),dealer.getRegDate(),dealer.getEmail(),dealer.getPassword());
     }
 }

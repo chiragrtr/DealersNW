@@ -4,6 +4,7 @@ import com.cdk.dealersnetwork.dao.BidDAO;
 import com.cdk.dealersnetwork.dao.BroadcastDAO;
 import com.cdk.dealersnetwork.dto.Bid;
 import com.cdk.dealersnetwork.dto.Broadcast;
+import com.cdk.dealersnetwork.dto.Dealer;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -93,22 +94,22 @@ public class BroadcastController {
         String json = "";
         List<Broadcast> broadcastList = broadcastDAO.showMyOpenBroadcasts(id);
         System.out.println("here1");
-        if(broadcastList.size() != 0) {
+        if (broadcastList.size() != 0) {
             json += "[";
             System.out.println("here2");
             for (Broadcast broadcast : broadcastDAO.showMyOpenBroadcasts(id)) {
                 json += new Gson().toJson(broadcast);
-                json = json.substring(0,json.length()-1) + ",";
+                json = json.substring(0, json.length() - 1) + ",";
                 json += "\"totalBids\":" + bidDAO.getNumOfBids(broadcast.getBroadcastId()) + "},";
                 //System.out.println("herehere");
-                if(!bidDAO.getNumOfBids(broadcast.getBroadcastId()).equals("0")) {
+                if (!bidDAO.getNumOfBids(broadcast.getBroadcastId()).equals("0")) {
                     json += bidDAO.getAllBids(broadcast.getBroadcastId());
                     //System.out.println("herethere");
                     json += ",";
                 }
             }
             System.out.println("here3");
-            json = json.substring(0,json.length()-1);
+            json = json.substring(0, json.length() - 1);
             json += "]";
             System.out.println("json object is " + json);
         }
@@ -124,20 +125,20 @@ public class BroadcastController {
         String json = "";
         List<Broadcast> broadcastList = broadcastDAO.showMyClosedBroadcasts(id);
         System.out.println("here1");
-        if(broadcastList.size() != 0) {
+        if (broadcastList.size() != 0) {
             json += "[";
             for (Broadcast broadcast : broadcastDAO.showMyClosedBroadcasts(id)) {
                 json += new Gson().toJson(broadcast);
-                json = json.substring(0,json.length()-1) + ",";
+                json = json.substring(0, json.length() - 1) + ",";
                 json += "\"totalBids\":" + bidDAO.getNumOfBids(broadcast.getBroadcastId()) + "},";
                 System.out.println("herehere");
-                if(!bidDAO.getNumOfBids(broadcast.getBroadcastId()).equals("0")) {
+                if (!bidDAO.getNumOfBids(broadcast.getBroadcastId()).equals("0")) {
                     json += bidDAO.getAllBids(broadcast.getBroadcastId());
                     json += ",";
                 }
             }
             System.out.println("here3");
-            json = json.substring(0,json.length()-1);
+            json = json.substring(0, json.length() - 1);
             json += "]";
             System.out.println("json object is " + json);
         }
@@ -156,28 +157,35 @@ public class BroadcastController {
         String json = "[";
         List<Broadcast> broadcastList = broadcastDAO.showOthersOpenBroadcasts(id);
         System.out.println("here1");
-            System.out.println("here2");
-            for (Broadcast broadcast : broadcastDAO.showOthersOpenBroadcasts(id)) {
-                if(hasDealerBidOnThisBroadcast(id, broadcast.getBroadcastId())){
-                    continue;
-                }
-                json += new Gson().toJson(broadcast)+",";
-                System.out.println("herehere");
+        System.out.println("here2");
+        for (Broadcast broadcast : broadcastDAO.showOthersOpenBroadcasts(id)) {
+            if (hasDealerBidOnThisBroadcast(id, broadcast.getBroadcastId())) {
+                continue;
             }
-            if(json.length() == 1){
-                return "";
-            }
-            System.out.println("here3");
-            json = json.substring(0,json.length()-1);
-            json += "]";
-            System.out.println("json object is " + json);
+            Dealer dealer = broadcastDAO.getDealer(broadcast.getDealerId());
+
+            json += new Gson().toJson(broadcast) + ",";
+            System.out.println("herehere");
+
+            json += new Gson().toJson(dealer) + ",";
+
+            System.out.println("herehere");
+
+        }
+        if (json.length() == 1) {
+            return "";
+        }
+        System.out.println("here3");
+        json = json.substring(0, json.length() - 1);
+        json += "]";
+        System.out.println("json object is " + json);
         System.out.println("here4");
         return json;
     }
 
     private boolean hasDealerBidOnThisBroadcast(int dealerId, int broadcastId) {
-        for(Bid bid : bidDAO.showMyBids(dealerId)){
-            if(bid.getBroadcastId() == broadcastId){
+        for (Bid bid : bidDAO.showMyBids(dealerId)) {
+            if (bid.getBroadcastId() == broadcastId) {
                 return true;
             }
         }
@@ -195,15 +203,15 @@ public class BroadcastController {
         String json = "";
         List<Broadcast> broadcastList = broadcastDAO.showOthersClosedBroadcasts(id);
 
-        if(broadcastList.size() != 0) {
+        if (broadcastList.size() != 0) {
             json += "[";
             System.out.println("here2");
             for (Broadcast broadcast : broadcastDAO.showOthersClosedBroadcasts(id)) {
-                json += new Gson().toJson(broadcast)+",";
+                json += new Gson().toJson(broadcast) + ",";
                 System.out.println("herehere");
             }
             System.out.println("here3");
-            json = json.substring(0,json.length()-1);
+            json = json.substring(0, json.length() - 1);
             json += "]";
             System.out.println("json object is " + json);
         }
@@ -241,8 +249,8 @@ public class BroadcastController {
     String createBroadcast(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("h");
         System.out.println("here " + request.getSession().getAttributeNames().nextElement());
-        System.out.println("hi " + (String)(request.getSession().getAttribute("dealerId")));
-        int dealerId = Integer.parseInt((String)(request.getSession().getAttribute("dealerId")));
+        System.out.println("hi " + (String) (request.getSession().getAttribute("dealerId")));
+        int dealerId = Integer.parseInt((String) (request.getSession().getAttribute("dealerId")));
         String make = request.getParameter("make");
         String model = request.getParameter("model");
         String color = request.getParameter("color");
@@ -251,7 +259,7 @@ public class BroadcastController {
         System.out.println(broadcastDate);
         System.out.println(new java.sql.Date(broadcastDate.getTime()).toString());
         System.out.println("here1");
-        Broadcast broadcast = new Broadcast(dealerId,make,model,color,broadcastDate,0);
+        Broadcast broadcast = new Broadcast(dealerId, make, model, color, broadcastDate, 0);
         System.out.println("here2");
         broadcast = broadcastDAO.createBroadcast(broadcast);
         System.out.println("here3");
@@ -272,15 +280,13 @@ public class BroadcastController {
     }*/
 
 
-
-
     @RequestMapping(value = "/cancelBroadcast", method = RequestMethod.POST)
     public
     @ResponseBody
     String cancelBroadcast(HttpServletRequest request, HttpServletResponse response) {
         int broadcastId = Integer.parseInt(request.getParameter("broadcastId"));
-        bidDAO.rejectDeals(broadcastId,0);
+        bidDAO.rejectDeals(broadcastId, 0);
         broadcastDAO.closeBroadcast(broadcastId);
-        return showMyOpenBroadcasts(request,response);
+        return showMyOpenBroadcasts(request, response);
     }
 }
