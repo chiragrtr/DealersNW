@@ -4806,7 +4806,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
     border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
-    color: #9d9d9d;
+    color: #ffffff;
 }
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
@@ -7023,6 +7023,17 @@ button.close {
     padding-top: 1.5%;
     background-color: #f3f3f3;
 
+}
+
+.myButton{
+    float: right;
+}
+.myP{
+    height:80%;
+}
+
+.myBrand{
+    background-color: #761c19;
 }
 /*---------------------------------------------------------------------------*/
 /*# sourceMappingURL=bootstrap.css.map */
