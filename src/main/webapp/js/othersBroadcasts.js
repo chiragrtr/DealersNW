@@ -82,7 +82,6 @@ function showOthersBroadcasts(value) {
                         htmlText +=" BROADCAST BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email + "<BR>";
                         i=i-1;
                         htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " DATE OF BROADCAST: " + records[i].broadcastDate;
-                        //i=i+1;
 
                         htmlText += "<form id='myForm" + (++f) + "'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
                             "<input type='number' id =price" + f + " name='price' placeholder='price'><input type='number' id =days" + f + " name='days' placeholder='days'>" +
@@ -112,7 +111,10 @@ function showOthersBroadcasts(value) {
                 if (xmlHttp.responseText != "") {
                     var records = eval(xmlHttp.responseText);
                     for (i = records.length-1; i >= 0; i--) {
-                        htmlText += "<p><div class ='panel panel-default'><ul class='myUl'>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate + "</ul></div></p>";
+                        htmlText += "<p><div class ='panel panel-default'><ul class='myUl'>";
+                        htmlText +=" BROADCAST BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email + "<BR>";
+                        i=i-1;
+                        htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " DATE OF BROADCAST: " + records[i].broadcastDate;
                     }
                 }
                 document.getElementById("othersBroadcasts").innerHTML = htmlText;

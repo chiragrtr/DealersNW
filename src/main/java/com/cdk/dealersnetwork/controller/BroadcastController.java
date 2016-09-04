@@ -207,7 +207,14 @@ public class BroadcastController {
             json += "[";
             System.out.println("here2");
             for (Broadcast broadcast : broadcastDAO.showOthersClosedBroadcasts(id)) {
+
+                Dealer dealer = broadcastDAO.getDealer(broadcast.getDealerId());
+
                 json += new Gson().toJson(broadcast) + ",";
+                System.out.println("herehere");
+
+                json += new Gson().toJson(dealer) + ",";
+
                 System.out.println("herehere");
             }
             System.out.println("here3");
