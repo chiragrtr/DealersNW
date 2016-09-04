@@ -114,7 +114,7 @@ function showOthersBroadcasts(value) {
                         htmlText += "<p><div class ='panel panel-default'><ul class='myUl'>";
                         htmlText +=" BROADCAST BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email + "<BR>";
                         i=i-1;
-                        htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " DATE OF BROADCAST: " + records[i].broadcastDate;
+                        htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " DATE OF BROADCAST: " + records[i].broadcastDate + "</ul></div></p>";
                     }
                 }
                 document.getElementById("othersBroadcasts").innerHTML = htmlText;
