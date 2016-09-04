@@ -18,9 +18,20 @@ function showMyBids(dealerId){
                 var records = eval(xmlHttp.responseText);
                 console.log(records);
                 for (i = 0; i <records.length; i++) {
-                    htmlText += "<div class='col-xs-12 col-sm-12' style='float:left'><div class ='panel panel-default'><ul class='myUl'>" + "<p>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " BROADCAST BY: " + records[i].dealerId + " DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
+                    htmlText += "<div class='col-xs-12 col-sm-12' style='float:left'><div class ='panel panel-default'><ul class='myUl'>" + "<p>"+ " BROADCAST BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email + "</p>";
                     i++;
-                    htmlText += "YOUR BID:<BR>" + "<p>" + "Price: " + records[i].price + " Deliver Hours: " + records[i].deliveryHours + " Bid Date: " + records[i].bidDate + " Status: " + records[i].status + "</p>" + "</ul></div></div>";
+                    htmlText += "<p>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
+                    i++;
+                    if(records[i].status == 0){
+                        bidStatus = "Broadcast is still open";
+                    }
+                    else if(records[i].status == 1){
+                        bidStatus = "<font color=green>Your bid was selected</font>";
+                    }
+                    else{
+                        bidStatus = "<font color=red>Sorry, your bid wasn't selected</font>";
+                    }
+                    htmlText += "YOUR BID:<BR>" + "<p>" + "Price: " + records[i].price + " Deliver Hours: " + records[i].deliveryHours + " Bid Date: " + records[i].bidDate + " Status: " + bidStatus + "</p>" + "</ul></div></div>";
                 }
             }
             document.getElementById("othersBroadcasts").innerHTML = htmlText;

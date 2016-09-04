@@ -4,6 +4,7 @@ import com.cdk.dealersnetwork.dao.BidDAO;
 import com.cdk.dealersnetwork.dao.BroadcastDAO;
 import com.cdk.dealersnetwork.dto.Bid;
 import com.cdk.dealersnetwork.dto.Broadcast;
+import com.cdk.dealersnetwork.dto.Dealer;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -97,6 +98,9 @@ public class BidController {
             json = "[";
             for (Bid bid : bidList) {
                 Broadcast broadcast = broadcastDAO.getBroadcast(bid.getBroadcastId());
+                Dealer dealer = broadcastDAO.getDealer(broadcast.getDealerId());
+                json += new Gson().toJson(dealer);
+                json += ",";
                 json += new Gson().toJson(broadcast);
                 json += ",";
                 json += new Gson().toJson(bid);
