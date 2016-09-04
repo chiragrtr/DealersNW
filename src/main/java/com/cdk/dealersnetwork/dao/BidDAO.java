@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +45,7 @@ public class BidDAO {
     }
 
     public Bid setBid(int dealerId, int broadcastId, float price, int deliveryHours, Date bidDate) {
-        com.cdk.dealersnetwork.domain.Bid domainBid = new com.cdk.dealersnetwork.domain.Bid(broadcastId, dealerId, bidDate, price, deliveryHours, 0, 0);
+        com.cdk.dealersnetwork.domain.Bid domainBid = new com.cdk.dealersnetwork.domain.Bid(broadcastId, dealerId, new java.sql.Timestamp(bidDate.getTime()), price, deliveryHours, 0, 0);
         hibernateTemplate.save(domainBid);
         Bid bid = new Bid(domainBid.getBidId(), domainBid.getBroadcastId(), domainBid.getDealerId(), domainBid.getBidDate(), domainBid.getPrice(), domainBid.getDeliveryHours(), domainBid.getStatus(), domainBid.getNotified());
         return bid;

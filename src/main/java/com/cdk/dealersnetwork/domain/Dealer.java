@@ -2,6 +2,7 @@ package com.cdk.dealersnetwork.domain;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by sharmach on 30/8/2016.
@@ -18,7 +19,7 @@ public class Dealer {
     @Column
     private long phone;
     @Column(name = "reg_date")
-    private Date regDate;
+    private Timestamp regDate;
     @Column
     private String email;
     @Column
@@ -27,7 +28,7 @@ public class Dealer {
     public Dealer() {
     }
 
-    public Dealer(String name, long phone, Date regDate, String email, String password) {
+    public Dealer(String name, long phone, Timestamp regDate, String email, String password) {
         this.name = name;
         this.phone = phone;
         this.regDate = regDate;
@@ -59,11 +60,11 @@ public class Dealer {
         this.phone = phone;
     }
 
-    public Date getRegDate() {
+    public Timestamp getRegDate() {
         return regDate;
     }
 
-    public void setRegDate(Date regDate) {
+    public void setRegDate(Timestamp regDate) {
         this.regDate = regDate;
     }
 

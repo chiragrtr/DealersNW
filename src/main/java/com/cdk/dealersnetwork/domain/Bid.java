@@ -1,6 +1,7 @@
 package com.cdk.dealersnetwork.domain;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 
 /**
@@ -18,7 +19,7 @@ public class Bid {
     @Column(name = "d_id")
     private int dealerId;
     @Column(name = "bid_date")
-    private Date bidDate;
+    private Timestamp bidDate;
     private float price;
     @Column(name = "delivery_hours")
     private int deliveryHours;
@@ -27,7 +28,7 @@ public class Bid {
     @Column
     private int notified;
 
-    public Bid(int broadcastId, int dealerId, Date bidDate, float price, int deliveryHours, int status, int notified) {
+    public Bid(int broadcastId, int dealerId, Timestamp bidDate, float price, int deliveryHours, int status, int notified) {
         this.broadcastId = broadcastId;
         this.dealerId = dealerId;
         this.bidDate = bidDate;
@@ -66,11 +67,11 @@ public class Bid {
         this.dealerId = dealerId;
     }
 
-    public Date getBidDate() {
+    public Timestamp getBidDate() {
         return bidDate;
     }
 
-    public void setBidDate(Date bidDate) {
+    public void setBidDate(Timestamp bidDate) {
         this.bidDate = bidDate;
     }
 

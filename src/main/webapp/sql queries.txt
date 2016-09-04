@@ -23,3 +23,11 @@ desc dealer;
 alter table dealer modify phone bigint;
 
 desc dealer;
+
+
+create table make(make_id int primary key auto_increment, make varchar(100));
+create table model(model_id int primary key auto_increment, model varchar(100), make_id int references make);
+
+alter table dealer modify reg_date datetime;
+alter table bid modify bid_date datetime;
+alter table broadcast modify broadcast_date datetime;

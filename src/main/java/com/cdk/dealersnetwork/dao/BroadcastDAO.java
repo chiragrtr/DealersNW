@@ -26,7 +26,7 @@ public class BroadcastDAO {
     public Broadcast createBroadcast(Broadcast broadcast) {
         com.cdk.dealersnetwork.domain.Broadcast domainBroadcast = new com.cdk.dealersnetwork.domain.Broadcast();
         domainBroadcast.setDealerId(broadcast.getDealerId());
-        domainBroadcast.setBroadcastDate(broadcast.getBroadcastDate());
+        domainBroadcast.setBroadcastDate(new java.sql.Timestamp(broadcast.getBroadcastDate().getTime()));
         domainBroadcast.setMake(broadcast.getMake());
         domainBroadcast.setModel(broadcast.getModel());
         domainBroadcast.setColor(broadcast.getColor());

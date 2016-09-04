@@ -1,7 +1,7 @@
 package com.cdk.dealersnetwork.domain;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
 
 /**
  * Created by sharmach on 30/8/2016.
@@ -22,14 +22,14 @@ public class Broadcast {
     @Column
     private String color;
     @Column(name = "broadcast_date")
-    private Date broadcastDate;
+    private Timestamp broadcastDate;
     @Column
     private int status;
 
     public Broadcast() {
     }
 
-    public Broadcast(int dealerId, String make, String model, String color, Date broadcastDate, int status) {
+    public Broadcast(int dealerId, String make, String model, String color, Timestamp broadcastDate, int status) {
         this.dealerId = dealerId;
         this.make = make;
         this.model = model;
@@ -78,11 +78,11 @@ public class Broadcast {
         this.color = color;
     }
 
-    public Date getBroadcastDate() {
+    public Timestamp getBroadcastDate() {
         return broadcastDate;
     }
 
-    public void setBroadcastDate(Date broadcastDate) {
+    public void setBroadcastDate(Timestamp broadcastDate) {
         this.broadcastDate = broadcastDate;
     }
 
