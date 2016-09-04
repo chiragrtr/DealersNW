@@ -101,7 +101,8 @@
             <%--<button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>--%>
             <%--<br><br>--%>
             <div>
-                <p class="well"><b>Your Broadcasts</b></p>
+                <p class="well"><b>Your Broadcasts</b><br><br><br>
+                <span id ="bidsNotification"></span></p>
                 <select id="myOpenOrClosed" onchange="showMyBroadcasts()">
                     <option value="open" selected>Open</option>
                     <option value="closed">Closed</option>

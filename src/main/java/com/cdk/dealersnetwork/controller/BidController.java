@@ -111,4 +111,16 @@ public class BidController {
         }
         return json;
     }
+
+    @RequestMapping(value = "/numOfNewBids", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String numOfNewBids(HttpServletRequest request, HttpServletResponse response){
+        int dealerId = Integer.parseInt(request.getParameter("dealerId"));
+        int newBids = 0;
+        for(Broadcast broadcast : broadcastDAO.showMyBroadcasts(dealerId)){
+            newBids += bidDAO.getNumOfNewBids(broadcast.getBroadcastId());
+        }
+        return "" + newBids;
+    }
 }

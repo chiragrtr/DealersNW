@@ -118,4 +118,12 @@ public class BidDAO {
         }
         return bidList;
     }
+
+    public int getNumOfNewBids(int broadcastId) {
+        int newBids = 0;
+        List<com.cdk.dealersnetwork.domain.Bid> bidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId and b.notified=:newBids", new String[]{"broadcastId","newBids"}, new Object[]{broadcastId,newBids});
+        newBids += bidList.size();
+        System.out.println("size is " + newBids);
+        return newBids;
+    }
 }

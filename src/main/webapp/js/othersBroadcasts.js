@@ -31,7 +31,9 @@ function showMyBids(dealerId){
                     else{
                         bidStatus = "<font color=red>Sorry, your bid wasn't selected</font>";
                     }
-                    htmlText += "YOUR BID:<BR>" + "<p>" + "Price: " + records[i].price + " Deliver Hours: " + records[i].deliveryHours + " Bid Date: " + records[i].bidDate + " Status: " + bidStatus + "</p>" + "</ul></div></div>";
+                    var days = parseInt(records[i].deliveryHours / 24);
+                    var hours = records[i].deliveryHours % 24;
+                    htmlText += "YOUR BID:<BR>" + "<p>" + "Price: " + records[i].price + " Delivery Days: " + days + " hours: " + hours + " Bid Date: " + records[i].bidDate + " Status: " + bidStatus + "</p>" + "</ul></div></div>";
                 }
             }
             document.getElementById("othersBroadcasts").innerHTML = htmlText;
