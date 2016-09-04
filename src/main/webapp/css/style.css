@@ -4,10 +4,16 @@
 
 html {
   overflow-y: scroll;
+  height: 100%;
+
 }
 
 body {
-  background: #c1bdba;
+  background: url(http://www.zmyk.com/user-content/uploads/wall/o/95/3D_business_people.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   font-family: 'Titillium Web', sans-serif;
 }
 
