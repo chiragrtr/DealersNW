@@ -2,6 +2,7 @@ package com.cdk.dealersnetwork.controller;
 
 import com.cdk.dealersnetwork.dao.BidDAO;
 import com.cdk.dealersnetwork.dao.BroadcastDAO;
+import com.cdk.dealersnetwork.dto.Bid;
 import com.cdk.dealersnetwork.dto.Broadcast;
 import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -152,23 +153,35 @@ public class BroadcastController {
         int id = Integer.parseInt(request.getParameter("id"));
         System.out.println(id);
         System.out.println("here");
-        String json = "";
+        String json = "[";
         List<Broadcast> broadcastList = broadcastDAO.showOthersOpenBroadcasts(id);
         System.out.println("here1");
-        if(broadcastList.size() != 0) {
-            json += "[";
             System.out.println("here2");
             for (Broadcast broadcast : broadcastDAO.showOthersOpenBroadcasts(id)) {
+                if(hasDealerBidOnThisBroadcast(id, broadcast.getBroadcastId())){
+                    continue;
+                }
                 json += new Gson().toJson(broadcast)+",";
                 System.out.println("herehere");
+            }
+            if(json.length() == 1){
+                return "";
             }
             System.out.println("here3");
             json = json.substring(0,json.length()-1);
             json += "]";
             System.out.println("json object is " + json);
-        }
         System.out.println("here4");
         return json;
+    }
+
+    private boolean hasDealerBidOnThisBroadcast(int dealerId, int broadcastId) {
+        for(Bid bid : bidDAO.showMyBids(dealerId)){
+            if(bid.getBroadcastId() == broadcastId){
+                return true;
+            }
+        }
+        return false;
     }
 
     @RequestMapping(value = "/showOthersClosedBroadcasts", method = RequestMethod.POST)
