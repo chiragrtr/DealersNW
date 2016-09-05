@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -22,6 +23,7 @@ import java.io.IOException;
  */
 @Controller
 public class LoginController {
+
     @Autowired
     private DealerDAO dealerDAO = null;
 
@@ -36,19 +38,12 @@ public class LoginController {
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        Dealer dealer = dealerDAO.login(email,password);
-        if(dealer.getDealerId() == 0 ){
-            System.out.println("login failed");
-            return new ModelAndView("index");
-        }
-        System.out.println("login successful");
-        ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("dealerId",dealer.getDealerId());
-        request.getSession().setAttribute("dealerId","" + dealer.getDealerId());
-        request.getSession().setAttribute("dealerName","" + dealer.getName());
-        return new ModelAndView("home",modelMap);
+        Dealer dealer = dealerDAO.login(request.getParameter("email"),request.getParameter("password"));
+        if(dealer.getDealerId() == 0 ) return new ModelAndView("index");
+        HttpSession session = request.getSession();
+        session.setAttribute("dealerId","" + dealer.getDealerId());
+        session.setAttribute("dealerName","" + dealer.getName());
+        return new ModelAndView("home");
     }
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)

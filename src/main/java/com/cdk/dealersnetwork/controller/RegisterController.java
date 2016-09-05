@@ -11,6 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Date;
 
@@ -33,23 +34,13 @@ public class RegisterController {
 
     @RequestMapping(value="/register", method = RequestMethod.POST)
     public ModelAndView register(HttpServletRequest request, HttpServletResponse response){
-        String name = request.getParameter("name");
-        long phone = Long.parseLong(request.getParameter("phone"));
-        Date regDate = new Date();
-        System.out.println(regDate);
-        System.out.println(new java.sql.Date(regDate.getTime()).toString());
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        Dealer dealer = new Dealer(name,phone,regDate,email,password);
+        Dealer dealer = new Dealer(request.getParameter("name"),Long.parseLong(request.getParameter("phone")),new Date(),request.getParameter("email"),request.getParameter("password"));
         dealer = dealerDAO.createDealer(dealer);
-        if(dealer.getDealerId() == 0){
-            return new ModelAndView("index");
-        }
-        ModelMap modelMap = new ModelMap();
-        modelMap.addAttribute("dealerId",dealer.getDealerId());
-        request.getSession().setAttribute("dealerId","" + dealer.getDealerId());
-        request.getSession().setAttribute("dealerName","" + dealer.getName());
-        return new ModelAndView("home",modelMap);
+        if(dealer.getDealerId() == 0) return new ModelAndView("index");
+        HttpSession session = request.getSession();
+        session.setAttribute("dealerId","" + dealer.getDealerId());
+        session.setAttribute("dealerName","" + dealer.getName());
+        return new ModelAndView("home");
     }
 
 }
