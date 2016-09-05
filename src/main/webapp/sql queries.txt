@@ -31,3 +31,20 @@ create table model(model_id int primary key auto_increment, model varchar(100), 
 alter table dealer modify reg_date datetime;
 alter table bid modify bid_date datetime;
 alter table broadcast modify broadcast_date datetime;
+
+insert into make(make) values('BMW');
+insert into make(make) values('Tesla');
+insert into make(make) values('Mercedes');
+
+insert into model(make_id, model) values(1,'1 Series');
+insert into model(make_id, model) values(1,'3 Series');
+insert into model(make_id, model) values(1,'5 Series');
+insert into model(make_id, model) values(1,'7 Series');
+insert into model(make_id, model) values(1,'i8');
+insert into model(make_id, model) values(2,'Model S');
+insert into model(make_id, model) values(2,'Model X');
+insert into model(make_id, model) values(2,'Model 3');
+insert into model(make_id, model) values(3,'A Class');
+insert into model(make_id, model) values(3,'B Class');
+insert into model(make_id, model) values(3,'C Class');
+select * from model;

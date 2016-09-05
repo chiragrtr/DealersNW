@@ -140,6 +140,13 @@
             <artifactId>spring-orm</artifactId>
             <version>4.3.2.RELEASE</version>
         </dependency>-->
+        <!-- https://mvnrepository.com/artifact/jstl/jstl -->
+        <dependency>
+            <groupId>jstl</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+
     </dependencies>
 
     <build>
