@@ -1505,7 +1505,8 @@ small,
 mark,
 .mark {
     padding: .2em;
-    background-color: #fcf8e3;
+    background-color: #ebf6e1;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.2);
 }
 .text-left {
     text-align: left;

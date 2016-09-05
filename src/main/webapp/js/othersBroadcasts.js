@@ -6,6 +6,7 @@ function myFun(){
     document.getElementById("openOrClosed").value = "open";
     showOthersBroadcasts("open");
 }
+
 function showMyBids(dealerId){
     document.getElementById("openOrClosed").style.visibility = "hidden";
     console.log(dealerId);
@@ -13,14 +14,14 @@ function showMyBids(dealerId){
     xmlHttp.onreadystatechange = function () {
         if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
             console.log(xmlHttp.responseText);
-            var htmlText = "";
+            var htmlText = "<div class='col-xs-12 col-sm-12' style='float:left'><div class='panel-group'>";
             if (xmlHttp.responseText != "") {
                 var records = eval(xmlHttp.responseText);
                 console.log(records);
                 for (i = 0; i <records.length; i++) {
-                    htmlText += "<div class='col-xs-12 col-sm-12' style='float:left'><div class ='panel panel-default'><ul class='myUl'>" + "<p>"+ " BROADCAST BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email + "</p>";
+                    htmlText += "<div class ='panel panel-default'><ul class='myUl'>" + "<p>"+ " BROADCAST BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email + "</p>";
                     i++;
-                    htmlText += "<p>" + " MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
+                    htmlText += "<p>" + " MAKE: " + records[i].make + "&nbsp MODEL: " + records[i].model + "&nbsp COLOR: " + records[i].color + "&nbsp DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
                     i++;
                     if(records[i].status == 0){
                         bidStatus = "Broadcast is still open";
@@ -33,9 +34,10 @@ function showMyBids(dealerId){
                     }
                     var days = parseInt(records[i].deliveryHours / 24);
                     var hours = records[i].deliveryHours % 24;
-                    htmlText += "YOUR BID:<BR>" + "<p>" + "Price: " + records[i].price + " Delivery Days: " + days + " hours: " + hours + " Bid Date: " + records[i].bidDate + " Status: " + bidStatus + "</p>" + "</ul></div></div>";
+                    htmlText += "<mark>YOUR BID:</mark><BR>" + "<p>" + "Price: " + records[i].price + " Delivery Days: " + days + " hours: " + hours + " Bid Date: " + records[i].bidDate + " Status: " + bidStatus + "</p>" + "</ul></div></div>";
                 }
             }
+            htmlText += "</div></div>";
             document.getElementById("othersBroadcasts").innerHTML = htmlText;
         }
     };
