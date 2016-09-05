@@ -99,7 +99,7 @@ function showOthersBroadcasts(value) {
                         htmlText += "MAKE: " + records[i].make + " MODEL: " + records[i].model + " COLOR: " + records[i].color + "<BR>" + " DATE OF BROADCAST: " + records[i].broadcastDate;
 
                         htmlText += "<form id='myForm" + (++f) + "'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
-                            "<input type='number' id =price" + f + " name='price' placeholder='price' min='0' oninput='validity.valid||(value=\"\") '>" +
+                            "<input type='number' id =price" + f + " name='price' placeholder='price' min='0.1' step='any' oninput='validity.valid||(value=\"\")'>" +
                             "<input type='number' id =days" + f + " name='days' placeholder='days' min='0' oninput='validity.valid||(value=\"\")'>" +
                             "<input type='number' id =hours" + f + " name='hours' placeholder='hours' min='0' max='23' oninput='validity.valid||(value=\"\")'>&nbsp" +
                             "<button type='button' onclick=placeThisBid(" + f + ")>Bid</button></form> " +
