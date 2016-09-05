@@ -53,27 +53,8 @@ public class BidController {
     public
     @ResponseBody
     String setBid(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("here " + request.getSession().getAttributeNames().nextElement());
-        System.out.println("hi " + (String) (request.getSession().getAttribute("dealerId")));
-        int dealerId = Integer.parseInt((String) (request.getSession().getAttribute("dealerId")));
-        int broadcastId = Integer.parseInt(request.getParameter("broadcastId"));
-        float price = Float.parseFloat(request.getParameter("price"));
-        int deliveryHours = Integer.parseInt(request.getParameter("deliveryHours"));
-        Date bidDate = new Date();
-        System.out.println(bidDate);
-        System.out.println(new java.sql.Date(bidDate.getTime()).toString());
-        System.out.println("here1");
-        Bid bid = new Bid();
-
-        System.out.println("here2");
-        bid = bidDAO.setBid(dealerId, broadcastId, price, deliveryHours, bidDate);
-        System.out.println("here3");
-        //ModelMap modelMap = new ModelMap();
-        //modelMap.addAttribute("broadcastId",broadcast.getBroadcastId());
-        int bidId = bid.getBidId();
-        System.out.println(bidId);
-        System.out.println("BID PLACED");
-        return "" + bidId;
+        Bid bid = bidDAO.setBid(Integer.parseInt((String) (request.getSession().getAttribute("dealerId"))), Integer.parseInt(request.getParameter("broadcastId")), Float.parseFloat(request.getParameter("price")), Integer.parseInt(request.getParameter("deliveryHours")), new Date());
+        return "" + bid.getBidId();
     }
 
     @RequestMapping(value = "/selectDeal", method = RequestMethod.POST)
@@ -81,8 +62,8 @@ public class BidController {
     @ResponseBody
     String selectDeal(HttpServletRequest request, HttpServletResponse response) {
         int bidId = Integer.parseInt(request.getParameter("bidId"));
-        bidDAO.selectDeal(bidId);
         int broadcastId = bidDAO.getBroadcastId(bidId);
+        bidDAO.selectDeal(bidId);
         broadcastDAO.closeBroadcast(broadcastId);
         bidDAO.rejectDeals(broadcastId, bidId);
         return "Bid selected";
@@ -92,23 +73,16 @@ public class BidController {
     public
     @ResponseBody
     String showMyBids(HttpServletRequest request, HttpServletResponse response) {
-        int dealerId = Integer.parseInt(request.getParameter("dealerId"));
         String json = "";
-        List<Bid> bidList = bidDAO.showMyBids(dealerId);
+        List<Bid> bidList = bidDAO.showMyBids(Integer.parseInt(request.getParameter("dealerId")));
         if (bidList.size() != 0) {
             json = "[";
             for (Bid bid : bidList) {
                 Broadcast broadcast = broadcastDAO.getBroadcast(bid.getBroadcastId());
                 Dealer dealer = broadcastDAO.getDealer(broadcast.getDealerId());
-                json += new Gson().toJson(dealer);
-                json += ",";
-                json += new Gson().toJson(broadcast);
-                json += ",";
-                json += new Gson().toJson(bid);
-                json += ",";
+                json += new Gson().toJson(dealer) + "," + new Gson().toJson(broadcast) + "," + new Gson().toJson(bid) + ",";
             }
-            json = json.substring(0, json.length() - 1);
-            json += "]";
+            json = json.substring(0, json.length() - 1) + "]";
         }
         return json;
     }
@@ -116,10 +90,9 @@ public class BidController {
     @RequestMapping(value = "/numOfNewBids", method = RequestMethod.POST)
     public
     @ResponseBody
-    String numOfNewBids(HttpServletRequest request, HttpServletResponse response){
-        int dealerId = Integer.parseInt(request.getParameter("dealerId"));
+    String numOfNewBids(HttpServletRequest request, HttpServletResponse response) {
         int newBids = 0;
-        for(Broadcast broadcast : broadcastDAO.showMyBroadcasts(dealerId)){
+        for (Broadcast broadcast : broadcastDAO.showMyBroadcasts(Integer.parseInt(request.getParameter("dealerId")))) {
             newBids += bidDAO.getNumOfNewBids(broadcast.getBroadcastId());
         }
         return "" + newBids;
@@ -128,41 +101,32 @@ public class BidController {
     @RequestMapping(value = "/allBidsViewed", method = RequestMethod.POST)
     public
     @ResponseBody
-    String allBidsViewed(HttpServletRequest request, HttpServletResponse response){
-        int dealerId = Integer.parseInt(request.getParameter("dealerId"));
-        for(Broadcast broadcast : broadcastDAO.showMyBroadcasts(dealerId)){
+    String allBidsViewed(HttpServletRequest request, HttpServletResponse response) {
+        for (Broadcast broadcast : broadcastDAO.showMyBroadcasts(Integer.parseInt(request.getParameter("dealerId")))) {
             bidDAO.setAllBidsViewed(broadcast.getBroadcastId());
         }
-        return numOfNewBids(request,response);
+        return numOfNewBids(request, response);
     }
 
     @RequestMapping(value = "/numOfSelectedBids", method = RequestMethod.POST)
     public
     @ResponseBody
-    String numOfSelectedBids(HttpServletRequest request, HttpServletResponse response){
-        int dealerId = Integer.parseInt(request.getParameter("dealerId"));
+    String numOfSelectedBids(HttpServletRequest request, HttpServletResponse response) {
         int selectedBids = 0;
         int rejectedBids = 0;
-        for(Bid bid : bidDAO.showMyBids(dealerId)){
-            if(bid.getStatus() == 1 && bid.getNotified() <= 1){
-                selectedBids++;
-            }else if(bid.getStatus() == 2  && bid.getNotified() <= 1){
-                rejectedBids++;
-            }
+        for (Bid bid : bidDAO.showMyBids(Integer.parseInt(request.getParameter("dealerId")))) {
+            if (bid.getStatus() == 1 && bid.getNotified() <= 1) selectedBids++;
+            else if (bid.getStatus() == 2 && bid.getNotified() <= 1) rejectedBids++;
         }
-         String json = "[{\"selectedBids\":" + selectedBids + ",\"rejectedBids\":" + rejectedBids + "}]";
-        System.out.println("CHECK JSON: " + json);
-        return json;
+        return "[{\"selectedBids\":" + selectedBids + ",\"rejectedBids\":" + rejectedBids + "}]";
     }
-
 
     @RequestMapping(value = "/allMyBidsViewed", method = RequestMethod.POST)
     public
     @ResponseBody
-    String allMyBidsViewed(HttpServletRequest request, HttpServletResponse response){
-        int dealerId = Integer.parseInt(request.getParameter("dealerId"));
-        bidDAO.setAllMyBidsViewed(dealerId);
-        return numOfSelectedBids(request,response);
+    String allMyBidsViewed(HttpServletRequest request, HttpServletResponse response) {
+        bidDAO.setAllMyBidsViewed(Integer.parseInt(request.getParameter("dealerId")));
+        return numOfSelectedBids(request, response);
     }
 
 }
