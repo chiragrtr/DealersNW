@@ -34,7 +34,7 @@ function showMyBids(dealerId){
                     }
                     var days = parseInt(records[i].deliveryHours / 24);
                     var hours = records[i].deliveryHours % 24;
-                    htmlText += "<mark>YOUR BID:</mark><BR>" + "<p>" + "Price: " + records[i].price + " Delivery Days: " + days + " hours: " + hours + " Bid Date: " + records[i].bidDate + " Status: " + bidStatus + "</p>" + "</ul></div></div>";
+                    htmlText += "<mark>YOUR BID:</mark><BR>" + "<p>" + "Price: " + records[i].price + " Delivery Days: " + days + " hours: " + hours + " Bid Date: " + records[i].bidDate + " Status: " + bidStatus + "</p>" + "</ul></div>";
                 }
             }
             htmlText += "</div></div>";
