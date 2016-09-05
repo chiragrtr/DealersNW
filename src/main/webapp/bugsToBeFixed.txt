@@ -23,3 +23,10 @@ In show_Others_Broadcasts "Broadcast By" should display dealer name, not dealer 
 6)
 
 In my broadcasts (both open and closed), bidder id is displayed but we want bidder name and contact details to be shown.
+
+7)
+
+You can bid a negative or zero value in price and delivery time.
+
+8)  DONE-------------DONE----------DONE
+No notifications are there.

@@ -84,6 +84,7 @@
             <div>
                 <p class="myPanel">OTHERS' BROADCASTS<span style="float: left"><input type="radio" name="chiragRadio" id="r1" value="broadcasts" onclick=myFun() checked>All</span> <span style="float: right;"><input type="radio" name="chiragRadio" id="r2" value="bids" onclick=showMyBids(document.getElementById("myPara").innerHTML)>Your Bids</span></p>
                 <%--<p class="myPanel">Show Broadcasts</p>--%>
+                <span id="myBidsNotification" style="float: right"></span>
                 <select id="openOrClosed" onchange="showOthersBroadcasts(this.value)">
                     <option value="open" selected>Open</option>
                     <option value="closed">Closed</option>
@@ -101,7 +102,8 @@
             <%--<button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>--%>
             <%--<br><br>--%>
             <div>
-                <p class="myPanel"><b>Your Broadcasts</b></p>
+                <p class="myPanel"><b>Your Broadcasts</b><br></p>
+                <span id ="bidsNotification" style="float: right">  </span>
                 <select id="myOpenOrClosed" onchange="showMyBroadcasts()">
                     <option value="open" selected>Open</option>
                     <option value="closed">Closed</option>

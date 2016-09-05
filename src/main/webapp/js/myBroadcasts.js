@@ -18,6 +18,7 @@ function selectBidAjax(bidId) {
 function selectBid(bidId){
     selectBidAjax(bidId);
     setTimeout(showMyBroadcasts,500);
+    setTimeout(numOfNewBids,200);
 }
 
 function cancelBroadcast(broadcastId) {
@@ -30,6 +31,7 @@ function cancelBroadcast(broadcastId) {
                 htmlText = createOpenBroadcastList(records);
             }
             document.getElementById("myBroadcast").innerHTML = htmlText;
+            setTimeout(numOfNewBids,200);
         }
     };
     xmlHttp.open("post", "cancelBroadcast.do", true);
