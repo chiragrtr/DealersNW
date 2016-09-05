@@ -19,22 +19,22 @@ function showMyBids(dealerId){
                 var records = eval(xmlHttp.responseText);
                 console.log(records);
                 for (i = 0; i <records.length; i++) {
-                    htmlText += "<div class ='panel panel-default'><ul class='myUl'>" + "<p>"+ " BROADCAST BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email + "</p>";
+                    htmlText += "<div class ='panel panel-default'><ul class='myUl'>" + "<p>"+ " BROADCAST BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email;
                     i++;
-                    htmlText += "<p>" + " MAKE: " + records[i].make + "&nbsp MODEL: " + records[i].model + "&nbsp COLOR: " + records[i].color + "&nbsp DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
+                    htmlText +=" MAKE: " + records[i].make + "&nbsp MODEL: " + records[i].model + "&nbsp COLOR: " + records[i].color + "&nbsp DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
                     i++;
                     if(records[i].status == 0){
                         bidStatus = "Broadcast is still open";
                     }
                     else if(records[i].status == 1){
-                        bidStatus = "<font color=green>Your bid was selected</font>";
+                        bidStatus = "<font color=#20b2aa>Your bid was selected</font>";
                     }
                     else{
                         bidStatus = "<font color=red>Sorry, your bid wasn't selected</font>";
                     }
                     var days = parseInt(records[i].deliveryHours / 24);
                     var hours = records[i].deliveryHours % 24;
-                    htmlText += "<mark>YOUR BID:</mark><BR>" + "<p>" + "Price: " + records[i].price + " Delivery Days: " + days + " hours: " + hours + " Bid Date: " + records[i].bidDate + " Status: " + bidStatus + "</p>" + "</ul></div>";
+                    htmlText += "<mark>YOUR BID:</mark><BR>" + "<p>" + "Price: " + records[i].price + " Delivery Days: " + days + " hours: " + hours + " Bid Date: " + records[i].bidDate + "<br> Status: " + bidStatus + "</p>" + "</ul></div>";
                 }
             }
             htmlText += "</div></div>";
@@ -101,7 +101,7 @@ function showOthersBroadcasts(value) {
                         htmlText += "<form id='myForm" + (++f) + "'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
                             "<input type='number' id =price" + f + " name='price' placeholder='price' min='0.1' step='any' oninput='validity.valid||(value=\"\")'>" +
                             "<input type='number' id =days" + f + " name='days' placeholder='days' min='0' oninput='validity.valid||(value=\"\")'>" +
-                            "<input type='number' id =hours" + f + " name='hours' placeholder='hours' min='0' max='23' oninput='validity.valid||(value=\"\")'>&nbsp" +
+                            "<input type='number' id =hours" + f + " name='hours' placeholder='hours' min='1' max='23' oninput='validity.valid||(value=\"\")'>&nbsp" +
                             "<button type='button' onclick=placeThisBid(" + f + ")>Bid</button></form> " +
                             "</ul></div></p>";
                     }
