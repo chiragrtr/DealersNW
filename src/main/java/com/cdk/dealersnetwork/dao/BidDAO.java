@@ -30,8 +30,9 @@ public class BidDAO {
         com.cdk.dealersnetwork.domain.Bid domainBid = (com.cdk.dealersnetwork.domain.Bid) hibernateTemplate.get(com.cdk.dealersnetwork.domain.Bid.class, bidId);
         //Bid bid = new Bid(domainBid.getBidId(),domainBid.getBroadcastId(),domainBid.getDealerId(),domainBid.getBidDate(),domainBid.getPrice(),domainBid.getDeliveryHours(),domainBid.getStatus(),domainBid.getNotified());
         domainBid.setStatus(1);
+        domainBid.setNotified(1);
         hibernateTemplate.saveOrUpdate(domainBid);
-        System.out.println("bid with bidId=" + bidId + " status set to 1");
+        System.out.println("bid with bidId=" + bidId + " status, notified set to 1");
     }
 
     public List<Bid> showBids(int dealerId, int broadcastId) {
@@ -64,7 +65,8 @@ public class BidDAO {
         for (com.cdk.dealersnetwork.domain.Bid domainBid : domainBidList) {
             if (domainBid.getBidId() != bidId) {
                 domainBid.setStatus(2);
-                System.out.println("bid with bidId=" + domainBid.getBidId() + " status set to 2");
+                domainBid.setNotified(1);
+                System.out.println("bid with bidId=" + domainBid.getBidId() + " status set to 2, notified set to 1");
                 hibernateTemplate.saveOrUpdate(domainBid);
             }
         }
@@ -125,5 +127,23 @@ public class BidDAO {
         newBids += bidList.size();
         System.out.println("size is " + newBids);
         return newBids;
+    }
+
+    public void setAllBidsViewed(int broadcastId){
+        int notified = 0;
+        List<com.cdk.dealersnetwork.domain.Bid> bidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId and b.notified=:notified", new String[]{"broadcastId","notified"}, new Object[]{broadcastId,notified});
+        for(com.cdk.dealersnetwork.domain.Bid bid : bidList){
+            bid.setNotified(1);
+            hibernateTemplate.update(bid);
+        }
+    }
+
+    public void setAllMyBidsViewed(int dealerId) {
+        int status = 0;
+        List<com.cdk.dealersnetwork.domain.Bid> bidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.dealerId=:dealerId and b.status!=:status",new String[]{"dealerId","status"}, new Object[]{dealerId,status});
+        for(com.cdk.dealersnetwork.domain.Bid bid : bidList){
+            bid.setNotified(2);
+            hibernateTemplate.update(bid);
+        }
     }
 }

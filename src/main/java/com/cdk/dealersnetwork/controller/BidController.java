@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -123,4 +124,45 @@ public class BidController {
         }
         return "" + newBids;
     }
+
+    @RequestMapping(value = "/allBidsViewed", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String allBidsViewed(HttpServletRequest request, HttpServletResponse response){
+        int dealerId = Integer.parseInt(request.getParameter("dealerId"));
+        for(Broadcast broadcast : broadcastDAO.showMyBroadcasts(dealerId)){
+            bidDAO.setAllBidsViewed(broadcast.getBroadcastId());
+        }
+        return numOfNewBids(request,response);
+    }
+
+    @RequestMapping(value = "/numOfSelectedBids", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String numOfSelectedBids(HttpServletRequest request, HttpServletResponse response){
+        int dealerId = Integer.parseInt(request.getParameter("dealerId"));
+        int selectedBids = 0;
+        int rejectedBids = 0;
+        for(Bid bid : bidDAO.showMyBids(dealerId)){
+            if(bid.getStatus() == 1 && bid.getNotified() <= 1){
+                selectedBids++;
+            }else if(bid.getStatus() == 2  && bid.getNotified() <= 1){
+                rejectedBids++;
+            }
+        }
+         String json = "[{\"selectedBids\":" + selectedBids + ",\"rejectedBids\":" + rejectedBids + "}]";
+        System.out.println("CHECK JSON: " + json);
+        return json;
+    }
+
+
+    @RequestMapping(value = "/allMyBidsViewed", method = RequestMethod.POST)
+    public
+    @ResponseBody
+    String allMyBidsViewed(HttpServletRequest request, HttpServletResponse response){
+        int dealerId = Integer.parseInt(request.getParameter("dealerId"));
+        bidDAO.setAllMyBidsViewed(dealerId);
+        return numOfSelectedBids(request,response);
+    }
+
 }
