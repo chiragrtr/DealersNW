@@ -57,6 +57,9 @@ function createOpenBroadcastList(records) {
             }
             htmlText += "</ul></div>";
         }
+        else{
+            htmlText += "<br><br><mark>This broadcast doesn't have any bids yet!</mark>"
+        }
         htmlText += "</p>";
         htmlText += "</ul></div>";
     }
@@ -84,6 +87,9 @@ function createClosedBroadcastList(records) {
                 }
             }
             htmlText += "</ul></div>";
+        }
+        else{
+            htmlText += "<br><br><mark>This broadcast doesn't have any bids!</mark>"
         }
         htmlText += "</p>";
         htmlText +=  "</ul></div>";
