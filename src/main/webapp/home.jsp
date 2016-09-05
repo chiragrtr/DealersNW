@@ -29,7 +29,6 @@
 <div id="myNavbarDiv">
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
-
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class=" navbar-right">
                 <li><div id="myLogoutDiv"><a href="logout.do">Log out</a></div></li>
@@ -39,6 +38,9 @@
                    <a class="navbar-brand" href="#" data-toggle="tooltip" title="<%=session.getAttribute("dealerName")%>">Welcome <%=session.getAttribute("dealerName")%></a>
                </div>
            </ul>
+            <ul>
+                <div class = "navbar-left"><img src="https://www.logomoose.com/wp-content/uploads/2013/04/all-logo-01.jpg"></div>
+            </ul>
         </div>
     </div>
 </nav>
@@ -52,7 +54,7 @@
             <div id="createNewBroadcast" >
                 <form class="form-inline">
                     <div class='form-group'><%--Select Make--%>
-                        <b>Your requirement:</b>
+                        <b class="myWell">Your requirement:</b>
                         <select class='form-control' id='make' name='make'>
                             <option><label>Select Your Make</label></option>
                             <option>Mercedez</option>
