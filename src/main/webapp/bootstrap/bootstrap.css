@@ -1476,6 +1476,7 @@ h6,
 }
 p {
     margin: 0 0 10px;
+    padding: 10px;
 }
 .lead {
     margin-bottom: 20px;
@@ -5875,6 +5876,7 @@ button.list-group-item-danger.active:focus {
 .panel-group .panel {
     margin-bottom: 0;
     border-radius: 4px;
+    box-shadow: 0 4px 10px 4px rgba(19, 35, 47, 0.1);
 }
 .panel-group .panel + .panel {
     margin-top: 5px;
@@ -7030,6 +7032,10 @@ button.close {
 
 .myBrand{
     background-color: #761c19;
+}
+
+#cancelBtn{
+    float: right;
 }
 /*---------------------------------------------------------------------------*/
 /*# sourceMappingURL=bootstrap.css.map */
