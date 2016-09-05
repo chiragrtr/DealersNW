@@ -101,7 +101,7 @@ function showOthersBroadcasts(value) {
                         htmlText += "<form id='myForm" + (++f) + "'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
                             "<input type='number' id =price" + f + " name='price' placeholder='price' min='0' oninput='validity.valid||(value=\"\") '>" +
                             "<input type='number' id =days" + f + " name='days' placeholder='days' min='0' oninput='validity.valid||(value=\"\")'>" +
-                            "<input type='number' id =hours" + f + " name='hours' placeholder='hours' min='0' oninput='validity.valid||(value=\"\")'>&nbsp" +
+                            "<input type='number' id =hours" + f + " name='hours' placeholder='hours' min='0' max='23' oninput='validity.valid||(value=\"\")'>&nbsp" +
                             "<button type='button' onclick=placeThisBid(" + f + ")>Bid</button></form> " +
                             "</ul></div></p>";
                     }
