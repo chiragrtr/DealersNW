@@ -30,11 +30,6 @@
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
             <a class="navbar-brand" href="#">Welcome <%=session.getAttribute("dealerName")%></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
@@ -101,8 +96,7 @@
             <%--<button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>--%>
             <%--<br><br>--%>
             <div>
-                <p class="well"><b>Your Broadcasts</b><br><br><br>
-                <span id ="bidsNotification"></span></p>
+                <p class="myPanel"><b>Your Broadcasts</b></p>
                 <select id="myOpenOrClosed" onchange="showMyBroadcasts()">
                     <option value="open" selected>Open</option>
                     <option value="closed">Closed</option>
