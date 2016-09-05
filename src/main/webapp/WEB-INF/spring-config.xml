@@ -45,6 +45,12 @@
     <bean id="bidDAO" class="com.cdk.dealersnetwork.dao.BidDAO">
         <property name="hibernateTemplate" ref="hibernateTemplate"></property>
     </bean>
+    <bean id="makeDAO" class="com.cdk.dealersnetwork.dao.MakeDAO">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
+    <bean id="modelDAO" class="com.cdk.dealersnetwork.dao.ModelDAO">
+        <property name="hibernateTemplate" ref="hibernateTemplate"></property>
+    </bean>
     <mvc:annotation-driven />
     <context:component-scan base-package="com.cdk.dealersnetwork.controller">
     </context:component-scan>
