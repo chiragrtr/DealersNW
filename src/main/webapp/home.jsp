@@ -29,13 +29,16 @@
 <div id="myNavbarDiv">
 <nav class="navbar navbar-fixed-top navbar-inverse">
     <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="#">Welcome <%=session.getAttribute("dealerName")%></a>
-        </div>
+
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class=" navbar-right">
                 <li><div id="myLogoutDiv"><a href="logout.do">Log out</a></div></li>
             </ul>
+            <ul class="myNavbar-left">
+               <div class="navbar-header">
+                   <a class="navbar-brand" href="#" data-toggle="tooltip" title="<%=session.getAttribute("dealerName")%>">Welcome <%=session.getAttribute("dealerName")%></a>
+               </div>
+           </ul>
         </div>
     </div>
 </nav>
@@ -77,7 +80,7 @@
         <div id="showBroadcastDiv">
         <div class="col-lg-6">
             <div>
-                <p class="myPanel">OTHERS' BROADCASTS<span style="float: left"><input type="radio" name="chiragRadio" id="r1" value="broadcasts" onclick=myFun() checked>All</span> <span style="float: right;"><input type="radio" name="chiragRadio" id="r2" value="bids" onclick=showMyBids(document.getElementById("myPara").innerHTML)>Your Bids</span> </p>
+                <p class="myPanel">OTHERS' BROADCASTS<span style="float: left"><input type="radio" name="chiragRadio" id="r1" value="broadcasts" onclick=myFun() checked>All</span> <span style="float: right;"><input type="radio" name="chiragRadio" id="r2" value="bids" onclick=showMyBids(document.getElementById("myPara").innerHTML)>Your Bids</span></p>
                 <%--<p class="myPanel">Show Broadcasts</p>--%>
                 <select id="openOrClosed" onchange="showOthersBroadcasts(this.value)">
                     <option value="open" selected>Open</option>

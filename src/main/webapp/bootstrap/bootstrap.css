@@ -11,6 +11,7 @@ html {
 }
 body {
     margin: 0;
+
 }
 article,
 aside,
@@ -1269,12 +1270,20 @@ html {
 
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+
 body {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     line-height: 1.42857143;
     color: #333;
     background-color: #fff;
+    /*http://slodive.com/wp-content/uploads/2011/05/white-backgrounds/crumpled-paper-background.jpg*/
+    background: url(https://imtoolsuite.com/members/tools/capturepage/images/custom/bg_0XI2Fm-Webpage_background.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 input,
 button,
@@ -7036,6 +7045,19 @@ button.close {
 
 #cancelBtn{
     float: right;
+}
+
+.myNavbar-left {
+    float: right;
+    font-stretch: semi-expanded;
+    font-size: larger;
+    font-stretch: extra-expanded;
+    font-weight: 900;
+    text-align: -webkit-center;
+}
+
+#othersBroadcasts{
+
 }
 /*---------------------------------------------------------------------------*/
 /*# sourceMappingURL=bootstrap.css.map */
