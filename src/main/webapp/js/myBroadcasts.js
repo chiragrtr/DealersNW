@@ -55,7 +55,7 @@ function createOpenBroadcastList(records) {
                 i++;
                 var days = parseInt(records[i].deliveryHours/24);
                 var hours = records[i].deliveryHours%24;
-                htmlText += "<div class='panel-body'><li>" + "Bid Price: " + records[i].price + ", Delivery days: " + days + ", Hours: " + hours + ", Time of Bid: " + records[i].bidDate + "<button onclick = selectBid(" + records[i].bidId + ")>Select this bid</button>" + "<br>";
+                htmlText += "<div class='panel-body'><li>" + "Bid Price: " + records[i].price + ", Delivery days: " + days + ", Hours: " + hours + ", Time of Bid: " + records[i].bidDate + "<span style='float: right'> <button onclick = selectBid(" + records[i].bidId + ")>Select this bid</button></span>" + "<br>";
                 i++;
                 htmlText += "By: " + records[i].name + ", Ph: " + records[i].phone + ", Email: " + records[i].email  + "</li></div>";
             }
