@@ -170,21 +170,24 @@
         var value = $(this).val();
         if(value == "BMW"){
             options="<option>Select Your Model</option>"
-                    +"<option value='BMW1'>BMW 1</option>"
-                    +"<option value='BMW2'>BMW 2</option>" +
-                    "<option value='BMW3'>BMW 3</option>";
+                    +"<option value='1 Series'>1 Series</option>"
+                    +"<option value='3 Series'>3 Series</option>"
+                    +"<option value='7 Series'>7 Series</option>"
+                    +"<option value='i8'>i8</option>";
             $("#model").html(options);
         }else if(value=="Mercedez")
         {
             options='<option>Select Your Model</option>'
-                    +'<option value="Mercedez 1">Mercedez 1</option>'
-                    +'<option value="Mercedez 2">Mercedez 2</option>';
+                    +'<option value="A Class">A Class</option>'
+                    +'<option value="B Class">B Class</option>'
+                    +'<option value="C Class">C Class</option>';
             $("#model").html(options);
         }else if(value=="Tesla")
         {
             options='<option>Select Your Model</option>'
-                    +'<option value="Tesla1">Tesla 1</option>'
-                    +'<option value="Tesla2">Tesla 2</option>';
+                    +'<option value="Model S">Model S</option>'
+                    +'<option value="Model X">Model X</option>'
+                    +'<option value="Model 3">Model 3</option>';
             $("#model").html(options);
         }
     });

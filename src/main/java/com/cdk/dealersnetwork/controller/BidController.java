@@ -55,7 +55,7 @@ public class BidController {
     String setBid(HttpServletRequest request, HttpServletResponse response) {
         int broadcastId = Integer.parseInt(request.getParameter("broadcastId"));
         if (broadcastDAO.isOpen(broadcastId)) {
-            Bid bid = bidDAO.setBid(Integer.parseInt((String) (request.getSession().getAttribute("dealerId"))), broadcastId, Float.parseFloat(request.getParameter("price")), Integer.parseInt(request.getParameter("deliveryHours")), new Date());
+            bidDAO.setBid(Integer.parseInt((String) (request.getSession().getAttribute("dealerId"))), broadcastId, Float.parseFloat(request.getParameter("price")), Integer.parseInt(request.getParameter("deliveryHours")), new Date());
             return "Bid placed, check it in your bids section";
         } else {
             return "Sorry, broadcast just closed";

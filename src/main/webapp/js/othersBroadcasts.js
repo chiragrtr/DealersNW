@@ -21,7 +21,7 @@ function showMyBids(dealerId) {
                 for (i = records.length - 1; i >= 0; i--) {
                     htmlText += "<div class ='panel panel-default'><ul class='myUl'>" + "<p>" + " BROADCAST BY: " + records[i].name + ", Contact Number: " + records[i].phone + ", Email Address: " + records[i].email;
                     i--;
-                    htmlText += "<br>MAKE: " + records[i].make + ",&nbsp MODEL: " + records[i].model + ",&nbsp COLOR: " + records[i].color + ",&nbsp DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
+                    htmlText += "<br>MAKE: " + records[i].make + ",&nbsp MODEL: " + records[i].model + ",&nbsp COLOR: " + records[i].color + ",&nbsp BROADCAST DATE: " + records[i].broadcastDate + "</p>";
                     i--;
                     if (records[i].status == 0) {
                         bidStatus = "Broadcast is still open";
@@ -106,7 +106,7 @@ function showOthersBroadcasts(value) {
                         htmlText += "<p><div class ='panel panel-default'><ul class='myUl'>";
                         htmlText += " BROADCAST BY: " + records[i].name + ", Contact Number: " + records[i].phone + ", Email Address: " + records[i].email + "<BR>";
                         i = i - 1;
-                        htmlText += "MAKE: " + records[i].make + ", MODEL: " + records[i].model + ", COLOR: " + records[i].color + "<BR>" + ", DATE OF BROADCAST: " + records[i].broadcastDate;
+                        htmlText += "MAKE: " + records[i].make + ", MODEL: " + records[i].model + ", COLOR: " + records[i].color + "<BR>" + "BROADCAST DATE: " + records[i].broadcastDate;
 
                         htmlText += "<form id='myForm" + (++f) + "'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
                             "<input type='number' id =price" + f + " name='price' placeholder='price' min='0.1' step='any' oninput='validity.valid||(value=\"\")'>" +
@@ -141,7 +141,7 @@ function showOthersBroadcasts(value) {
                         htmlText += "<p><div class ='panel panel-default'><ul class='myUl'>";
                         htmlText += " BROADCAST BY: " + records[i].name + ", Contact Number: " + records[i].phone + ", Email Address: " + records[i].email + "<BR>";
                         i = i - 1;
-                        htmlText += "MAKE: " + records[i].make + ", MODEL: " + records[i].model + ", COLOR: " + records[i].color + "<BR>" + "DATE OF BROADCAST: " + records[i].broadcastDate + "</ul></div></p>";
+                        htmlText += "MAKE: " + records[i].make + ", MODEL: " + records[i].model + ", COLOR: " + records[i].color + "<BR>" + "BROADCAST DATE: " + records[i].broadcastDate + "</ul></div></p>";
                     }
                 }
                 document.getElementById("othersBroadcasts").innerHTML = htmlText;
