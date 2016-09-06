@@ -1280,7 +1280,8 @@ body {
     background-color: #fff;
     /*http://slodive.com/wp-content/uploads/2011/05/white-backgrounds/crumpled-paper-background.jpg*/
     /*background: url(https://imtoolsuite.com/members/tools/capturepage/images/custom/bg_0XI2Fm-Webpage_background.jpg) no-repeat center center fixed;*/
-      background : url(http://lawnworkstriad.com/wp-content/uploads/2014/09/white-paper-background-cardboard-texture-hd.jpg);
+      /*background : url(http://lawnworkstriad.com/wp-content/uploads/2014/09/white-paper-background-cardboard-texture-hd.jpg);*/
+     background-image: url("/images/background.png");
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -7033,8 +7034,8 @@ button.close {
     text-transform: capitalize;
     text-align: -webkit-center;
     padding-top: 1.5%;
-    background-color: #f3f3f3;
-
+    background-color: #cecbcb;
+    border-radius: 10px;
 }
 
 .myButton{
@@ -7072,11 +7073,11 @@ button.close {
 }
 .myWell{
     padding: 10px;
-    background-color: #f5f5f5;
+    background-color: #cecbcb;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
     line-height: 100%;
     height: 100%;
-    border-radius: 4px;
+    border-radius: 8px;
 }
 /*---------------------------------------------------------------------------*/
 /*# sourceMappingURL=bootstrap.css.map */
