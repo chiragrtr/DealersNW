@@ -80,7 +80,7 @@ public class BidController {
             for (Bid bid : bidList) {
                 Broadcast broadcast = broadcastDAO.getBroadcast(bid.getBroadcastId());
                 Dealer dealer = broadcastDAO.getDealer(broadcast.getDealerId());
-                json += new Gson().toJson(dealer) + "," + new Gson().toJson(broadcast) + "," + new Gson().toJson(bid) + ",";
+                json += new Gson().toJson(bid) + "," + new Gson().toJson(broadcast) + "," + new Gson().toJson(dealer) + ",";
             }
             json = json.substring(0, json.length() - 1) + "]";
         }

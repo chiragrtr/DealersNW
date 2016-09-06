@@ -62,7 +62,8 @@ public class BroadcastController {
         String json = "";
         if (broadcastList.size() != 0) {
             json += "[";
-            for (Broadcast broadcast : broadcastList) {
+            for (int i = broadcastList.size()-1; i >= 0 ; i--) {
+                Broadcast broadcast = broadcastList.get(i);
                 String numOfBids = bidDAO.getNumOfBids(broadcast.getBroadcastId());
                 json += new Gson().toJson(broadcast);
                 json = json.substring(0, json.length() - 1) + ",\"totalBids\":" + numOfBids + "},";

@@ -1,6 +1,7 @@
 package com.cdk.dealersnetwork.dao;
 
 import com.cdk.dealersnetwork.dto.Bid;
+import com.cdk.dealersnetwork.dto.Dealer;
 import com.google.gson.Gson;
 import org.springframework.orm.hibernate3.HibernateTemplate;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,8 @@ public class BidDAO {
         hibernateTemplate.setCheckWriteOperations(false);
         this.hibernateTemplate = hibernateTemplate;
     }
+
+    private BroadcastDAO broadcastDAO = new BroadcastDAO();
 
     public void selectDeal(int bidId) {
         com.cdk.dealersnetwork.domain.Bid domainBid = (com.cdk.dealersnetwork.domain.Bid) hibernateTemplate.get(com.cdk.dealersnetwork.domain.Bid.class, bidId);
@@ -97,14 +100,17 @@ public class BidDAO {
 
     public String getAllBids(int broadcastId) {
         List<com.cdk.dealersnetwork.domain.Bid> domainBidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId", "broadcastId", broadcastId);
-        String bids = "";
+        String json = "";
         for (com.cdk.dealersnetwork.domain.Bid domainBid : domainBidList) {
-            String json = new Gson().toJson(domainBid);
-            bids += json + ",";
+            int dealerId = domainBid.getDealerId();
+
+            com.cdk.dealersnetwork.domain.Dealer dealer = hibernateTemplate.get(com.cdk.dealersnetwork.domain.Dealer.class,dealerId);
+            System.out.println("NAME IS "+ dealer.getName());
+            json += new Gson().toJson(domainBid) + "," + new Gson().toJson(new Dealer(dealer.getDealerId(),dealer.getName(),dealer.getPhone(),dealer.getRegDate(),dealer.getEmail(),dealer.getPassword())) + ",";
         }
-        bids = bids.substring(0, bids.length() - 1);
-        System.out.println("bids are " + bids);
-        return bids;
+        json = json.substring(0, json.length() - 1);
+        System.out.println("bids are " + json);
+        return json;
     }
 
     public int getBroadcastId(int bidId) {

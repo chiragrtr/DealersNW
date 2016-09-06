@@ -18,11 +18,11 @@ function showMyBids(dealerId){
             if (xmlHttp.responseText != "") {
                 var records = eval(xmlHttp.responseText);
                 console.log(records);
-                for (i = 0; i <records.length; i++) {
+                for (i = records.length-1; i >= 0; i--) {
                     htmlText += "<div class ='panel panel-default'><ul class='myUl'>" + "<p>"+ " BROADCAST BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email;
-                    i++;
+                    i--;
                     htmlText +=" MAKE: " + records[i].make + "&nbsp MODEL: " + records[i].model + "&nbsp COLOR: " + records[i].color + "&nbsp DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
-                    i++;
+                    i--;
                     if(records[i].status == 0){
                         bidStatus = "Broadcast is still open";
                     }
@@ -46,6 +46,8 @@ function showMyBids(dealerId){
     xmlHttp.send("dealerId=" + dealerId);
 }
 function placeThisBid(formNum) {
+    var errorField = document.getElementById("errorMessage"+formNum);
+    errorField.innerHTML = "";
     //alert("hi");
     var price = document.getElementById("price" + formNum).value;
     //var price=document.formNum.price.value;
@@ -56,6 +58,14 @@ function placeThisBid(formNum) {
     //alert(broadcastId);
 
     var deliveryHours = parseInt(days) * 24 + parseInt(hours);
+    if(price == "" || days == "" || hours == ""){
+        errorField.innerHTML = "All fields are compulsory";
+        return;
+    }
+    if(deliveryHours == 0){
+        errorField.innerHTML = "Delivery time can not be zero";
+        return;
+    }
     //alert(broadcastId + price + deliveryHours);
 
     document.getElementById("myForm" + formNum).innerHTML = "<br><br><b>Bid placed, check it in your bids section</b>";
@@ -101,8 +111,8 @@ function showOthersBroadcasts(value) {
                         htmlText += "<form id='myForm" + (++f) + "'><p id =broadcastId" + f + " style='visibility:hidden'>" + records[i].broadcastId + "</p>" +
                             "<input type='number' id =price" + f + " name='price' placeholder='price' min='0.1' step='any' oninput='validity.valid||(value=\"\")'>" +
                             "<input type='number' id =days" + f + " name='days' placeholder='days' min='0' oninput='validity.valid||(value=\"\")'>" +
-                            "<input type='number' id =hours" + f + " name='hours' placeholder='hours' min='1' max='23' oninput='validity.valid||(value=\"\")'>&nbsp" +
-                            "<button type='button' onclick=placeThisBid(" + f + ")>Bid</button></form> " +
+                            "<input type='number' id =hours" + f + " name='hours' placeholder='hours' min='0' max='23' oninput='validity.valid||(value=\"\")'>&nbsp" +
+                            "<button type='button' onclick=placeThisBid(" + f + ")>Bid</button></form><span id=errorMessage"+ f + " style='color: red'></span> " +
                             "</ul></div></p>";
                     }
                 }
