@@ -32,6 +32,10 @@ You can bid a negative or zero value in price and delivery time.
 
 No notifications are there.
 
-9)
+9)  SKIP------------SKIP----------SKIP
 
 Make and model aren't from database.
+
+10) DONE-------------DONE----------DONE
+
+If broadcast is cancelled just before someone places a bid, they will always see that broadcast as open and their bid is placed on a closed broadcast.

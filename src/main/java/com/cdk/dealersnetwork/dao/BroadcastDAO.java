@@ -141,4 +141,8 @@ public class BroadcastDAO {
         com.cdk.dealersnetwork.domain.Dealer dealer = hibernateTemplate.get(com.cdk.dealersnetwork.domain.Dealer.class,dealerId);
         return new Dealer(dealerId,dealer.getName(),dealer.getPhone(),dealer.getRegDate(),dealer.getEmail(),dealer.getPassword());
     }
+
+    public boolean isOpen(int broadcastId) {
+        return (hibernateTemplate.get(com.cdk.dealersnetwork.domain.Broadcast.class, broadcastId).getStatus() == 0);
+    }
 }
