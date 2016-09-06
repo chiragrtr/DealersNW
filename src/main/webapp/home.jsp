@@ -40,7 +40,7 @@
            </ul>
             <ul>
                 <%--https://www.logomoose.com/wp-content/uploads/2013/04/all-logo-01.jpg--%>
-                <div class = "navbar-left"><img src="logo/logo.jpg"></div>
+                <div class = "navbar-left"><img src="images/logo.jpg"></div>
             </ul>
         </div>
     </div>
@@ -55,7 +55,7 @@
             <div id="createNewBroadcast" >
                 <form class="form-inline">
                     <div class='form-group'><%--Select Make--%>
-                        <b class="myWell">Your requirement:</b>
+                        <b class="myWell">YOUR REQUIREMET</b>
                         <select class='form-control' id='make' name='make'>
                             <option><label>Select Your Make</label></option>
                             <option>Mercedez</option>
@@ -103,7 +103,7 @@
             <%--<button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>--%>
             <%--<br><br>--%>
             <div>
-                <p class="myPanel"><b>Your Broadcasts</b><br></p>
+                <p class="myPanel"><b>YOUR BROADCAST</b><br></p>
                 <span id ="bidsNotification" style="float: right">  </span>
                 <select id="myOpenOrClosed" onchange="showMyBroadcasts()">
                     <option value="open" selected>Open</option>
