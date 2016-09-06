@@ -53,9 +53,11 @@ function createOpenBroadcastList(records) {
             htmlText += "<div id='myUlDiv'><ul class='nav'>";
             for (j = 0; j < totalBids; j++) {
                 i++;
-                htmlText += "<div class='panel-body'><li>" + "Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate + "<button onclick = selectBid(" + records[i].bidId + ")>Select this bid</button>" + "<br>";
+                var days = parseInt(records[i].deliveryHours/24);
+                var hours = records[i].deliveryHours%24;
+                htmlText += "<div class='panel-body'><li>" + "Bid Price: " + records[i].price + ", Delivery days: " + days + ", Hours: " + hours + ", Time of Bid: " + records[i].bidDate + "<button onclick = selectBid(" + records[i].bidId + ")>Select this bid</button>" + "<br>";
                 i++;
-                htmlText += "BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email  + "</li></div>";
+                htmlText += "By: " + records[i].name + ", Contact Number: " + records[i].phone + ", Email Address: " + records[i].email  + "</li></div>";
             }
             htmlText += "</ul></div>";
         }
@@ -82,14 +84,16 @@ function createClosedBroadcastList(records) {
             for (j = 0; j < totalBids; j++) {
                 i++;
                 var status = records[i].status;
+                var days = parseInt(records[i].deliveryHours/24);
+                var hours = records[i].deliveryHours%24;
                 if(status == 1){
-                    htmlText += "<div class='panel-body'><font color='green'> <li>" + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate + "<br>";
+                    htmlText += "<div class='panel-body'><font color='green'> <li>" + " Bid Price: " + records[i].price + ", Delivery days: " + days + ", Hours: " + hours + ", Time of Bid: " + records[i].bidDate + "<br>";
                     i++;
-                    htmlText += "BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email  + "</li></font></div>";
+                    htmlText += "By: " + records[i].name + ", Contact Number: " + records[i].phone + ", Email Address: " + records[i].email  + "</li></font></div>";
                 } else {
-                    htmlText += "<div class='panel-body'><li>" + "Bidder id: " + records[i].dealerId + " Bid Price: " + records[i].price + " Delivery hours: " + records[i].deliveryHours + " Bid date: " + records[i].bidDate + "<br>";
+                    htmlText += "<div class='panel-body'><li>" + " Bid Price: " + records[i].price + ", Delivery days: " + days + ", Hours: " + hours + ", Time of Bid: " + records[i].bidDate + "<br>";
                     i++;
-                    htmlText += "BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email  + "</li></div>";
+                    htmlText += "By: " + records[i].name + ", Contact Number: " + records[i].phone + ", Email Address: " + records[i].email  + "</li></div>";
                 }
             }
             htmlText += "</ul></div>";
