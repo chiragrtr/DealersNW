@@ -97,7 +97,7 @@ function repeatOnCondition(){
     if (document.getElementById("r2").checked) {
         return;
     }
-    setTimeout(repeatOnCondition, 30000);
+    setTimeout(repeatOnCondition, 60000);
     showOthersBroadcasts(document.getElementById("openOrClosed").value);
 }
 function repeatedCalls() {
