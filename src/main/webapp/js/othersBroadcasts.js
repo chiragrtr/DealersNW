@@ -18,11 +18,11 @@ function showMyBids(dealerId){
             if (xmlHttp.responseText != "") {
                 var records = eval(xmlHttp.responseText);
                 console.log(records);
-                for (i = 0; i <records.length; i++) {
+                for (i = records.length-1; i >= 0; i--) {
                     htmlText += "<div class ='panel panel-default'><ul class='myUl'>" + "<p>"+ " BROADCAST BY: " + records[i].name + " Contact Number: " + records[i].phone + " Email Address: " + records[i].email;
-                    i++;
+                    i--;
                     htmlText +=" MAKE: " + records[i].make + "&nbsp MODEL: " + records[i].model + "&nbsp COLOR: " + records[i].color + "&nbsp DATE OF BROADCAST: " + records[i].broadcastDate + "</p>";
-                    i++;
+                    i--;
                     if(records[i].status == 0){
                         bidStatus = "Broadcast is still open";
                     }
