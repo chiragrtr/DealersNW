@@ -23,7 +23,7 @@
 <body onload="autoCalls()">
 <%
     if(session.getAttribute("dealerId") == null){
-        response.sendRedirect("index.html");
+        response.sendRedirect("index.jsp");
     }
 %>
 <div id="myNavbarDiv">
