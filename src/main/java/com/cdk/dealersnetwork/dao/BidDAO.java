@@ -30,38 +30,17 @@ public class BidDAO {
     private BroadcastDAO broadcastDAO = new BroadcastDAO();
 
     public void selectDeal(int bidId) {
-        com.cdk.dealersnetwork.domain.Bid domainBid = (com.cdk.dealersnetwork.domain.Bid) hibernateTemplate.get(com.cdk.dealersnetwork.domain.Bid.class, bidId);
-        //Bid bid = new Bid(domainBid.getBidId(),domainBid.getBroadcastId(),domainBid.getDealerId(),domainBid.getBidDate(),domainBid.getPrice(),domainBid.getDeliveryHours(),domainBid.getStatus(),domainBid.getNotified());
+        com.cdk.dealersnetwork.domain.Bid domainBid = hibernateTemplate.get(com.cdk.dealersnetwork.domain.Bid.class, bidId);
         domainBid.setStatus(1);
         domainBid.setNotified(1);
         hibernateTemplate.saveOrUpdate(domainBid);
-        System.out.println("bid with bidId=" + bidId + " status, notified set to 1");
-    }
-
-    public List<Bid> showBids(int dealerId, int broadcastId) {
-        List<com.cdk.dealersnetwork.domain.Bid> domainBidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId and b.dealerId=:dealerId", new String[]{"broadcastId", "dealerId"}, new Object[]{broadcastId, dealerId});
-        List<Bid> bidList = new ArrayList<>();
-        for (com.cdk.dealersnetwork.domain.Bid domainBid : domainBidList) {
-            Bid bid = new Bid(domainBid.getBidId(), domainBid.getBroadcastId(), domainBid.getDealerId(), domainBid.getBidDate(), domainBid.getPrice(), domainBid.getDeliveryHours(), domainBid.getStatus(), domainBid.getNotified());
-            bidList.add(bid);
-        }
-        return bidList;
     }
 
     public Bid setBid(int dealerId, int broadcastId, float price, int deliveryHours, Date bidDate) {
         com.cdk.dealersnetwork.domain.Bid domainBid = new com.cdk.dealersnetwork.domain.Bid(broadcastId, dealerId, new java.sql.Timestamp(bidDate.getTime()), price, deliveryHours, 0, 0);
         hibernateTemplate.save(domainBid);
-        Bid bid = new Bid(domainBid.getBidId(), domainBid.getBroadcastId(), domainBid.getDealerId(), domainBid.getBidDate(), domainBid.getPrice(), domainBid.getDeliveryHours(), domainBid.getStatus(), domainBid.getNotified());
-        return bid;
+        return new Bid(domainBid.getBidId(), domainBid.getBroadcastId(), domainBid.getDealerId(), domainBid.getBidDate(), domainBid.getPrice(), domainBid.getDeliveryHours(), domainBid.getStatus(), domainBid.getNotified());
     }
-
-    /*public void rejectDeals(int broadcastId){
-        List<com.cdk.dealersnetwork.domain.Bid> domainBidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId","broadcastId",broadcastId);
-        for(com.cdk.dealersnetwork.domain.Bid domainBid : domainBidList){
-            domainBid.setStatus(2);
-            hibernateTemplate.update(domainBid);
-        }
-    }*/
 
     public void rejectDeals(int broadcastId, int bidId) {
         List<com.cdk.dealersnetwork.domain.Bid> domainBidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId", "broadcastId", broadcastId);
@@ -69,33 +48,14 @@ public class BidDAO {
             if (domainBid.getBidId() != bidId) {
                 domainBid.setStatus(2);
                 domainBid.setNotified(1);
-                System.out.println("bid with bidId=" + domainBid.getBidId() + " status set to 2, notified set to 1");
                 hibernateTemplate.saveOrUpdate(domainBid);
             }
         }
     }
 
-    public String getLatestResponse(int broadcastId) {
-        String response = "";
-        System.out.println("at1");
-        List<com.cdk.dealersnetwork.domain.Bid> bidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId", "broadcastId", broadcastId);
-        System.out.println("at2");
-        if (bidList.size() == 0) {
-            System.out.println("at3");
-            return "NO BIDS";
-        }
-        System.out.println("at4");
-        com.cdk.dealersnetwork.domain.Bid bid = bidList.get(bidList.size() - 1);
-        response += "Dealer " + bid.getDealerId() + " has bid " + bid.getPrice() + "$ and can deliver in " + bid.getDeliveryHours() + "hours";
-        return response;
-    }
-
     public String getNumOfBids(int broadcastId) {
-        String numOfBids = "";
         List<com.cdk.dealersnetwork.domain.Bid> bidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId", "broadcastId", broadcastId);
-        numOfBids += bidList.size();
-        System.out.println("size is " + numOfBids);
-        return numOfBids;
+        return "" + bidList.size();
     }
 
     public String getAllBids(int broadcastId) {
@@ -103,18 +63,14 @@ public class BidDAO {
         String json = "";
         for (com.cdk.dealersnetwork.domain.Bid domainBid : domainBidList) {
             int dealerId = domainBid.getDealerId();
-
             com.cdk.dealersnetwork.domain.Dealer dealer = hibernateTemplate.get(com.cdk.dealersnetwork.domain.Dealer.class,dealerId);
-            System.out.println("NAME IS "+ dealer.getName());
             json += new Gson().toJson(domainBid) + "," + new Gson().toJson(new Dealer(dealer.getDealerId(),dealer.getName(),dealer.getPhone(),dealer.getRegDate(),dealer.getEmail(),dealer.getPassword())) + ",";
         }
-        json = json.substring(0, json.length() - 1);
-        System.out.println("bids are " + json);
-        return json;
+        return json.substring(0, json.length() - 1);
     }
 
     public int getBroadcastId(int bidId) {
-        com.cdk.dealersnetwork.domain.Bid domainBid = (com.cdk.dealersnetwork.domain.Bid) hibernateTemplate.get(com.cdk.dealersnetwork.domain.Bid.class, bidId);
+        com.cdk.dealersnetwork.domain.Bid domainBid = hibernateTemplate.get(com.cdk.dealersnetwork.domain.Bid.class, bidId);
         return domainBid.getBroadcastId();
     }
 
@@ -131,7 +87,6 @@ public class BidDAO {
         int newBids = 0;
         List<com.cdk.dealersnetwork.domain.Bid> bidList = (List<com.cdk.dealersnetwork.domain.Bid>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Bid b where b.broadcastId=:broadcastId and b.notified=:newBids", new String[]{"broadcastId","newBids"}, new Object[]{broadcastId,newBids});
         newBids += bidList.size();
-        System.out.println("size is " + newBids);
         return newBids;
     }
 
