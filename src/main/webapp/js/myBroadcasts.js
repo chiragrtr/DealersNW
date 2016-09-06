@@ -48,7 +48,7 @@ function createOpenBroadcastList(records) {
             "<ul class='myUl'>";
 
         var totalBids = records[i].totalBids;
-        htmlText += "<p>" + records[i].make + " " + records[i].model + " " + records[i].color + " " + records[i].broadcastDate + " " + totalBids + " " + "<button id = 'cancelBtn' type='button' onclick=cancelBroadcast(" + records[i].broadcastId + ")>Cancel</button> ";
+        htmlText += "<p>" + records[i].color + " " + records[i].make + " " + records[i].model + ", Total Bids: " + totalBids + " " + "<button id = 'cancelBtn' type='button' onclick=cancelBroadcast(" + records[i].broadcastId + ")>Cancel</button> <span style='float: right;'>On: " + records[i].broadcastDate + "</span> ";
         if (totalBids > 0) {
             htmlText += "<div id='myUlDiv'><ul class='nav'>";
             for (j = 0; j < totalBids; j++) {
@@ -76,7 +76,7 @@ function createClosedBroadcastList(records) {
             "<ul class='myUl'>";
 
         var totalBids = records[i].totalBids;
-        htmlText += "<p>" + records[i].make + " " + records[i].model + " " + records[i].color + " " + records[i].broadcastDate + " " + totalBids + "";
+        htmlText += "<p>" + records[i].color + " " + records[i].make + " " + records[i].model + ", Total Bids: " + totalBids + "<span style='float: right;'>On: " + records[i].broadcastDate + "</span> ";
         if (totalBids > 0) {
             htmlText += "<div id='myUlDiv'><ul class='nav'>";
             for (j = 0; j < totalBids; j++) {
