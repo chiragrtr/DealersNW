@@ -55,7 +55,7 @@
             <div id="createNewBroadcast" >
                 <form class="form-inline">
                     <div class='form-group'><%--Select Make--%>
-                        <b class="myWell">YOUR REQUIREMET</b>
+                        <b class="myWell">YOUR REQUIREMENT</b>
                         <select class='form-control' id='make' name='make'>
                             <option><label>Select Your Make</label></option>
                             <option>Mercedez</option>
