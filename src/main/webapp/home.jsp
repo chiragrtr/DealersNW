@@ -55,7 +55,7 @@
             <div id="createNewBroadcast" >
                 <form class="form-inline">
                     <div class='form-group'><%--Select Make--%>
-                        <b class="myWell">YOUR REQUIREMENT</b>
+                        <b class="myWell">NEW REQUIREMENT</b>
                         <select class='form-control' id='make' name='make'>
                             <option><label>Select Your Make</label></option>
                             <option>Mercedez</option>
@@ -83,7 +83,7 @@
         <div id="showBroadcastDiv">
         <div class="col-lg-6">
             <div>
-                <p class="myPanel">OTHERS' BROADCASTS<span style="float: left"><input type="radio" name="chiragRadio" id="r1" value="broadcasts" onclick=myFun() checked>All</span> <span style="float: right;"><input type="radio" name="chiragRadio" id="r2" value="bids" onclick=showMyBids(document.getElementById("myPara").innerHTML)>Your Bids</span></p>
+                <p class="myPanel">OTHERS' BROADCASTS<span style="float: left"><input type="radio" name="chiragRadio" id="r1" value="broadcasts" onclick=myFun() checked>All</span> <span style="float: right;"><input type="radio" name="chiragRadio" id="r2" value="bids" onclick=showMyBids(document.getElementById("myPara").innerHTML)>My Bids</span></p>
                 <%--<p class="myPanel">Show Broadcasts</p>--%>
                 <span id="myBidsNotification" style="float: right"></span>
                 <select id="openOrClosed" onchange="showOthersBroadcasts(this.value)">
@@ -103,7 +103,7 @@
             <%--<button type = button onclick="showMyOpenBroadcasts()">Show my broadcasts</button>--%>
             <%--<br><br>--%>
             <div>
-                <p class="myPanel"><b>YOUR BROADCAST</b><br></p>
+                <p class="myPanel"><b>MY BROADCASTS</b><br></p>
                 <span id ="bidsNotification" style="float: right">  </span>
                 <select id="myOpenOrClosed" onchange="showMyBroadcasts()">
                     <option value="open" selected>Open</option>
