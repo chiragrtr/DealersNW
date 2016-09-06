@@ -1,4 +1,4 @@
-1)
+1) ---Workaround: time set to 60 seconds to minimize the impact of this problem---
 
 The others' broadcasts div gets refreshed every 30 seconds so when entering bid price, days or hours,
  our inputted data is lost due to refresh.
@@ -8,11 +8,11 @@ The others' broadcasts div gets refreshed every 30 seconds so when entering bid 
 After we create a broadcast, the form doesn't revert to its default state, i.e. doesn't show "Select your make",
 "select your model" and "select color", rather it shows the data selected during creation of broadcast.
 
-3)
+3)  DONE------------DONE-----------DONE
 
 Can't view my broadcasts when there are bids if we show them in "latest first" form. So reverted back to oldest first for the time being.
 
-4)
+4)  DONE------------DONE-----------DONE
 
 Hours to be entered in others' open broadcast, while placing bid should not be greater than 24.
 
@@ -20,13 +20,18 @@ Hours to be entered in others' open broadcast, while placing bid should not be g
 
 In show_Others_Broadcasts "Broadcast By" should display dealer name, not dealer id.
 
-6)
+6)  DONE------------DONE-----------DONE
 
 In my broadcasts (both open and closed), bidder id is displayed but we want bidder name and contact details to be shown.
 
-7)
+7)  DONE------------DONE-----------DONE
 
 You can bid a negative or zero value in price and delivery time.
 
 8)  DONE-------------DONE----------DONE
+
 No notifications are there.
+
+9)
+
+Make and model aren't from database.
