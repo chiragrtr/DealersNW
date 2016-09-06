@@ -23,7 +23,6 @@ import java.io.IOException;
  */
 @Controller
 public class LoginController {
-
     @Autowired
     private DealerDAO dealerDAO = null;
 
@@ -38,6 +37,9 @@ public class LoginController {
 
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
+        if(!request.getParameter("sessionId").equals(request.getSession().getId())){
+            return new ModelAndView("index");
+        }
         Dealer dealer = dealerDAO.login(request.getParameter("email"),request.getParameter("password"));
         ModelMap modelMap = new ModelMap();
         modelMap.addAttribute("message","invalid");
@@ -50,6 +52,7 @@ public class LoginController {
 
     @RequestMapping(value="/logout", method = RequestMethod.GET)
     public ModelAndView logout(HttpServletRequest request, HttpServletResponse response){
+        System.out.println(request.getSession().getId());
         request.getSession().invalidate();
         return new ModelAndView("index");
     }

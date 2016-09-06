@@ -4183,7 +4183,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
-    max-height:75%;
+    max-height:200%;
     background-color: whitesmoke;
     overflow-y:auto;
 }

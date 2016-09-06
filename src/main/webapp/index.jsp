@@ -40,6 +40,9 @@
                     </label>
                     <input type="password" name="password" required autocomplete="off"/>
                 </div>
+                <input type="hidden" name="sessionId" value=
+                    <%=(request.getSession().getId()).toString()%>
+                >
                 <%
                     if (request.getAttribute("message") != null && request.getAttribute("message").equals("invalid")) {
                 %>
