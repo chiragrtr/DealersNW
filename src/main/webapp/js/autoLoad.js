@@ -85,14 +85,24 @@ function numOfSelectedBids() {
     xmlHttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlHttp.send("dealerId=" + document.getElementById("myPara").innerHTML);
 }
-function repeatedCalls() {
+
+function alwaysRepeat(){
     numOfNewBids();
     numOfSelectedBids();
+    showMyBroadcasts();
+    setTimeout(alwaysRepeat, 10000);
+}
+
+function repeatOnCondition(){
     if (document.getElementById("r2").checked) {
         return;
     }
-    setTimeout(repeatedCalls, 60000);
+    setTimeout(repeatOnCondition, 30000);
     showOthersBroadcasts(document.getElementById("openOrClosed").value);
+}
+function repeatedCalls() {
+    alwaysRepeat();
+    repeatOnCondition();
 }
 
 /*$(function () {
