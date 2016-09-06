@@ -39,7 +39,8 @@
                </div>
            </ul>
             <ul>
-                <div class = "navbar-left"><img src="https://www.logomoose.com/wp-content/uploads/2013/04/all-logo-01.jpg"></div>
+                <%--https://www.logomoose.com/wp-content/uploads/2013/04/all-logo-01.jpg--%>
+                <div class = "navbar-left"><img src="logo/logo.jpg"></div>
             </ul>
         </div>
     </div>

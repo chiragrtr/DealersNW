@@ -1279,7 +1279,8 @@ body {
     color: #333;
     background-color: #fff;
     /*http://slodive.com/wp-content/uploads/2011/05/white-backgrounds/crumpled-paper-background.jpg*/
-    background: url(https://imtoolsuite.com/members/tools/capturepage/images/custom/bg_0XI2Fm-Webpage_background.jpg) no-repeat center center fixed;
+    /*background: url(https://imtoolsuite.com/members/tools/capturepage/images/custom/bg_0XI2Fm-Webpage_background.jpg) no-repeat center center fixed;*/
+      background : url(http://lawnworkstriad.com/wp-content/uploads/2014/09/white-paper-background-cardboard-texture-hd.jpg);
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -1312,7 +1313,7 @@ figure {
 img {
     vertical-align: middle;
     height: 70%;
-    margin-top: 10%;
+    margin-top: 22%;
 }
 .img-responsive,
 .thumbnail > img,
@@ -4812,6 +4813,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 .navbar-inverse {
     background-color: #82C600;
+    /*background-color: #2f2e2e;*/
     border-color: #080808;
 }
 .navbar-inverse .navbar-brand {
