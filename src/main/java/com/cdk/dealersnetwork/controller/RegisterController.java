@@ -36,7 +36,9 @@ public class RegisterController {
     public ModelAndView register(HttpServletRequest request, HttpServletResponse response){
         Dealer dealer = new Dealer(request.getParameter("name"),Long.parseLong(request.getParameter("phone")),new Date(),request.getParameter("email"),request.getParameter("password"));
         dealer = dealerDAO.createDealer(dealer);
-        if(dealer.getDealerId() == 0) return new ModelAndView("index");
+        ModelMap modelMap = new ModelMap();
+        modelMap.addAttribute("message", "duplicateRegistration");
+        if(dealer.getDealerId() == 0) return new ModelAndView("index",modelMap);
         HttpSession session = request.getSession();
         session.setAttribute("dealerId","" + dealer.getDealerId());
         session.setAttribute("dealerName","" + dealer.getName());

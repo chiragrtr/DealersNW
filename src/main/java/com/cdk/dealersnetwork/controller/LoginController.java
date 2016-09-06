@@ -39,7 +39,9 @@ public class LoginController {
     @RequestMapping(value="/login", method = RequestMethod.POST)
     public ModelAndView login(HttpServletRequest request, HttpServletResponse response){
         Dealer dealer = dealerDAO.login(request.getParameter("email"),request.getParameter("password"));
-        if(dealer.getDealerId() == 0 ) return new ModelAndView("index");
+        ModelMap modelMap = new ModelMap();
+        modelMap.addAttribute("message","invalid");
+        if(dealer.getDealerId() == 0 ) return new ModelAndView("index",modelMap);
         HttpSession session = request.getSession();
         session.setAttribute("dealerId","" + dealer.getDealerId());
         session.setAttribute("dealerName","" + dealer.getName());
