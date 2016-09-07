@@ -32,6 +32,10 @@ public class Dealer {
         this.password = password;
     }
 
+    public Dealer(int dealerId){
+        this.dealerId = dealerId;
+    }
+
     public int getDealerId() {
         return dealerId;
     }

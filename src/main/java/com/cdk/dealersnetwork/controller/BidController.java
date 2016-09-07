@@ -2,6 +2,7 @@ package com.cdk.dealersnetwork.controller;
 
 import com.cdk.dealersnetwork.dao.BidDAO;
 import com.cdk.dealersnetwork.dao.BroadcastDAO;
+import com.cdk.dealersnetwork.dao.DealerDAO;
 import com.cdk.dealersnetwork.dto.Bid;
 import com.cdk.dealersnetwork.dto.Broadcast;
 import com.cdk.dealersnetwork.dto.Dealer;
@@ -32,6 +33,17 @@ public class BidController {
 
     @Autowired
     BroadcastDAO broadcastDAO = null;
+
+    @Autowired
+    DealerDAO dealerDAO = null;
+
+    public DealerDAO getDealerDAO() {
+        return dealerDAO;
+    }
+
+    public void setDealerDAO(DealerDAO dealerDAO) {
+        this.dealerDAO = dealerDAO;
+    }
 
     public BroadcastDAO getBroadcastDAO() {
         return broadcastDAO;
@@ -84,7 +96,7 @@ public class BidController {
             json = "[";
             for (Bid bid : bidList) {
                 Broadcast broadcast = broadcastDAO.getBroadcast(bid.getBroadcastId());
-                Dealer dealer = broadcastDAO.getDealer(broadcast.getDealerId());
+                Dealer dealer = dealerDAO.getDealer(broadcast.getDealerId());
                 json += new Gson().toJson(bid) + "," + new Gson().toJson(broadcast) + "," + new Gson().toJson(dealer) + ",";
             }
             json = json.substring(0, json.length() - 1) + "]";
