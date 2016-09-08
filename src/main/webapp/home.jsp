@@ -8,7 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Dealers Network</title>
     <link rel="stylesheet" href="bootstrap/bootstrap.css">
     <%--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>--%>
     <script src="js/jquery-3.1.0.min.js"></script>
