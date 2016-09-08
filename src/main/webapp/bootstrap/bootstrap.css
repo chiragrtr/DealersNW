@@ -4712,6 +4712,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
         float: right !important;
         margin-right: -15px;
         margin-top: 10px;
+        height: 40px;
     }
     .navbar-right ~ .navbar-right {
         margin-right: 0;
