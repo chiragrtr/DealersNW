@@ -42,8 +42,8 @@ public class BroadcastDAO {
     }
 
     public List<Broadcast> showMyClosedBroadcasts(int dealerId) {
-        int status = 1;
-        List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId =:dealerId and b.status=:status", new String[]{"dealerId", "status"}, new Object[]{dealerId, status});
+        int status = 0;
+        List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId =:dealerId and b.status!=:status", new String[]{"dealerId", "status"}, new Object[]{dealerId, status});
         return getBroadcastsList(domainBroadcastList);
     }
 
@@ -58,6 +58,12 @@ public class BroadcastDAO {
         hibernateTemplate.saveOrUpdate(broadcast);
     }
 
+    public void cancelBroadcast(int broadcastId) {
+        com.cdk.dealersnetwork.domain.Broadcast broadcast = hibernateTemplate.get(com.cdk.dealersnetwork.domain.Broadcast.class, broadcastId);
+        broadcast.setStatus(2);
+        hibernateTemplate.saveOrUpdate(broadcast);
+    }
+
     public List<Broadcast> showOthersOpenBroadcasts(int dealerId){
         int status = 0;
         List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId !=:dealerId and b.status=:status",new String[]{"dealerId","status"}, new Object[]{dealerId,status});
@@ -65,8 +71,8 @@ public class BroadcastDAO {
     }
 
     public List<Broadcast> showOthersClosedBroadcasts(int dealerId){
-        int status = 1;
-        List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId !=:dealerId and b.status=:status", new String[]{"dealerId","status"}, new Object[]{dealerId,status});
+        int status = 0;
+        List<com.cdk.dealersnetwork.domain.Broadcast> domainBroadcastList = (List<com.cdk.dealersnetwork.domain.Broadcast>) hibernateTemplate.findByNamedParam("from com.cdk.dealersnetwork.domain.Broadcast b where b.dealerId !=:dealerId and b.status!=:status", new String[]{"dealerId","status"}, new Object[]{dealerId,status});
         return getBroadcastsList(domainBroadcastList);
 
     }

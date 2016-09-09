@@ -79,6 +79,10 @@ function createClosedBroadcastList(records) {
 
         var totalBids = records[i].totalBids;
         htmlText += "<p>" + records[i].color + " " + records[i].make + " " + records[i].model + ", Total Bids: " + totalBids + "<span style='float: right;'>On: " + records[i].broadcastDate + "</span> ";
+        var status =records[i].status;
+        if(status == 2 ){
+            htmlText += "<br><br><mark>This broadcast has been cancelled!</mark>"
+        }
         if (totalBids > 0) {
             htmlText += "<div id='myUlDiv'><ul class='nav'>";
             for (j = 0; j < totalBids; j++) {
@@ -97,9 +101,6 @@ function createClosedBroadcastList(records) {
                 }
             }
             htmlText += "</ul></div>";
-        }
-        else{
-            htmlText += "<br><br><mark>This broadcast doesn't have any bids!</mark>"
         }
         htmlText += "</p>";
         htmlText +=  "</ul></div>";

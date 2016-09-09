@@ -164,7 +164,7 @@ public class DealerController {
     String cancelBroadcast(HttpServletRequest request, HttpServletResponse response) {
         int broadcastId = Integer.parseInt(request.getParameter("broadcastId"));
         bidDAO.rejectDeals(broadcastId, 0);
-        broadcastDAO.closeBroadcast(broadcastId);
+        broadcastDAO.cancelBroadcast(broadcastId);
         return showMyOpenBroadcasts(request, response);
     }
 
